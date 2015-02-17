@@ -128,9 +128,9 @@ class Fiche
      * @param \DateTime $dateModification
      * @return Fiche
      */
-    public function setDateModification($dateModification)
+    public function setDateModification()
     {
-        $this->dateModification = $dateModification;
+        $this->dateModification = new \DateTime();
 
         return $this;
     }
