@@ -1,0 +1,3 @@
+gsb_appli_frais_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: GsbAppliFraisBundle:Default:index }

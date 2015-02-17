@@ -1,0 +1,4 @@
+gsb_appli_frais:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing.yml"
+    prefix:   /
+
