@@ -19,9 +19,9 @@ class __TwigTemplate_804169566a5127be529307c911b85049e4b2b8a7637c735fd1f85f3dbf0
         echo "/*
 ";
         // line 2
-        echo twig_escape_filter($this->env, (isset($context["status_code"]) ? $context["status_code"] : null), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["status_code"]) ? $context["status_code"] : null), "js", null, true);
         echo " ";
-        echo twig_escape_filter($this->env, (isset($context["status_text"]) ? $context["status_text"] : null), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["status_text"]) ? $context["status_text"] : null), "js", null, true);
         echo "
 
 */

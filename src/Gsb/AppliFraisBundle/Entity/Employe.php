@@ -73,7 +73,6 @@ class Employe
         $this->fiches = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
@@ -294,10 +293,10 @@ class Employe
     /**
      * Add fiches
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Fiche $fiches
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
      * @return Employe
      */
-    public function addFich(\contexteGSB\appliFraisBundle\Entity\Fiche $fiches)
+    public function addFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
     {
         $this->fiches[] = $fiches;
 
@@ -307,9 +306,9 @@ class Employe
     /**
      * Remove fiches
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Fiche $fiches
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
      */
-    public function removeFich(\contexteGSB\appliFraisBundle\Entity\Fiche $fiches)
+    public function removeFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
     {
         $this->fiches->removeElement($fiches);
     }
@@ -322,5 +321,10 @@ class Employe
     public function getFiches()
     {
         return $this->fiches;
+    }
+
+    public function __toString()
+    {
+      return $this->getLogin();
     }
 }

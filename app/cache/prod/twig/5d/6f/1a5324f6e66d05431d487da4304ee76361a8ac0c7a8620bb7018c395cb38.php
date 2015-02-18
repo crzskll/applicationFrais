@@ -17,11 +17,11 @@ class __TwigTemplate_5d6f1a5324f6e66d05431d487da4304ee76361a8ac0c7a8620bb7018c39
     {
         // line 1
         echo "[exception] ";
-        echo twig_escape_filter($this->env, (((((isset($context["status_code"]) ? $context["status_code"] : null) . " | ") . (isset($context["status_text"]) ? $context["status_text"] : null)) . " | ") . $this->getAttribute((isset($context["exception"]) ? $context["exception"] : null), "class", array())), "html", null, true);
+        echo (((((isset($context["status_code"]) ? $context["status_code"] : null) . " | ") . (isset($context["status_text"]) ? $context["status_text"] : null)) . " | ") . $this->getAttribute((isset($context["exception"]) ? $context["exception"] : null), "class", array()));
         echo "
 [message] ";
         // line 2
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["exception"]) ? $context["exception"] : null), "message", array()), "html", null, true);
+        echo $this->getAttribute((isset($context["exception"]) ? $context["exception"] : null), "message", array());
         echo "
 ";
         // line 3
@@ -30,11 +30,11 @@ class __TwigTemplate_5d6f1a5324f6e66d05431d487da4304ee76361a8ac0c7a8620bb7018c39
         foreach ($context['_seq'] as $context["i"] => $context["e"]) {
             // line 4
             echo "[";
-            echo twig_escape_filter($this->env, ($context["i"] + 1), "html", null, true);
+            echo ($context["i"] + 1);
             echo "] ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["e"], "class", array()), "html", null, true);
+            echo $this->getAttribute($context["e"], "class", array());
             echo ": ";
-            echo twig_escape_filter($this->env, $this->getAttribute($context["e"], "message", array()), "html", null, true);
+            echo $this->getAttribute($context["e"], "message", array());
             echo "
 ";
             // line 5

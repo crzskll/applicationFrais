@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ForfaitLigne</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nbkm</th>
+                <td>{{ entity.nbKm }}</td>
+            </tr>
+            <tr>
+                <th>Nbetape</th>
+                <td>{{ entity.nbEtape }}</td>
+            </tr>
+            <tr>
+                <th>Nbnuit</th>
+                <td>{{ entity.nbNuit }}</td>
+            </tr>
+            <tr>
+                <th>Nbrepas</th>
+                <td>{{ entity.nbRepas }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('gsb_forfaitligne') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('gsb_forfaitligne_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

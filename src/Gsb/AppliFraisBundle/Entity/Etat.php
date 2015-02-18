@@ -68,10 +68,10 @@ class Etat
     /**
      * Add fiches
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Fiche $fiches
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
      * @return Etat
      */
-    public function addFich(\contexteGSB\appliFraisBundle\Entity\Fiche $fiches)
+    public function addFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
     {
         $this->fiches[] = $fiches;
 
@@ -81,9 +81,9 @@ class Etat
     /**
      * Remove fiches
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Fiche $fiches
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
      */
-    public function removeFich(\contexteGSB\appliFraisBundle\Entity\Fiche $fiches)
+    public function removeFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
     {
         $this->fiches->removeElement($fiches);
     }
@@ -96,5 +96,10 @@ class Etat
     public function getFiches()
     {
         return $this->fiches;
+    }
+
+    public function __toString()
+    {
+      return $this->getLibelle();
     }
 }

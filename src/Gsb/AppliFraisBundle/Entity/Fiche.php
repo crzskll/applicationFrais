@@ -66,6 +66,7 @@ class Fiche
     }
 
 
+  
     /**
      * Get id
      *
@@ -100,26 +101,26 @@ class Fiche
     }
 
     /**
-     * Set nbJustificatif
+     * Set nbJustificatifs
      *
-     * @param integer $nbJustificatif
+     * @param integer $nbJustificatifs
      * @return Fiche
      */
-    public function setNbJustificatif($nbJustificatif)
+    public function setNbJustificatifs($nbJustificatifs)
     {
-        $this->nbJustificatif = $nbJustificatif;
+        $this->nbJustificatifs = $nbJustificatifs;
 
         return $this;
     }
 
     /**
-     * Get nbJustificatif
+     * Get nbJustificatifs
      *
      * @return integer 
      */
-    public function getNbJustificatif()
+    public function getNbJustificatifs()
     {
-        return $this->nbJustificatif;
+        return $this->nbJustificatifs;
     }
 
     /**
@@ -128,9 +129,9 @@ class Fiche
      * @param \DateTime $dateModification
      * @return Fiche
      */
-    public function setDateModification()
+    public function setDateModification($dateModification)
     {
-        $this->dateModification = new \DateTime();
+        $this->dateModification = $dateModification;
 
         return $this;
     }
@@ -169,35 +170,12 @@ class Fiche
     }
 
     /**
-     * Set nbJustificatifs
-     *
-     * @param integer $nbJustificatifs
-     * @return Fiche
-     */
-    public function setNbJustificatifs($nbJustificatifs)
-    {
-        $this->nbJustificatifs = $nbJustificatifs;
-
-        return $this;
-    }
-
-    /**
-     * Get nbJustificatifs
-     *
-     * @return integer 
-     */
-    public function getNbJustificatifs()
-    {
-        return $this->nbJustificatifs;
-    }
-
-    /**
      * Set employe
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Employe $employe
+     * @param \Gsb\AppliFraisBundle\Entity\Employe $employe
      * @return Fiche
      */
-    public function setEmploye(\contexteGSB\appliFraisBundle\Entity\Employe $employe = null)
+    public function setEmploye(\Gsb\AppliFraisBundle\Entity\Employe $employe = null)
     {
         $this->employe = $employe;
 
@@ -207,7 +185,7 @@ class Fiche
     /**
      * Get employe
      *
-     * @return \contexteGSB\appliFraisBundle\Entity\Employe 
+     * @return \Gsb\AppliFraisBundle\Entity\Employe 
      */
     public function getEmploye()
     {
@@ -217,10 +195,10 @@ class Fiche
     /**
      * Set etat
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Etat $etat
+     * @param \Gsb\AppliFraisBundle\Entity\Etat $etat
      * @return Fiche
      */
-    public function setEtat(\contexteGSB\appliFraisBundle\Entity\Etat $etat = null)
+    public function setEtat(\Gsb\AppliFraisBundle\Entity\Etat $etat = null)
     {
         $this->etat = $etat;
 
@@ -230,7 +208,7 @@ class Fiche
     /**
      * Get etat
      *
-     * @return \contexteGSB\appliFraisBundle\Entity\Etat 
+     * @return \Gsb\AppliFraisBundle\Entity\Etat 
      */
     public function getEtat()
     {
@@ -240,10 +218,10 @@ class Fiche
     /**
      * Add horsForfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
      * @return Fiche
      */
-    public function addHorsForfaitLigne(\contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    public function addHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
     {
         $this->horsForfaitLignes[] = $horsForfaitLignes;
 
@@ -253,9 +231,9 @@ class Fiche
     /**
      * Remove horsForfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
      */
-    public function removeHorsForfaitLigne(\contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    public function removeHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
     {
         $this->horsForfaitLignes->removeElement($horsForfaitLignes);
     }
@@ -273,10 +251,10 @@ class Fiche
     /**
      * Add forfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
      * @return Fiche
      */
-    public function addForfaitLigne(\contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    public function addForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
     {
         $this->forfaitLignes[] = $forfaitLignes;
 
@@ -286,9 +264,9 @@ class Fiche
     /**
      * Remove forfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
      */
-    public function removeForfaitLigne(\contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    public function removeForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
     {
         $this->forfaitLignes->removeElement($forfaitLignes);
     }
@@ -301,5 +279,11 @@ class Fiche
     public function getForfaitLignes()
     {
         return $this->forfaitLignes;
+    }
+
+    public function __toString()
+    {
+
+      return strval($this->getId());
     }
 }

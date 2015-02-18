@@ -7,7 +7,15 @@ class __TwigTemplate_504aa81e592a4750ef31af4863a44cf4d3a021d50702da010c59e229541
     {
         parent::__construct($env);
 
-        $this->parent = $this->env->loadTemplate("@WebProfiler/Profiler/layout.html.twig");
+        // line 1
+        try {
+            $this->parent = $this->env->loadTemplate("@WebProfiler/Profiler/layout.html.twig");
+        } catch (Twig_Error_Loader $e) {
+            $e->setTemplateFile($this->getTemplateName());
+            $e->setTemplateLine(1);
+
+            throw $e;
+        }
 
         $this->blocks = array(
             'toolbar' => array($this, 'block_toolbar'),
@@ -166,7 +174,7 @@ class __TwigTemplate_504aa81e592a4750ef31af4863a44cf4d3a021d50702da010c59e229541
             } else {
                 // line 62
                 echo "                        no ";
-                if ((!twig_length_filter($this->env, $this->getAttribute((isset($context["collector"]) ? $context["collector"] : null), "roles", array())))) {
+                if ( !twig_length_filter($this->env, $this->getAttribute((isset($context["collector"]) ? $context["collector"] : null), "roles", array()))) {
                     echo "<em>(probably because the user has no roles)</em>";
                 }
                 // line 63
@@ -198,7 +206,8 @@ class __TwigTemplate_504aa81e592a4750ef31af4863a44cf4d3a021d50702da010c59e229541
             // line 76
             echo "        </table>
     ";
-        } elseif ($this->getAttribute((isset($context["collector"]) ? $context["collector"] : null), "enabled", array())) {
+        } elseif ($this->getAttribute(        // line 77
+(isset($context["collector"]) ? $context["collector"] : null), "enabled", array())) {
             // line 78
             echo "        <p>
             <em>No token</em>
@@ -225,6 +234,6 @@ class __TwigTemplate_504aa81e592a4750ef31af4863a44cf4d3a021d50702da010c59e229541
 
     public function getDebugInfo()
     {
-        return array (  209 => 82,  203 => 78,  199 => 76,  193 => 73,  189 => 71,  187 => 70,  182 => 68,  176 => 64,  173 => 63,  168 => 62,  164 => 60,  162 => 59,  154 => 54,  149 => 51,  147 => 50,  144 => 49,  141 => 48,  133 => 42,  130 => 41,  125 => 38,  122 => 37,  116 => 36,  112 => 35,  109 => 34,  106 => 33,  103 => 32,  99 => 30,  95 => 28,  92 => 27,  86 => 24,  82 => 22,  80 => 21,  73 => 19,  64 => 15,  60 => 13,  57 => 12,  54 => 11,  51 => 10,  48 => 9,  45 => 8,  42 => 7,  39 => 6,  36 => 5,  33 => 4,  30 => 3,);
+        return array (  218 => 82,  212 => 78,  210 => 77,  207 => 76,  201 => 73,  197 => 71,  195 => 70,  190 => 68,  184 => 64,  181 => 63,  176 => 62,  172 => 60,  170 => 59,  162 => 54,  157 => 51,  155 => 50,  152 => 49,  149 => 48,  141 => 42,  138 => 41,  133 => 38,  130 => 37,  124 => 36,  120 => 35,  117 => 34,  114 => 33,  111 => 32,  107 => 30,  103 => 28,  100 => 27,  94 => 24,  90 => 22,  88 => 21,  81 => 19,  72 => 15,  68 => 13,  65 => 12,  62 => 11,  59 => 10,  56 => 9,  53 => 8,  50 => 7,  47 => 6,  44 => 5,  41 => 4,  38 => 3,  11 => 1,);
     }
 }

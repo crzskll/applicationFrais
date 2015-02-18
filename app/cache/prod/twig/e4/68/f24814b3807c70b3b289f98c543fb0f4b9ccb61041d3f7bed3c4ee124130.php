@@ -19,9 +19,9 @@ class __TwigTemplate_e468f24814b3807c70b3b289f98c543fb0f4b9ccb61041d3f7bed3c4ee1
         if ($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "function", array())) {
             // line 2
             echo "    at ";
-            echo twig_escape_filter($this->env, (($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "class", array()) . $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "type", array())) . $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "function", array())), "html", null, true);
+            echo (($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "class", array()) . $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "type", array())) . $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "function", array()));
             echo "(";
-            echo twig_escape_filter($this->env, $this->env->getExtension('code')->formatArgsAsText($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "args", array())), "html", null, true);
+            echo $this->env->getExtension('code')->formatArgsAsText($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "args", array()));
             echo ")
 ";
         } else {
@@ -33,9 +33,9 @@ class __TwigTemplate_e468f24814b3807c70b3b289f98c543fb0f4b9ccb61041d3f7bed3c4ee1
         if (($this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "file", array(), "any", true, true) && $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "line", array(), "any", true, true))) {
             // line 7
             echo "        in ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "file", array()), "html", null, true);
+            echo $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "file", array());
             echo " line ";
-            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "line", array()), "html", null, true);
+            echo $this->getAttribute((isset($context["trace"]) ? $context["trace"] : null), "line", array());
             echo "
 ";
         }

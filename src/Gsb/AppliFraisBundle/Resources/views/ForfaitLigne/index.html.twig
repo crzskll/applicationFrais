@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ForfaitLigne list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nbkm</th>
+                <th>Nbetape</th>
+                <th>Nbnuit</th>
+                <th>Nbrepas</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('gsb_forfaitligne_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nbKm }}</td>
+                <td>{{ entity.nbEtape }}</td>
+                <td>{{ entity.nbNuit }}</td>
+                <td>{{ entity.nbRepas }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('gsb_forfaitligne_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('gsb_forfaitligne_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('gsb_forfaitligne_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

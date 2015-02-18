@@ -1,0 +1,30 @@
+gsb_employe:
+    path:     /
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:index" }
+
+gsb_employe_show:
+    path:     /{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:show" }
+
+gsb_employe_new:
+    path:     /new
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:new" }
+
+gsb_employe_create:
+    path:     /create
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:create" }
+    methods:  POST
+
+gsb_employe_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:edit" }
+
+gsb_employe_update:
+    path:     /{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:update" }
+    methods:  [POST, PUT]
+
+gsb_employe_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:delete" }
+    methods:  [POST, DELETE]

@@ -38,6 +38,7 @@ class Statut
         $this->forfaitLignes = new ArrayCollection();
     }
 
+
     /**
      * Get id
      *
@@ -74,10 +75,10 @@ class Statut
     /**
      * Add horsForfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
      * @return Statut
      */
-    public function addHorsForfaitLigne(\contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    public function addHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
     {
         $this->horsForfaitLignes[] = $horsForfaitLignes;
 
@@ -87,9 +88,9 @@ class Statut
     /**
      * Remove horsForfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
      */
-    public function removeHorsForfaitLigne(\contexteGSB\appliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    public function removeHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
     {
         $this->horsForfaitLignes->removeElement($horsForfaitLignes);
     }
@@ -107,10 +108,10 @@ class Statut
     /**
      * Add forfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
      * @return Statut
      */
-    public function addForfaitLigne(\contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    public function addForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
     {
         $this->forfaitLignes[] = $forfaitLignes;
 
@@ -120,9 +121,9 @@ class Statut
     /**
      * Remove forfaitLignes
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
      */
-    public function removeForfaitLigne(\contexteGSB\appliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    public function removeForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
     {
         $this->forfaitLignes->removeElement($forfaitLignes);
     }
@@ -135,5 +136,10 @@ class Statut
     public function getForfaitLignes()
     {
         return $this->forfaitLignes;
+    }
+
+    public function __toString()
+    {
+      return $this->getLibelle();
     }
 }

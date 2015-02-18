@@ -1,0 +1,30 @@
+gsb_forfaitligne:
+    path:     /
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:index" }
+
+gsb_forfaitligne_show:
+    path:     /{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:show" }
+
+gsb_forfaitligne_new:
+    path:     /new
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:new" }
+
+gsb_forfaitligne_create:
+    path:     /create
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:create" }
+    methods:  POST
+
+gsb_forfaitligne_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:edit" }
+
+gsb_forfaitligne_update:
+    path:     /{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:update" }
+    methods:  [POST, PUT]
+
+gsb_forfaitligne_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:delete" }
+    methods:  [POST, DELETE]

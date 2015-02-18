@@ -43,6 +43,7 @@ class HorsForfaitLigne
      */
     protected $fiche;
 
+
     /**
      * Get id
      *
@@ -125,10 +126,10 @@ class HorsForfaitLigne
     /**
      * Set statut
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Statut $statut
+     * @param \Gsb\AppliFraisBundle\Entity\Statut $statut
      * @return HorsForfaitLigne
      */
-    public function setStatut(\contexteGSB\appliFraisBundle\Entity\Statut $statut = null)
+    public function setStatut(\Gsb\AppliFraisBundle\Entity\Statut $statut = null)
     {
         $this->statut = $statut;
 
@@ -138,7 +139,7 @@ class HorsForfaitLigne
     /**
      * Get statut
      *
-     * @return \contexteGSB\appliFraisBundle\Entity\Statut 
+     * @return \Gsb\AppliFraisBundle\Entity\Statut 
      */
     public function getStatut()
     {
@@ -148,10 +149,10 @@ class HorsForfaitLigne
     /**
      * Set fiche
      *
-     * @param \contexteGSB\appliFraisBundle\Entity\Fiche $fiche
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiche
      * @return HorsForfaitLigne
      */
-    public function setFiche(\contexteGSB\appliFraisBundle\Entity\Fiche $fiche = null)
+    public function setFiche(\Gsb\AppliFraisBundle\Entity\Fiche $fiche = null)
     {
         $this->fiche = $fiche;
 
@@ -161,7 +162,7 @@ class HorsForfaitLigne
     /**
      * Get fiche
      *
-     * @return \contexteGSB\appliFraisBundle\Entity\Fiche 
+     * @return \Gsb\AppliFraisBundle\Entity\Fiche 
      */
     public function getFiche()
     {
