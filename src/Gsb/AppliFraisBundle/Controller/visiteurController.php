@@ -3,6 +3,8 @@
 namespace Gsb\AppliFraisBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Gsb\AppliFraisBundle\Form\SaisieForfait;
+use Gsb\AppliFraisBundle\Form\SaisieHorsForfait;
 
 use \DateTime;
 
@@ -18,6 +20,8 @@ class VisiteurController extends Controller
         $fiches = $visiteur->getFiches();
         $derniereFiche = $fiches[sizeof($fiches)-1];
         $date = new DateTime();
+        $formSaisieForfait = $this->createForm(new SaisieForfait());
+        $formSaisieHorsForfait = $this->createForm(new SaisieHorsForfait());
 
         if ($derniereFiche->getDate()->format('Y-m') != $date->format('Y-m')){
             if ($derniereFiche->getEtat()->getLibelle() != 'Cloturée'){
@@ -28,10 +32,12 @@ class VisiteurController extends Controller
             }
         }
 
-        
+
         return $this->render('GsbAppliFraisBundle:Visiteur:saisie.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $derniereFiche,
+                'formSaisieForfait' => $formSaisieForfait->createView(),
+                'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
             ));
     }
     

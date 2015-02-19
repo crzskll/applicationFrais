@@ -461,6 +461,16 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_appli_frais_homepage')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\DefaultController::indexAction',));
         }
 
+        // gsb_appli_frais_portal
+        if ($pathinfo === '/portal') {
+            return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\DefaultController::indexAction',  '_route' => 'gsb_appli_frais_portal',);
+        }
+
+        // visiteur
+        if (0 === strpos($pathinfo, '/visiteur') && preg_match('#^/visiteur/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::saisieAction',));
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

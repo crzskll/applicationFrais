@@ -2,16 +2,21 @@
 <html>
   <head>
     <title>
+
       {% block title %}
         Jobeet - Your best job board
       {% endblock %}
+
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     {% block stylesheets %}
       <link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/main.css') }}" type="text/css" media="all" />
     {% endblock %}
+
     {% block javascripts %}
     {% endblock %}
+
   </head>
   <body>
     <div>
@@ -49,89 +54,18 @@
 
       <h1>Laboratoir Galaxy Swiss Bourdin</h1>
       
-      {% block fiche %}
-        <div id="fiche" class="container">
-          {% block ligneforfait %}
-            <div id="ligneForfait" class="container">
-              ligne forait
-              <div id="libelleForfait">
-                <div class="libelleForfait">
-                  Etapes
-                </div>
-                <div class="libelleForfait">
-                  Kilométres
-                </div>
-                <div class="libelleForfait">
-                  Nuits
-                </div>
-                <div class="libelleForfait">
-                  Repas
-                </div>
-              </div>
-              <div id="quantiteForfait">
-
-                {% for ligneForfait in fiche.forfaitLignes %}
-
-                  <div class="quantiteForfait">
-                    {{ ligneForfait.nbEtape }}
-                  </div>
-                  <div class="quantiteForfait">
-                    {{ ligneForfait.nbKm }}
-                  </div>
-                  <div class="quantiteForfait">
-                    {{ ligneForfait.nbNuit }}
-                  </div>
-                  <div class="quantiteForfait">
-                    {{ ligneForfait.nbRepas }}
-                  </div>
-
-                {% endfor %}
-
-              </div>
-            </div>
-          {% endblock %}
-
-          {% block lignehorsforfait %}
-            <div id="ligneHorsForfait" class="container">
-              ligne hors forfait
-              <div id="libelleHorsForfait">
-                <div class="libelleHorsForfait">
-                  Date
-                </div>
-                <div class="descriptionHorsForfait">
-                  Description
-                </div>
-                <div class="libelleHorsForfait">
-                  Montant
-                </div>
-              </div>
-              <div id="quantiteHorsForfait">
-
-                {% for ligneHorsForfait in fiche.horsForfaitLignes %}
-                  <div class="quantiteHorsForfait">
-                    {{ ligneHorsForfait.date.format('d-m-Y')}}
-                  </div>
-                  <div class="descriptionHorsForfait">
-                    {{ ligneHorsForfait.libelle}}
-                  </div>
-                  <div class="quantiteHorsForfait">
-                    {{ ligneHorsForfait.montant}}€
-                  </div>
-                {% endfor %}
-
-              </div>
-            </div>  
-          {% endblock %}
+      {% block corps %}
+        <div class="container">
         </div>
       {% endblock %}
 
-      {% block saisieforfait %}
-        <div id="saisieForfait" class="container">
+      {% block rightUp %}
+        <div id="rightUp" class="container">
         </div>
       {% endblock %}
 
-      {% block saisiehorsforfait %}
-        <div id="saisieHorsForfait" class="container">
+      {% block rightDown %}
+        <div id="rightDown" class="container">
         </div>
       {% endblock %}
  

@@ -17,7 +17,7 @@ class ConnexionPortal extends AbstractType
 
     public function getName()
     {
-        return '';
+        return 'gsb_connexion';
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)
