@@ -4,6 +4,16 @@ body{
     background-attachment:fixed;
 }
 
+h1{
+    text-align: center;
+    color:white;
+    font-size: 50px;
+    position: absolute;
+	left: 0;
+	right: 0;
+	top: -20px;
+}
+
 #logo{
 	width: 11%;
 	height: 14%;
@@ -91,4 +101,33 @@ body{
 .descriptionHorsForfait{
 	width:40%;
 	display: inline-block;
+}
+
+#dateMenu{
+	display: inline-block;
+	top: 18%;
+	text-align: left;
+	left:14%;
+	position: absolute;
+}
+#historiqueMenu{
+	display: inline-block;
+	top: 18%;
+	text-align: left;
+	position: absolute;
+	left:25%;
+}
+#nomMenu{
+	display: inline-block;
+	top: 18%;
+	right: 12%;
+	text-align: right;
+	position: absolute;
+}
+#deconnexionMenu{
+	display: inline-block;
+	top: 18%;
+	right: 2%;
+	text-align: right;
+	position: absolute;
 }

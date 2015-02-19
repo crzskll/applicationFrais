@@ -18,7 +18,26 @@
       
       {% block menu %}
       <div id="menu" class="container">
-        liste du menu
+        {% block date %}
+          <div id="dateMenu">
+            date
+          </div>
+        {% endblock %}
+        {% block historique %}
+          <div id="historiqueMenu">
+            historique
+          </div>
+        {% endblock %}
+        {% block nom %}
+          <div id="nomMenu">
+            {{visiteur.nom}} {{visiteur.prenom}}
+          </div>
+        {% endblock %}
+        {% block deconnexion %}
+          <div id="deconnexionMenu">
+            deconnexion
+          </div>
+        {% endblock %}
       </div>
       {% endblock %}
 
@@ -28,6 +47,8 @@
       </div>
       {% endblock %}
 
+      <h1>Laboratoir Galaxy Swiss Bourdin</h1>
+      
       {% block fiche %}
         <div id="fiche" class="container">
           {% block ligneforfait %}
@@ -48,18 +69,24 @@
                 </div>
               </div>
               <div id="quantiteForfait">
-                <div class="quantiteForfait">
-                  0
-                </div>
-                <div class="quantiteForfait">
-                  0
-                </div>
-                <div class="quantiteForfait">
-                  0
-                </div>
-                <div class="quantiteForfait">
-                  0
-                </div>
+
+                {% for ligneForfait in fiche.forfaitLignes %}
+
+                  <div class="quantiteForfait">
+                    {{ ligneForfait.nbEtape }}
+                  </div>
+                  <div class="quantiteForfait">
+                    {{ ligneForfait.nbKm }}
+                  </div>
+                  <div class="quantiteForfait">
+                    {{ ligneForfait.nbNuit }}
+                  </div>
+                  <div class="quantiteForfait">
+                    {{ ligneForfait.nbRepas }}
+                  </div>
+
+                {% endfor %}
+
               </div>
             </div>
           {% endblock %}
@@ -79,15 +106,19 @@
                 </div>
               </div>
               <div id="quantiteHorsForfait">
-                <div class="quantiteHorsForfait">
-                  0
-                </div>
-                <div class="descriptionHorsForfait">
-                  0
-                </div>
-                <div class="quantiteHorsForfait">
-                  0
-                </div>
+
+                {% for ligneHorsForfait in fiche.horsForfaitLignes %}
+                  <div class="quantiteHorsForfait">
+                    {{ ligneHorsForfait.date.format('d-m-Y')}}
+                  </div>
+                  <div class="descriptionHorsForfait">
+                    {{ ligneHorsForfait.libelle}}
+                  </div>
+                  <div class="quantiteHorsForfait">
+                    {{ ligneHorsForfait.montant}}€
+                  </div>
+                {% endfor %}
+
               </div>
             </div>  
           {% endblock %}
