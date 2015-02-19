@@ -1,0 +1,24 @@
+body{
+    background-image: url('../images/fond.jpg');
+    background-size: 100% 100%;
+    background-attachment:fixed;
+}
+.connexion {
+    border: 5px black double;
+    border-radius: 40px;
+    font-family: Arial;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 10%;
+    clear:left;
+    text-align:center;
+    background-color:#FFFFFF;
+    color:black;
+    height:500px;
+}
+
+h1{
+    text-align: center;
+    color:white;
+    font-size: 50px;
+}

@@ -16,25 +16,31 @@
   <body>
     <div>
       
-      {% block javascripts %}
+      {% block logo %}
+      <div id="logo">
+        <img   src="{{ asset('bundles/gsbapplifrais/images/logo.png') }}" class="imglogo"/>
+      </div>
       {% endblock %}
 
-      {% block javascripts %}
+      {% block menu %}
       {% endblock %}
 
-      {% block javascripts %}
+      {% block deconnection %}
       {% endblock %}
 
-      {% block javascripts %}
+      {% block fiche %}
       {% endblock %}
 
-      {% block javascripts %}
+      {% block ligneforfait %}
       {% endblock %}
 
-      {% block javascripts %}
+      {% block lignehorsforfait %}
       {% endblock %}
 
-      {% block javascripts %}
+      {% block saisieforfait %}
+      {% endblock %}
+
+      {% block saisiehorsforfait %}
       {% endblock %}
  
     </div>

@@ -1,0 +1,3 @@
+visiteur:
+    path:     /{id}
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:saisie" }

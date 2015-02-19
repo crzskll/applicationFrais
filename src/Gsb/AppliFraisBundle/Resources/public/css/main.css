@@ -1,0 +1,16 @@
+body{
+    background-image: url('../images/fond.jpg');
+    background-size: 100% 100%;
+    background-attachment:fixed;
+}
+
+#logo{
+	border: 5px black double;
+    border-radius: 40px;
+    background-color:#FFFFFF;
+    width:150px;
+}
+
+.imglogo{
+	width:150px;
+}
