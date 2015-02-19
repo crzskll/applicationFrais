@@ -16,31 +16,92 @@
   <body>
     <div>
       
+      {% block menu %}
+      <div id="menu" class="container">
+        liste du menu
+      </div>
+      {% endblock %}
+
       {% block logo %}
-      <div id="logo">
+      <div id="logo" class="container">
         <img   src="{{ asset('bundles/gsbapplifrais/images/logo.png') }}" class="imglogo"/>
       </div>
       {% endblock %}
 
-      {% block menu %}
-      {% endblock %}
-
-      {% block deconnection %}
-      {% endblock %}
-
       {% block fiche %}
-      {% endblock %}
+        <div id="fiche" class="container">
+          {% block ligneforfait %}
+            <div id="ligneForfait" class="container">
+              ligne forait
+              <div id="libelleForfait">
+                <div class="libelleForfait">
+                  Etapes
+                </div>
+                <div class="libelleForfait">
+                  Kilométres
+                </div>
+                <div class="libelleForfait">
+                  Nuits
+                </div>
+                <div class="libelleForfait">
+                  Repas
+                </div>
+              </div>
+              <div id="quantiteForfait">
+                <div class="quantiteForfait">
+                  0
+                </div>
+                <div class="quantiteForfait">
+                  0
+                </div>
+                <div class="quantiteForfait">
+                  0
+                </div>
+                <div class="quantiteForfait">
+                  0
+                </div>
+              </div>
+            </div>
+          {% endblock %}
 
-      {% block ligneforfait %}
-      {% endblock %}
-
-      {% block lignehorsforfait %}
+          {% block lignehorsforfait %}
+            <div id="ligneHorsForfait" class="container">
+              ligne hors forfait
+              <div id="libelleHorsForfait">
+                <div class="libelleHorsForfait">
+                  Date
+                </div>
+                <div class="descriptionHorsForfait">
+                  Description
+                </div>
+                <div class="libelleHorsForfait">
+                  Montant
+                </div>
+              </div>
+              <div id="quantiteHorsForfait">
+                <div class="quantiteHorsForfait">
+                  0
+                </div>
+                <div class="descriptionHorsForfait">
+                  0
+                </div>
+                <div class="quantiteHorsForfait">
+                  0
+                </div>
+              </div>
+            </div>  
+          {% endblock %}
+        </div>
       {% endblock %}
 
       {% block saisieforfait %}
+        <div id="saisieForfait" class="container">
+        </div>
       {% endblock %}
 
       {% block saisiehorsforfait %}
+        <div id="saisieHorsForfait" class="container">
+        </div>
       {% endblock %}
  
     </div>

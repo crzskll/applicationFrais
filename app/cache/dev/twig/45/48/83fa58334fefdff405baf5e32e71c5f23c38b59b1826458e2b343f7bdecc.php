@@ -13,9 +13,8 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
             'javascripts' => array($this, 'block_javascripts'),
-            'logo' => array($this, 'block_logo'),
             'menu' => array($this, 'block_menu'),
-            'deconnection' => array($this, 'block_deconnection'),
+            'logo' => array($this, 'block_logo'),
             'fiche' => array($this, 'block_fiche'),
             'ligneforfait' => array($this, 'block_ligneforfait'),
             'lignehorsforfait' => array($this, 'block_lignehorsforfait'),
@@ -50,43 +49,28 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
       
       ";
         // line 19
-        $this->displayBlock('logo', $context, $blocks);
+        $this->displayBlock('menu', $context, $blocks);
         // line 24
         echo "
       ";
         // line 25
-        $this->displayBlock('menu', $context, $blocks);
-        // line 27
-        echo "
-      ";
-        // line 28
-        $this->displayBlock('deconnection', $context, $blocks);
+        $this->displayBlock('logo', $context, $blocks);
         // line 30
         echo "
       ";
         // line 31
         $this->displayBlock('fiche', $context, $blocks);
-        // line 33
+        // line 96
         echo "
       ";
-        // line 34
-        $this->displayBlock('ligneforfait', $context, $blocks);
-        // line 36
-        echo "
-      ";
-        // line 37
-        $this->displayBlock('lignehorsforfait', $context, $blocks);
-        // line 39
-        echo "
-      ";
-        // line 40
+        // line 97
         $this->displayBlock('saisieforfait', $context, $blocks);
-        // line 42
+        // line 101
         echo "
       ";
-        // line 43
+        // line 102
         $this->displayBlock('saisiehorsforfait', $context, $blocks);
-        // line 45
+        // line 106
         echo " 
     </div>
   </body>
@@ -119,65 +103,132 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
     }
 
     // line 19
-    public function block_logo($context, array $blocks = array())
+    public function block_menu($context, array $blocks = array())
     {
         // line 20
-        echo "      <div id=\"logo\">
+        echo "      <div id=\"menu\" class=\"container\">
+        liste du menu
+      </div>
+      ";
+    }
+
+    // line 25
+    public function block_logo($context, array $blocks = array())
+    {
+        // line 26
+        echo "      <div id=\"logo\" class=\"container\">
         <img   src=\"";
-        // line 21
+        // line 27
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/gsbapplifrais/images/logo.png"), "html", null, true);
         echo "\" class=\"imglogo\"/>
       </div>
       ";
     }
 
-    // line 25
-    public function block_menu($context, array $blocks = array())
-    {
-        // line 26
-        echo "      ";
-    }
-
-    // line 28
-    public function block_deconnection($context, array $blocks = array())
-    {
-        // line 29
-        echo "      ";
-    }
-
     // line 31
     public function block_fiche($context, array $blocks = array())
     {
         // line 32
-        echo "      ";
+        echo "        <div id=\"fiche\" class=\"container\">
+          ";
+        // line 33
+        $this->displayBlock('ligneforfait', $context, $blocks);
+        // line 66
+        echo "
+          ";
+        // line 67
+        $this->displayBlock('lignehorsforfait', $context, $blocks);
+        // line 94
+        echo "        </div>
+      ";
     }
 
-    // line 34
+    // line 33
     public function block_ligneforfait($context, array $blocks = array())
     {
-        // line 35
-        echo "      ";
+        // line 34
+        echo "            <div id=\"ligneForfait\" class=\"container\">
+              ligne forait
+              <div id=\"libelleForfait\">
+                <div class=\"libelleForfait\">
+                  Etapes
+                </div>
+                <div class=\"libelleForfait\">
+                  Kilométres
+                </div>
+                <div class=\"libelleForfait\">
+                  Nuits
+                </div>
+                <div class=\"libelleForfait\">
+                  Repas
+                </div>
+              </div>
+              <div id=\"quantiteForfait\">
+                <div class=\"quantiteForfait\">
+                  0
+                </div>
+                <div class=\"quantiteForfait\">
+                  0
+                </div>
+                <div class=\"quantiteForfait\">
+                  0
+                </div>
+                <div class=\"quantiteForfait\">
+                  0
+                </div>
+              </div>
+            </div>
+          ";
     }
 
-    // line 37
+    // line 67
     public function block_lignehorsforfait($context, array $blocks = array())
     {
-        // line 38
-        echo "      ";
+        // line 68
+        echo "            <div id=\"ligneHorsForfait\" class=\"container\">
+              ligne hors forfait
+              <div id=\"libelleHorsForfait\">
+                <div class=\"libelleHorsForfait\">
+                  Date
+                </div>
+                <div class=\"descriptionHorsForfait\">
+                  Description
+                </div>
+                <div class=\"libelleHorsForfait\">
+                  Montant
+                </div>
+              </div>
+              <div id=\"quantiteHorsForfait\">
+                <div class=\"quantiteHorsForfait\">
+                  0
+                </div>
+                <div class=\"descriptionHorsForfait\">
+                  0
+                </div>
+                <div class=\"quantiteHorsForfait\">
+                  0
+                </div>
+              </div>
+            </div>  
+          ";
     }
 
-    // line 40
+    // line 97
     public function block_saisieforfait($context, array $blocks = array())
     {
-        // line 41
-        echo "      ";
+        // line 98
+        echo "        <div id=\"saisieForfait\" class=\"container\">
+        </div>
+      ";
     }
 
-    // line 43
+    // line 102
     public function block_saisiehorsforfait($context, array $blocks = array())
     {
-        // line 44
-        echo "      ";
+        // line 103
+        echo "        <div id=\"saisieHorsForfait\" class=\"container\">
+        </div>
+      ";
     }
 
     public function getTemplateName()
@@ -187,6 +238,6 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
 
     public function getDebugInfo()
     {
-        return array (  180 => 44,  177 => 43,  173 => 41,  170 => 40,  166 => 38,  163 => 37,  159 => 35,  156 => 34,  152 => 32,  149 => 31,  145 => 29,  142 => 28,  138 => 26,  135 => 25,  128 => 21,  125 => 20,  122 => 19,  118 => 14,  115 => 13,  108 => 11,  105 => 10,  100 => 6,  97 => 5,  90 => 45,  88 => 43,  85 => 42,  83 => 40,  80 => 39,  78 => 37,  75 => 36,  73 => 34,  70 => 33,  68 => 31,  65 => 30,  63 => 28,  60 => 27,  58 => 25,  55 => 24,  53 => 19,  47 => 15,  44 => 13,  42 => 10,  38 => 8,  36 => 5,  30 => 1,);
+        return array (  229 => 103,  226 => 102,  220 => 98,  217 => 97,  188 => 68,  185 => 67,  150 => 34,  147 => 33,  142 => 94,  140 => 67,  137 => 66,  135 => 33,  132 => 32,  129 => 31,  122 => 27,  119 => 26,  116 => 25,  109 => 20,  106 => 19,  102 => 14,  99 => 13,  92 => 11,  89 => 10,  84 => 6,  81 => 5,  74 => 106,  72 => 102,  69 => 101,  67 => 97,  64 => 96,  62 => 31,  59 => 30,  57 => 25,  54 => 24,  52 => 19,  46 => 15,  43 => 13,  41 => 10,  37 => 8,  35 => 5,  29 => 1,);
     }
 }
