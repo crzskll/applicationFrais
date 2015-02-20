@@ -83,12 +83,56 @@
 
 {% block rightUp %}
 	<div id="saisieForfait" class="container">
-		{{ form(formSaisieForfait) }}
+		<div class="contentForm">
+			{{ form_start(formSaisieForfait) }}
+			    {{ form_errors(formSaisieForfait) }}
+
+			    <div>
+			        {{ form_label(formSaisieForfait.nbEtape) }}
+			        {{ form_errors(formSaisieForfait.nbEtape) }}
+			        {{ form_widget(formSaisieForfait.nbEtape) }}
+			    </div>
+
+			    <div>
+			        {{ form_label(formSaisieForfait.nbKm) }}
+			        {{ form_errors(formSaisieForfait.nbKm) }}
+			        {{ form_widget(formSaisieForfait.nbKm) }}
+			    </div>
+
+			    <div>
+			        {{ form_label(formSaisieForfait.nbNuit) }}
+			        {{ form_errors(formSaisieForfait.nbNuit) }}
+			        {{ form_widget(formSaisieForfait.nbNuit) }}
+			    </div>
+
+			    <div>
+			        {{ form_label(formSaisieForfait.nbRepas) }}
+			        {{ form_errors(formSaisieForfait.nbRepas) }}
+			        {{ form_widget(formSaisieForfait.nbRepas) }}
+			    </div>
+
+			    <div class="hiden">
+			        {{ form_label(formSaisieForfait.statut) }}
+			        {{ form_errors(formSaisieForfait.statut) }}
+			        {{ form_widget(formSaisieForfait.statut) }}
+			    </div>
+
+			    <div class="hiden">
+			        {{ form_label(formSaisieForfait.fiche) }}
+			        {{ form_errors(formSaisieForfait.fiche) }}
+			        {{ form_widget(formSaisieForfait.fiche) }}
+			    </div>
+
+			{{ form_end(formSaisieForfait) }}
+
+		</div>
 	</div>
 {% endblock %}
 
 {% block rightDown %}
 	<div id="saisieHorsForfait" class="container">
-		{{ form(formSaisieHorsForfait) }}
+		<div class="contentForm">
+			{{ form(formSaisieHorsForfait) }}
+		</div>
 	</div>
 {% endblock %}

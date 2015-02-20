@@ -10,11 +10,14 @@ class SaisieForfait extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Etapes', 'integer');
-        $builder->add('Kilometres', 'integer');
-        $builder->add('Nuits', 'integer');
-        $builder->add('Repas', 'integer');
-        $builder->add('rajouter', 'submit');
+        $builder
+            ->add('nbKm')
+            ->add('nbEtape')
+            ->add('nbNuit')
+            ->add('nbRepas')
+            ->add('statut')
+            ->add('fiche')
+        ;
     }
 
     public function getName()

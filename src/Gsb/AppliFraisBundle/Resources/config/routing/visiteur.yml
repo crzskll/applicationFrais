@@ -1,3 +1,8 @@
 visiteur:
     path:     /{id}
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:saisie" }
+
+visiteur_update_forfait_ligne:
+    path:     /{idLigne}/{idVisit}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:updateForfaitLigne" }
+    methods:  [POST, PUT]

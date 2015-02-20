@@ -466,9 +466,23 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\DefaultController::indexAction',  '_route' => 'gsb_appli_frais_portal',);
         }
 
-        // visiteur
-        if (0 === strpos($pathinfo, '/visiteur') && preg_match('#^/visiteur/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::saisieAction',));
+        if (0 === strpos($pathinfo, '/visiteur')) {
+            // visiteur
+            if (preg_match('#^/visiteur/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::saisieAction',));
+            }
+
+            // visiteur_update_forfait_ligne
+            if (preg_match('#^/visiteur/(?P<idLigne>[^/]++)/(?P<idVisit>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_visiteur_update_forfait_ligne;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_update_forfait_ligne')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::updateForfaitLigneAction',));
+            }
+            not_visiteur_update_forfait_ligne:
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
