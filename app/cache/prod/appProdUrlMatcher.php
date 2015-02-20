@@ -483,6 +483,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
             not_visiteur_update_forfait_ligne:
 
+            // visiteur_create_hors_forfait_ligne
+            if (preg_match('#^/visiteur/(?P<idVisit>[^/]++)/create$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_visiteur_create_hors_forfait_ligne;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_create_hors_forfait_ligne')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::createHorsForfaitLigneAction',));
+            }
+            not_visiteur_create_hors_forfait_ligne:
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

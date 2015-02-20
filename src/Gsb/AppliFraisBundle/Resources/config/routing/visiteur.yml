@@ -6,3 +6,8 @@ visiteur_update_forfait_ligne:
     path:     /{idLigne}/{idVisit}/update
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:updateForfaitLigne" }
     methods:  [POST, PUT]
+
+visiteur_create_hors_forfait_ligne:
+    path:     /{idVisit}/create
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:createHorsForfaitLigne" }
+    methods:  POST

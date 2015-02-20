@@ -132,7 +132,40 @@
 {% block rightDown %}
 	<div id="saisieHorsForfait" class="container">
 		<div class="contentForm">
-			{{ form(formSaisieHorsForfait) }}
+			{{ form_start(formSaisieHorsForfait) }}
+			    {{ form_errors(formSaisieHorsForfait) }}
+
+			    <div>
+			        {{ form_label(formSaisieHorsForfait.date) }}
+			        {{ form_errors(formSaisieHorsForfait.date) }}
+			        {{ form_widget(formSaisieHorsForfait.date) }}
+			    </div>
+
+			    <div>
+			        {{ form_label(formSaisieHorsForfait.libelle) }}
+			        {{ form_errors(formSaisieHorsForfait.libelle) }}
+			        {{ form_widget(formSaisieHorsForfait.libelle) }}
+			    </div>
+
+			    <div>
+			        {{ form_label(formSaisieHorsForfait.montant) }}
+			        {{ form_errors(formSaisieHorsForfait.montant) }}
+			        {{ form_widget(formSaisieHorsForfait.montant) }}
+			    </div>
+
+			    <div class="hiden">
+			        {{ form_label(formSaisieHorsForfait.statut) }}
+			        {{ form_errors(formSaisieHorsForfait.statut) }}
+			        {{ form_widget(formSaisieHorsForfait.statut) }}
+			    </div>
+
+			    <div class="hiden">
+			        {{ form_label(formSaisieHorsForfait.fiche) }}
+			        {{ form_errors(formSaisieHorsForfait.fiche) }}
+			        {{ form_widget(formSaisieHorsForfait.fiche) }}
+			    </div>
+
+			{{ form_end(formSaisieHorsForfait) }}
 		</div>
 	</div>
 {% endblock %}

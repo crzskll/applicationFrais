@@ -10,10 +10,13 @@ class SaisieHorsForfait extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Date', 'date');
-        $builder->add('Description', 'text');
-        $builder->add('Montant', 'money');
-        $builder->add('créer', 'submit');
+        $builder
+            ->add('date')
+            ->add('libelle')
+            ->add('montant')
+            ->add('statut')
+            ->add('fiche')
+        ;
     }
 
     public function getName()

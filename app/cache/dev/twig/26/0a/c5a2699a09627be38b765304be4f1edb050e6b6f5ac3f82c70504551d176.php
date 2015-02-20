@@ -313,7 +313,91 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
 \t\t<div class=\"contentForm\">
 \t\t\t";
         // line 135
-        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), 'form');
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), 'form_start');
+        echo "
+\t\t\t    ";
+        // line 136
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), 'errors');
+        echo "
+
+\t\t\t    <div>
+\t\t\t        ";
+        // line 139
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "date", array()), 'label');
+        echo "
+\t\t\t        ";
+        // line 140
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "date", array()), 'errors');
+        echo "
+\t\t\t        ";
+        // line 141
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "date", array()), 'widget');
+        echo "
+\t\t\t    </div>
+
+\t\t\t    <div>
+\t\t\t        ";
+        // line 145
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "libelle", array()), 'label');
+        echo "
+\t\t\t        ";
+        // line 146
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "libelle", array()), 'errors');
+        echo "
+\t\t\t        ";
+        // line 147
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "libelle", array()), 'widget');
+        echo "
+\t\t\t    </div>
+
+\t\t\t    <div>
+\t\t\t        ";
+        // line 151
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "montant", array()), 'label');
+        echo "
+\t\t\t        ";
+        // line 152
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "montant", array()), 'errors');
+        echo "
+\t\t\t        ";
+        // line 153
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "montant", array()), 'widget');
+        echo "
+\t\t\t    </div>
+
+\t\t\t    <div class=\"hiden\">
+\t\t\t        ";
+        // line 157
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "statut", array()), 'label');
+        echo "
+\t\t\t        ";
+        // line 158
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "statut", array()), 'errors');
+        echo "
+\t\t\t        ";
+        // line 159
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "statut", array()), 'widget');
+        echo "
+\t\t\t    </div>
+
+\t\t\t    <div class=\"hiden\">
+\t\t\t        ";
+        // line 163
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "fiche", array()), 'label');
+        echo "
+\t\t\t        ";
+        // line 164
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "fiche", array()), 'errors');
+        echo "
+\t\t\t        ";
+        // line 165
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), "fiche", array()), 'widget');
+        echo "
+\t\t\t    </div>
+
+\t\t\t";
+        // line 168
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : $this->getContext($context, "formSaisieHorsForfait")), 'form_end');
         echo "
 \t\t</div>
 \t</div>
@@ -332,6 +416,6 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
 
     public function getDebugInfo()
     {
-        return array (  316 => 135,  312 => 133,  309 => 132,  300 => 126,  294 => 123,  290 => 122,  286 => 121,  279 => 117,  275 => 116,  271 => 115,  264 => 111,  260 => 110,  256 => 109,  249 => 105,  245 => 104,  241 => 103,  234 => 99,  230 => 98,  226 => 97,  219 => 93,  215 => 92,  211 => 91,  205 => 88,  201 => 87,  197 => 85,  194 => 84,  187 => 77,  178 => 74,  172 => 71,  166 => 68,  163 => 67,  159 => 66,  142 => 51,  139 => 50,  132 => 45,  122 => 41,  116 => 38,  110 => 35,  104 => 32,  100 => 30,  96 => 29,  76 => 11,  73 => 10,  68 => 81,  66 => 50,  63 => 49,  61 => 10,  58 => 9,  55 => 8,  49 => 5,  44 => 4,  41 => 3,  11 => 1,);
+        return array (  400 => 168,  394 => 165,  390 => 164,  386 => 163,  379 => 159,  375 => 158,  371 => 157,  364 => 153,  360 => 152,  356 => 151,  349 => 147,  345 => 146,  341 => 145,  334 => 141,  330 => 140,  326 => 139,  320 => 136,  316 => 135,  312 => 133,  309 => 132,  300 => 126,  294 => 123,  290 => 122,  286 => 121,  279 => 117,  275 => 116,  271 => 115,  264 => 111,  260 => 110,  256 => 109,  249 => 105,  245 => 104,  241 => 103,  234 => 99,  230 => 98,  226 => 97,  219 => 93,  215 => 92,  211 => 91,  205 => 88,  201 => 87,  197 => 85,  194 => 84,  187 => 77,  178 => 74,  172 => 71,  166 => 68,  163 => 67,  159 => 66,  142 => 51,  139 => 50,  132 => 45,  122 => 41,  116 => 38,  110 => 35,  104 => 32,  100 => 30,  96 => 29,  76 => 11,  73 => 10,  68 => 81,  66 => 50,  63 => 49,  61 => 10,  58 => 9,  55 => 8,  49 => 5,  44 => 4,  41 => 3,  11 => 1,);
     }
 }
