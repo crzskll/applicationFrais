@@ -16,6 +16,7 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
             'menu' => array($this, 'block_menu'),
             'date' => array($this, 'block_date'),
             'historique' => array($this, 'block_historique'),
+            'saisie' => array($this, 'block_saisie'),
             'nom' => array($this, 'block_nom'),
             'deconnexion' => array($this, 'block_deconnexion'),
             'logo' => array($this, 'block_logo'),
@@ -58,29 +59,29 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
       ";
         // line 24
         $this->displayBlock('menu', $context, $blocks);
-        // line 48
+        // line 53
         echo "
       ";
-        // line 49
-        $this->displayBlock('logo', $context, $blocks);
         // line 54
+        $this->displayBlock('logo', $context, $blocks);
+        // line 59
         echo "
       <h1>Laboratoir Galaxy Swiss Bourdin</h1>
       
       ";
-        // line 57
-        $this->displayBlock('corps', $context, $blocks);
-        // line 61
-        echo "
-      ";
         // line 62
-        $this->displayBlock('rightUp', $context, $blocks);
+        $this->displayBlock('corps', $context, $blocks);
         // line 66
         echo "
       ";
         // line 67
-        $this->displayBlock('rightDown', $context, $blocks);
+        $this->displayBlock('rightUp', $context, $blocks);
         // line 71
+        echo "
+      ";
+        // line 72
+        $this->displayBlock('rightDown', $context, $blocks);
+        // line 76
         echo " 
     </div>
   </body>
@@ -125,11 +126,14 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
         $this->displayBlock('historique', $context, $blocks);
         // line 36
         echo "        ";
-        $this->displayBlock('nom', $context, $blocks);
+        $this->displayBlock('saisie', $context, $blocks);
         // line 41
         echo "        ";
-        $this->displayBlock('deconnexion', $context, $blocks);
+        $this->displayBlock('nom', $context, $blocks);
         // line 46
+        echo "        ";
+        $this->displayBlock('deconnexion', $context, $blocks);
+        // line 51
         echo "      </div>
       ";
     }
@@ -158,12 +162,25 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
     }
 
     // line 36
-    public function block_nom($context, array $blocks = array())
+    public function block_saisie($context, array $blocks = array())
     {
         // line 37
+        echo "          <div id=\"saisieMenu\">
+            <a href=\"";
+        // line 38
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur", array("id" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "id", array()))), "html", null, true);
+        echo "\">Fiche en cours</a>
+          </div>
+        ";
+    }
+
+    // line 41
+    public function block_nom($context, array $blocks = array())
+    {
+        // line 42
         echo "          <div id=\"nomMenu\">
             ";
-        // line 38
+        // line 43
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "nom", array()), "html", null, true);
         echo " ";
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "prenom", array()), "html", null, true);
@@ -172,51 +189,54 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
         ";
     }
 
-    // line 41
+    // line 46
     public function block_deconnexion($context, array $blocks = array())
     {
-        // line 42
+        // line 47
         echo "          <div id=\"deconnexionMenu\">
-            deconnexion
+            <a href=\"";
+        // line 48
+        echo $this->env->getExtension('routing')->getPath("gsb_appli_frais_portal");
+        echo "\">Deconnexion</a>
           </div>
         ";
     }
 
-    // line 49
+    // line 54
     public function block_logo($context, array $blocks = array())
     {
-        // line 50
+        // line 55
         echo "      <div id=\"logo\" class=\"container\">
         <img   src=\"";
-        // line 51
+        // line 56
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/gsbapplifrais/images/logo.png"), "html", null, true);
         echo "\" class=\"imglogo\"/>
       </div>
       ";
     }
 
-    // line 57
+    // line 62
     public function block_corps($context, array $blocks = array())
     {
-        // line 58
+        // line 63
         echo "        <div id=\"center\" class=\"container\">
         </div>
       ";
     }
 
-    // line 62
+    // line 67
     public function block_rightUp($context, array $blocks = array())
     {
-        // line 63
+        // line 68
         echo "        <div id=\"rightUp\" class=\"container\">
         </div>
       ";
     }
 
-    // line 67
+    // line 72
     public function block_rightDown($context, array $blocks = array())
     {
-        // line 68
+        // line 73
         echo "        <div id=\"rightDown\" class=\"container\">
         </div>
       ";
@@ -229,6 +249,6 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
 
     public function getDebugInfo()
     {
-        return array (  220 => 68,  217 => 67,  211 => 63,  208 => 62,  202 => 58,  199 => 57,  192 => 51,  189 => 50,  186 => 49,  179 => 42,  176 => 41,  167 => 38,  164 => 37,  161 => 36,  154 => 33,  151 => 32,  148 => 31,  141 => 27,  138 => 26,  133 => 46,  130 => 41,  127 => 36,  124 => 31,  122 => 26,  119 => 25,  116 => 24,  112 => 18,  109 => 17,  102 => 14,  99 => 13,  94 => 7,  91 => 6,  84 => 71,  82 => 67,  79 => 66,  77 => 62,  74 => 61,  72 => 57,  67 => 54,  65 => 49,  62 => 48,  60 => 24,  53 => 19,  51 => 17,  48 => 16,  46 => 13,  40 => 9,  38 => 6,  31 => 1,);
+        return array (  240 => 73,  237 => 72,  231 => 68,  228 => 67,  222 => 63,  219 => 62,  212 => 56,  209 => 55,  206 => 54,  199 => 48,  196 => 47,  193 => 46,  184 => 43,  181 => 42,  178 => 41,  171 => 38,  168 => 37,  165 => 36,  158 => 33,  155 => 32,  152 => 31,  145 => 27,  142 => 26,  137 => 51,  134 => 46,  131 => 41,  128 => 36,  125 => 31,  123 => 26,  120 => 25,  117 => 24,  113 => 18,  110 => 17,  103 => 14,  100 => 13,  95 => 7,  92 => 6,  85 => 76,  83 => 72,  80 => 71,  78 => 67,  75 => 66,  73 => 62,  68 => 59,  66 => 54,  63 => 53,  61 => 24,  54 => 19,  52 => 17,  49 => 16,  47 => 13,  41 => 9,  39 => 6,  32 => 1,);
     }
 }

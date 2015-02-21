@@ -33,6 +33,11 @@
             <a href="{{ path('visiteur_historique', { 'id': visiteur.id }) }}">Historique</a>
           </div>
         {% endblock %}
+        {% block saisie %}
+          <div id="saisieMenu">
+            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
+          </div>
+        {% endblock %}
         {% block nom %}
           <div id="nomMenu">
             {{visiteur.nom}} {{visiteur.prenom}}
@@ -40,7 +45,7 @@
         {% endblock %}
         {% block deconnexion %}
           <div id="deconnexionMenu">
-            deconnexion
+            <a href="{{ path('gsb_appli_frais_portal') }}">Deconnexion</a>
           </div>
         {% endblock %}
       </div>
