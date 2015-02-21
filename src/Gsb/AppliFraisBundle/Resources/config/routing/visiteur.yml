@@ -11,3 +11,7 @@ visiteur_create_hors_forfait_ligne:
     path:     /{idVisit}/create
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:createHorsForfaitLigne" }
     methods:  POST
+
+visiteur_historique:
+    path:     /{id}/historique
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:historique" }

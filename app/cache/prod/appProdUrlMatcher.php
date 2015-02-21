@@ -494,6 +494,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
             not_visiteur_create_hors_forfait_ligne:
 
+            // visiteur_historique
+            if (preg_match('#^/visiteur/(?P<id>[^/]++)/historique$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::historiqueAction',));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

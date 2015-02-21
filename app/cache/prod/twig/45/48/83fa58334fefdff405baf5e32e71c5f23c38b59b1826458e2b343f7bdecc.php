@@ -149,7 +149,10 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
     {
         // line 32
         echo "          <div id=\"historiqueMenu\">
-            historique
+            <a href=\"";
+        // line 33
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur_historique", array("id" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : null), "id", array()))), "html", null, true);
+        echo "\">Historique</a>
           </div>
         ";
     }
@@ -196,7 +199,7 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
     public function block_corps($context, array $blocks = array())
     {
         // line 58
-        echo "        <div class=\"container\">
+        echo "        <div id=\"center\" class=\"container\">
         </div>
       ";
     }
@@ -226,6 +229,6 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
 
     public function getDebugInfo()
     {
-        return array (  217 => 68,  214 => 67,  208 => 63,  205 => 62,  199 => 58,  196 => 57,  189 => 51,  186 => 50,  183 => 49,  176 => 42,  173 => 41,  164 => 38,  161 => 37,  158 => 36,  151 => 32,  148 => 31,  141 => 27,  138 => 26,  133 => 46,  130 => 41,  127 => 36,  124 => 31,  122 => 26,  119 => 25,  116 => 24,  112 => 18,  109 => 17,  102 => 14,  99 => 13,  94 => 7,  91 => 6,  84 => 71,  82 => 67,  79 => 66,  77 => 62,  74 => 61,  72 => 57,  67 => 54,  65 => 49,  62 => 48,  60 => 24,  53 => 19,  51 => 17,  48 => 16,  46 => 13,  40 => 9,  38 => 6,  31 => 1,);
+        return array (  220 => 68,  217 => 67,  211 => 63,  208 => 62,  202 => 58,  199 => 57,  192 => 51,  189 => 50,  186 => 49,  179 => 42,  176 => 41,  167 => 38,  164 => 37,  161 => 36,  154 => 33,  151 => 32,  148 => 31,  141 => 27,  138 => 26,  133 => 46,  130 => 41,  127 => 36,  124 => 31,  122 => 26,  119 => 25,  116 => 24,  112 => 18,  109 => 17,  102 => 14,  99 => 13,  94 => 7,  91 => 6,  84 => 71,  82 => 67,  79 => 66,  77 => 62,  74 => 61,  72 => 57,  67 => 54,  65 => 49,  62 => 48,  60 => 24,  53 => 19,  51 => 17,  48 => 16,  46 => 13,  40 => 9,  38 => 6,  31 => 1,);
     }
 }

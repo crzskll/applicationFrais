@@ -30,7 +30,7 @@
         {% endblock %}
         {% block historique %}
           <div id="historiqueMenu">
-            historique
+            <a href="{{ path('visiteur_historique', { 'id': visiteur.id }) }}">Historique</a>
           </div>
         {% endblock %}
         {% block nom %}
@@ -55,7 +55,7 @@
       <h1>Laboratoir Galaxy Swiss Bourdin</h1>
       
       {% block corps %}
-        <div class="container">
+        <div id="center" class="container">
         </div>
       {% endblock %}
 

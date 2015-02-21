@@ -589,6 +589,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_visiteur_create_hors_forfait_ligne:
 
+            // visiteur_historique
+            if (preg_match('#^/visiteur/(?P<id>[^/]++)/historique$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::historiqueAction',));
+            }
+
         }
 
         // _welcome

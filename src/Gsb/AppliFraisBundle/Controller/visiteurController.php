@@ -61,9 +61,15 @@ class VisiteurController extends Controller
             ));
     }
     
-    public function historiqueAction()
-    {
-        return $this->render('GsbAppliFraisBundle:Default:historique.html.twig');
+    public function historiqueAction($id)
+    {   
+        $em = $this->getDoctrine()->getManager();
+
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
+
+        return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
+                'visiteur' => $visiteur,
+            ));
     }
 
     private function createFraisForfaitForm(ForfaitLigne $ligne, $id)
