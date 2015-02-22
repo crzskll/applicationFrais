@@ -30,38 +30,104 @@
 	  {% block ligneforfait %}
 	    <table id="ligneForfait">
 	      <caption>ligne forait</caption>
-	      <tr id="libelleForfait">
-	        <th class="libelleForfait">
+	      <tr>
+	      	<th class="legende">
+	      		Forfait
+	      	</th>
+	        <th class="quantiteForfait">
 	          Etapes
 	        </th>
-	        <th class="libelleForfait">
+	        <th class="quantiteForfait">
 	          Kilométres
 	        </th>
-	        <th class="libelleForfait">
+	        <th class="quantiteForfait">
 	          Nuits
 	        </th>
-	        <th class="libelleForfait">
+	        <th class="quantiteForfait">
 	          Repas
 	        </th>
 	      </tr>
-	      <tr id="quantiteForfait">
+	      <tr>
 
 	        {% for ligneForfait in fiche.forfaitLignes %}
 
-	          <td class="quantiteForfait">
-	            {{ ligneForfait.nbEtape }}
-	          </td>
-	          <td class="quantiteForfait">
-	            {{ ligneForfait.nbKm }}
-	          </td>
-	          <td class="quantiteForfait">
-	            {{ ligneForfait.nbNuit }}
-	          </td>
-	          <td class="quantiteForfait">
-	            {{ ligneForfait.nbRepas }}
-	          </td>
+	        <td class="legende">
+	      		Quantite
+	      	</td>
+	        <td class="quantiteForfait">
+	        	{{ ligneForfait.nbEtape }}
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{ ligneForfait.nbKm }}
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{ ligneForfait.nbNuit }}
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{ ligneForfait.nbRepas }}
+	        </td>
 
 	        {% endfor %}
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende">
+	      		Cout unitaire
+	      	</td>
+	        <td class="quantiteForfait">
+	        	{{forfaitNuit.montant}} €
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{forfaitRepas.montant}} €
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{forfaitKm.montant}} €
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{forfaitEtape.montant}} €
+	        </td>
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende noBorder">
+	      		
+	      	</td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende noBorder">
+	      
+	      	</td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait">
+	        	Total
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{totFraisForfait}} €
+	        </td>
 
 	      </tr>
 	    </table>

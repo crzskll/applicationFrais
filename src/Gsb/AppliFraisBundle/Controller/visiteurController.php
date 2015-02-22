@@ -211,13 +211,51 @@ class VisiteurController extends Controller{
         return $newFiche;
     }
 
-    private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
+    private function calculateFraisForfait ($fiche)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
+        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
+        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
+        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
+
+        $lignesForfait = $fiche->getForfaitLignes();
+
+        $tot = 0;
+        foreach ($lignesForfait as $ligne) {
+            $nbKm = $ligne->getNbKm();             
+            $nbEtape = $ligne->getNbEtape(); 
+            $nbNuit = $ligne->getNbNuit(); 
+            $nbRepas = $ligne->getNbRepas();   
+            
+            $tot = $nbKm*$forfaitKm->getMontant() + $nbEtape*$forfaitEtape->getMontant() + $nbNuit*$forfaitNuit->getMontant() + $nbRepas*$forfaitRepas->getMontant();
+        }
+
+        return $tot;
+    }
+
+    private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
+    {   
+        $em = $this->getDoctrine()->getManager();
+
+        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
+        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
+        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
+        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
+
+        $totFraisForfait = $this->calculateFraisForfait($fiche);
+
     	return $this->render('GsbAppliFraisBundle:Visiteur:saisie.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $fiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
+                'forfaitNuit' => $forfaitNuit, 
+                'forfaitRepas' => $forfaitRepas, 
+                'forfaitKm' => $forfaitKm, 
+                'forfaitEtape' => $forfaitEtape,
+                'totFraisForfait' => $totFraisForfait,                 
             ));
     }
 }	
