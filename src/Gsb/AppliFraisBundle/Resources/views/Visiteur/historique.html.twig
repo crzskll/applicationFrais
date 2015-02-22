@@ -1,1 +1,22 @@
 {% extends 'GsbAppliFraisBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/historique.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block corps %}
+	{{parent()}}
+
+	<div class="listeHistorique">
+		{% for fiche in fiches %}
+			<div>
+				{{fiche.date.format('m-Y')}}
+				{{fiche.nbJustificatifs}}
+				{{fiche.dateModification.format('d-m-Y')}}
+				{{fiche.montantValide}}
+				{{fiche.etat.libelle}}
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

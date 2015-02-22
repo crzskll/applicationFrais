@@ -15,3 +15,7 @@ visiteur_create_hors_forfait_ligne:
 visiteur_historique:
     path:     /{id}/historique
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:historique" }
+
+visiteur_ligneHorsForfait_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:editLigne" }

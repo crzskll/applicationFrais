@@ -594,6 +594,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::historiqueAction',));
             }
 
+            // visiteur_ligneHorsForfait_edit
+            if (preg_match('#^/visiteur/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_ligneHorsForfait_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::editLigneAction',));
+            }
+
         }
 
         // _welcome
