@@ -110,6 +110,7 @@
   'GsbAppliFraisBundle:Statut:show.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Statut/show.html.twig',
   'GsbAppliFraisBundle:Visiteur:historique.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/historique.html.twig',
   'GsbAppliFraisBundle:Visiteur:saisie.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/saisie.html.twig',
+  'GsbAppliFraisBundle:Visiteur:update.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/update.html.twig',
   'AcmeDemoBundle:Demo:contact.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Acme\\DemoBundle/Resources/views/Demo/contact.html.twig',
   'AcmeDemoBundle:Demo:hello.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Acme\\DemoBundle/Resources/views/Demo/hello.html.twig',
   'AcmeDemoBundle:Demo:index.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Acme\\DemoBundle/Resources/views/Demo/index.html.twig',

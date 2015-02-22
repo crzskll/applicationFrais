@@ -24,6 +24,7 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
             'lignehorsforfait' => array($this, 'block_lignehorsforfait'),
             'rightUp' => array($this, 'block_rightUp'),
             'rightDown' => array($this, 'block_rightDown'),
+            'deleteForm' => array($this, 'block_deleteForm'),
         );
     }
 
@@ -301,7 +302,7 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
 \t          <td class=\"delHorsForfait\">
 \t            <a href=\"";
             // line 168
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur_ligneHorsForfait_edit", array("id" => $this->getAttribute($context["ligneHorsForfait"], "id", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur_ligneHorsForfait_edit", array("idVisit" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : null), "id", array()), "idLigne" => $this->getAttribute($context["ligneHorsForfait"], "id", array()))), "html", null, true);
             echo "\">edit</a>
 \t          </td>
 \t        ";
@@ -568,9 +569,21 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
         // line 302
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formSaisieHorsForfait"]) ? $context["formSaisieHorsForfait"] : null), 'form_end');
         echo "
-\t\t</div>
+
+\t\t\t";
+        // line 304
+        $this->displayBlock('deleteForm', $context, $blocks);
+        // line 306
+        echo "\t\t</div> 
 \t</div>
 ";
+    }
+
+    // line 304
+    public function block_deleteForm($context, array $blocks = array())
+    {
+        // line 305
+        echo "\t\t\t";
     }
 
     public function getTemplateName()
@@ -585,6 +598,6 @@ class __TwigTemplate_260ac5a2699a09627be38b765304be4f1edb050e6b6f5ac3f82c7050455
 
     public function getDebugInfo()
     {
-        return array (  569 => 302,  563 => 299,  559 => 298,  555 => 297,  548 => 293,  544 => 292,  540 => 291,  533 => 287,  529 => 286,  525 => 285,  518 => 281,  514 => 280,  510 => 279,  503 => 275,  499 => 274,  495 => 273,  489 => 270,  485 => 269,  481 => 267,  478 => 266,  469 => 260,  463 => 257,  459 => 256,  455 => 255,  448 => 251,  444 => 250,  440 => 249,  433 => 245,  429 => 244,  425 => 243,  418 => 239,  414 => 238,  410 => 237,  403 => 233,  399 => 232,  395 => 231,  388 => 227,  384 => 226,  380 => 225,  374 => 222,  370 => 221,  366 => 219,  363 => 218,  351 => 207,  313 => 171,  304 => 168,  298 => 165,  292 => 162,  286 => 159,  283 => 158,  279 => 157,  259 => 139,  256 => 138,  246 => 131,  201 => 89,  195 => 86,  189 => 83,  183 => 80,  172 => 71,  162 => 67,  156 => 64,  150 => 61,  144 => 58,  137 => 53,  133 => 52,  110 => 31,  107 => 30,  102 => 215,  100 => 138,  97 => 137,  95 => 30,  85 => 25,  79 => 22,  71 => 17,  65 => 14,  58 => 9,  55 => 8,  49 => 5,  44 => 4,  41 => 3,  11 => 1,);
+        return array (  586 => 305,  583 => 304,  577 => 306,  575 => 304,  570 => 302,  564 => 299,  560 => 298,  556 => 297,  549 => 293,  545 => 292,  541 => 291,  534 => 287,  530 => 286,  526 => 285,  519 => 281,  515 => 280,  511 => 279,  504 => 275,  500 => 274,  496 => 273,  490 => 270,  486 => 269,  482 => 267,  479 => 266,  470 => 260,  464 => 257,  460 => 256,  456 => 255,  449 => 251,  445 => 250,  441 => 249,  434 => 245,  430 => 244,  426 => 243,  419 => 239,  415 => 238,  411 => 237,  404 => 233,  400 => 232,  396 => 231,  389 => 227,  385 => 226,  381 => 225,  375 => 222,  371 => 221,  367 => 219,  364 => 218,  352 => 207,  314 => 171,  305 => 168,  299 => 165,  293 => 162,  287 => 159,  284 => 158,  280 => 157,  260 => 139,  257 => 138,  247 => 131,  202 => 89,  196 => 86,  190 => 83,  184 => 80,  173 => 71,  163 => 67,  157 => 64,  151 => 61,  145 => 58,  138 => 53,  134 => 52,  111 => 31,  108 => 30,  103 => 215,  101 => 138,  98 => 137,  96 => 30,  86 => 25,  80 => 22,  72 => 17,  66 => 14,  59 => 9,  56 => 8,  50 => 5,  45 => 4,  42 => 3,  11 => 1,);
     }
 }

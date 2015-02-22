@@ -500,9 +500,31 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
 
             // visiteur_ligneHorsForfait_edit
-            if (preg_match('#^/visiteur/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+            if (preg_match('#^/visiteur/(?P<idVisit>[^/]++)/(?P<idLigne>[^/]++)/edit$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_ligneHorsForfait_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::editLigneAction',));
             }
+
+            // visiteur_ligneHorsForfait_delete
+            if (preg_match('#^/visiteur/(?P<idVisit>[^/]++)/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_visiteur_ligneHorsForfait_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_ligneHorsForfait_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::deleteLigneAction',));
+            }
+            not_visiteur_ligneHorsForfait_delete:
+
+            // visiteur_ligneHorsForfait_update
+            if (preg_match('#^/visiteur/(?P<idVisit>[^/]++)/(?P<id>[^/]++)/updateHf$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_visiteur_ligneHorsForfait_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteur_ligneHorsForfait_update')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\VisiteurController::updateLigneAction',));
+            }
+            not_visiteur_ligneHorsForfait_update:
 
         }
 

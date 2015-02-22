@@ -22,8 +22,6 @@ class VisiteurController extends Controller{
     	//Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
 
-        $ficheEnCours = false;
-
         //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
 
@@ -121,6 +119,137 @@ class VisiteurController extends Controller{
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);
     }
 
+    public function editLigneAction($idVisit, $idLigne)
+    {   
+
+        //Récupération de la base de données
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération du visiteur connecté
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
+
+        //Récupération de la fiche en cours ou création d'une nouvelle fiche
+        $derniereFiche = $this->getDerniereFiche($visiteur);
+        
+        //Création form forfait
+        $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
+
+        //Création form horsForfait
+        $ligneHorsForfait = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($idLigne);
+
+        if (!$ligneHorsForfait) {
+            throw $this->createNotFoundException('Unable to find HorsForfaitLigne entity.');
+        }
+
+        $formSaisieHorsForfait = $this->createUpdateLigneForm($derniereFiche, $ligneHorsForfait, $idVisit);
+
+        //Création form delete
+        $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
+
+        //Recupération des forfaits
+        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
+        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
+        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
+        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
+
+        //Calcul des totaux
+        $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
+        $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
+
+        return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
+                'visiteur' => $visiteur,
+                'fiche' => $derniereFiche,
+                'formSaisieForfait' => $formSaisieForfait->createView(),
+                'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
+                'forfaitNuit' => $forfaitNuit, 
+                'forfaitRepas' => $forfaitRepas, 
+                'forfaitKm' => $forfaitKm, 
+                'forfaitEtape' => $forfaitEtape,
+                'totFraisForfait' => $totFraisForfait,
+                'totFraisHorsForfait' => $totFraisHorsForfait, 
+                'formDelete' => $deleteForm->createView(),                
+            ));
+    }
+
+    public function deleteLigneAction(Request $request, $idVisit, $id)
+    {   
+        $form = $this->createDeleteLigneForm($id, $idVisit);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $ligne = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($id);
+
+            if (!$ligne) {
+                throw $this->createNotFoundException('Unable to find HorsForfaitLigne entity.');
+            }
+
+            $em->remove($ligne);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+    }
+
+    public function updateLigneAction(Request $request, $idVisit, $id)
+    {
+         //Récupération de la base de données
+        $em = $this->getDoctrine()->getManager();
+
+        //Récupération du visiteur connecté
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
+
+        //Récupération de la fiche en cours ou création d'une nouvelle fiche
+        $derniereFiche = $this->getDerniereFiche($visiteur);
+        
+        //Création form forfait
+        $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
+
+        //Création form horsForfait
+        $ligneHorsForfait = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($id);
+
+        if (!$ligneHorsForfait) {
+            throw $this->createNotFoundException('Unable to find HorsForfaitLigne entity.');
+        }
+
+        $formSaisieHorsForfait = $this->createUpdateLigneForm($derniereFiche, $ligneHorsForfait, $idVisit);
+        $formSaisieHorsForfait->handleRequest($request);
+
+        //Verrification form update
+        if ($formSaisieHorsForfait->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+        }
+
+        //Création form delete
+        $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
+
+        //Recupération des forfaits
+        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
+        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
+        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
+        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
+
+        //Calcul des totaux
+        $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
+        $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
+
+        return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
+                'visiteur' => $visiteur,
+                'fiche' => $derniereFiche,
+                'formSaisieForfait' => $formSaisieForfait->createView(),
+                'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
+                'forfaitNuit' => $forfaitNuit, 
+                'forfaitRepas' => $forfaitRepas, 
+                'forfaitKm' => $forfaitKm, 
+                'forfaitEtape' => $forfaitEtape,
+                'totFraisForfait' => $totFraisForfait,
+                'totFraisHorsForfait' => $totFraisHorsForfait, 
+                'formDelete' => $deleteForm->createView(),                
+            ));
+    }
+
     //Methode de création du formulair de saisie de ligne forfait
     private function createFraisForfaitForm(Fiche $fiche, $id)
     {	
@@ -150,6 +279,28 @@ class VisiteurController extends Controller{
         ));
 
         $form->add('submit', 'submit', array('label' => 'Créer'));
+
+        return $form;
+    }
+
+    private function createDeleteLigneForm($idLigne, $idVisit)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('visiteur_ligneHorsForfait_delete', array('id' => $idLigne, 'idVisit' => $idVisit)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
+    }
+
+    private function createUpdateLigneForm(Fiche $fiche, HorsForfaitLigne $ligne, $idVisit)
+    {  
+        $form = $this->createForm(new SaisieHorsForfait(), $ligne, array(
+            'action' => $this->generateUrl('visiteur_ligneHorsForfait_update',  array('idVisit' => $idVisit, 'id' => $ligne->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Modifier'));
 
         return $form;
     }

@@ -165,7 +165,7 @@
 	            {{ ligneHorsForfait.montant}}€
 	          </td>
 	          <td class="delHorsForfait">
-	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'id': ligneHorsForfait.id }) }}">edit</a>
+	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'idVisit': visiteur.id, 'idLigne': ligneHorsForfait.id }) }}">edit</a>
 	          </td>
 	        {% endfor %}
 
@@ -300,6 +300,9 @@
 			    </div>
 
 			{{ form_end(formSaisieHorsForfait) }}
-		</div>
+
+			{% block deleteForm%}
+			{% endblock %}
+		</div> 
 	</div>
 {% endblock %}
