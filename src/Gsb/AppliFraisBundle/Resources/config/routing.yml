@@ -1,3 +1,8 @@
+gsb_todo_list:
+    path:     /todo
+    defaults: { _controller: GsbAppliFraisBundle:Default:todo }
+
+
 gsb_appli_frais_gsb_forfait:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfait.yml"
     prefix:   /gsb_forfait
@@ -25,10 +30,6 @@ gsb_appli_frais_gsb_etat:
 gsb_appli_frais_gsb_employe:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/employe.yml"
     prefix:   /gsb_employe
-
-gsb_appli_frais_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: GsbAppliFraisBundle:Default:index }
 
 gsb_appli_frais_portal:
     path:     /portal

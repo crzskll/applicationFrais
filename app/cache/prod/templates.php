@@ -79,6 +79,7 @@
   'DoctrineBundle:Collector:explain.html.twig' => 'C:\\wamp\\www\\GSB\\vendor\\doctrine\\doctrine-bundle/Resources/views/Collector/explain.html.twig',
   'GsbAppliFraisBundle:Default:index.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Default/index.html.twig',
   'GsbAppliFraisBundle:Default:portal.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Default/portal.html.twig',
+  'GsbAppliFraisBundle:Default:todo.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Default/todo.html.twig',
   'GsbAppliFraisBundle:Employe:edit.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Employe/edit.html.twig',
   'GsbAppliFraisBundle:Employe:index.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Employe/index.html.twig',
   'GsbAppliFraisBundle:Employe:new.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Employe/new.html.twig',

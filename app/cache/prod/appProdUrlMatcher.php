@@ -27,6 +27,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
+        // gsb_todo_list
+        if ($pathinfo === '/todo') {
+            return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\DefaultController::todoAction',  '_route' => 'gsb_todo_list',);
+        }
+
         if (0 === strpos($pathinfo, '/gsb_')) {
             if (0 === strpos($pathinfo, '/gsb_forfait')) {
                 // gsb_forfait
@@ -454,11 +459,6 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
             }
 
-        }
-
-        // gsb_appli_frais_homepage
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_appli_frais_homepage')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\DefaultController::indexAction',));
         }
 
         // gsb_appli_frais_portal

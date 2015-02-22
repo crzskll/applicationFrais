@@ -37,4 +37,9 @@ class DefaultController extends Controller
             'formConnect' => $form->createView(),
         ));
     }
+
+    public function todoAction()
+    {
+        return $this->render('GsbAppliFraisBundle:Default:todo.html.twig');
+    }
 }
