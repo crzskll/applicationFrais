@@ -235,6 +235,20 @@ class VisiteurController extends Controller{
         return $tot;
     }
 
+    private function calculateFraisHorsForfait ($fiche){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $lignesHorsForfait = $fiche->getHorsForfaitLignes();
+
+        $tot = 0;
+        foreach ($lignesHorsForfait as $ligne) {
+            $tot += $ligne->getMontant();
+        }
+
+        return $tot;
+    }     
+
     private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -245,6 +259,7 @@ class VisiteurController extends Controller{
         $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
 
         $totFraisForfait = $this->calculateFraisForfait($fiche);
+        $totFraisHorsForfait = $this->calculateFraisHorsForfait($fiche);
 
     	return $this->render('GsbAppliFraisBundle:Visiteur:saisie.html.twig', array(
                 'visiteur' => $visiteur,
@@ -255,7 +270,8 @@ class VisiteurController extends Controller{
                 'forfaitRepas' => $forfaitRepas, 
                 'forfaitKm' => $forfaitKm, 
                 'forfaitEtape' => $forfaitEtape,
-                'totFraisForfait' => $totFraisForfait,                 
+                'totFraisForfait' => $totFraisForfait,
+                'totFraisHorsForfait' => $totFraisHorsForfait,                 
             ));
     }
 }	

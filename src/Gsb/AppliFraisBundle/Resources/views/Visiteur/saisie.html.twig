@@ -76,18 +76,20 @@
 	        <td class="legende">
 	      		Cout unitaire
 	      	</td>
+	      	<td class="quantiteForfait">
+	        	{{forfaitEtape.montant}} €
+	        </td>
+	        <td class="quantiteForfait">
+	        	{{forfaitKm.montant}} €
+	        </td>
 	        <td class="quantiteForfait">
 	        	{{forfaitNuit.montant}} €
 	        </td>
 	        <td class="quantiteForfait">
 	        	{{forfaitRepas.montant}} €
 	        </td>
-	        <td class="quantiteForfait">
-	        	{{forfaitKm.montant}} €
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{forfaitEtape.montant}} €
-	        </td>
+	        
+	        
 
 	      </tr>
 
@@ -166,6 +168,47 @@
 	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'id': ligneHorsForfait.id }) }}">edit</a>
 	          </td>
 	        {% endfor %}
+
+	        <tr >
+
+		        <td class="legende noBorder">
+		      		
+		      	</td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+
+		      </tr>
+
+		      <tr >
+
+		        <td class="legende noBorder">
+		      
+		      	</td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait">
+		        	Total
+		        </td>
+		        <td class="quantiteForfait">
+		        	{{totFraisHorsForfait}} €
+		        </td>
+
+		      </tr>
+
 	      </tr>
 	    </table>  
 	  {% endblock %}
