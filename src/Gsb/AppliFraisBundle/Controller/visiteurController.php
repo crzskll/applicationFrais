@@ -39,7 +39,7 @@ class VisiteurController extends Controller{
         if ($formSaisieForfait->isValid()) {
             
             $em->flush();
-
+            $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $id)));
         }
 
@@ -78,7 +78,7 @@ class VisiteurController extends Controller{
         if ($formSaisieForfait->isValid()) {
             
             $em->flush();
-
+            $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
         }
 
@@ -111,7 +111,7 @@ class VisiteurController extends Controller{
             
             $em->persist($ligneHorsForfait);
             $em->flush();
-
+            $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
         }
 
@@ -186,6 +186,7 @@ class VisiteurController extends Controller{
 
             $em->remove($ligne);
             $em->flush();
+            $this->changeDateModif($derniereFiche);
         }
 
         return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
@@ -218,7 +219,7 @@ class VisiteurController extends Controller{
         //Verrification form update
         if ($formSaisieHorsForfait->isValid()) {
             $em->flush();
-
+            $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
         }
 
@@ -424,6 +425,14 @@ class VisiteurController extends Controller{
                 'totFraisForfait' => $totFraisForfait,
                 'totFraisHorsForfait' => $totFraisHorsForfait,                 
             ));
+    }
+
+    private function changeDateModif ($fiche){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $fiche->setDateModification(new DateTime());
+        $em->flush();
     }
 }	
 
