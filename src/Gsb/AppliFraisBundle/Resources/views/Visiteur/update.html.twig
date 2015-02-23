@@ -2,4 +2,8 @@
 
 {% block deleteForm %}
 	{{ form(formDelete) }}
+
+	<a href="{{ path('visiteur', { 'id': visiteur.id }) }}">
+	    <button>Annuler la modification</button>
+	</a>
 {% endblock %}

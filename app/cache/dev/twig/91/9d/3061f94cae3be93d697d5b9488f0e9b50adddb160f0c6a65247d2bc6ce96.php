@@ -39,6 +39,13 @@ class __TwigTemplate_919d3061f94cae3be93d697d5b9488f0e9b50adddb160f0c6a65247d2bc
         echo "\t";
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formDelete"]) ? $context["formDelete"] : $this->getContext($context, "formDelete")), 'form');
         echo "
+
+\t<a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur", array("id" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "id", array()))), "html", null, true);
+        echo "\">
+\t    <button>Annuler la modification</button>
+\t</a>
 ";
     }
 
@@ -54,6 +61,6 @@ class __TwigTemplate_919d3061f94cae3be93d697d5b9488f0e9b50adddb160f0c6a65247d2bc
 
     public function getDebugInfo()
     {
-        return array (  39 => 4,  36 => 3,  11 => 1,);
+        return array (  45 => 6,  39 => 4,  36 => 3,  11 => 1,);
     }
 }
