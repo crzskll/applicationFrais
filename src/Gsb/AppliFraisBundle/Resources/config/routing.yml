@@ -15,13 +15,13 @@ gsb_appli_frais_gsb_forfaitligne:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfaitligne.yml"
     prefix:   /gsb_forfaitligne
 
-gsb_appli_frais_gsb_fiche:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/fiche.yml"
-    prefix:   /gsb_fiche
-
 gsb_appli_frais_gsb_statut:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/statut.yml"
     prefix:   /gsb_statut
+
+gsb_appli_frais_gsb_fiche:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/fiche.yml"
+    prefix:   /gsb_fiche
 
 gsb_appli_frais_gsb_etat:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/etat.yml"
@@ -38,3 +38,7 @@ gsb_appli_frais_portal:
 gsb_appli_frais_visiteur:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/visiteur.yml"
     prefix:    /visiteur
+
+gsb_appli_frais_historique:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/historique.yml"
+    prefix:    /historique

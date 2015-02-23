@@ -64,10 +64,10 @@ class Fiche extends \Gsb\AppliFraisBundle\Entity\Fiche implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'date', 'nbJustificatifs', 'dateModification', 'montantValide', 'employe', 'etat', 'horsForfaitLignes', 'forfaitLignes');
+            return array('__isInitialized__', 'id', 'date', 'nbJustificatifs', 'dateModification', 'montantValide', 'refusLigne', 'employe', 'etat', 'horsForfaitLignes', 'forfaitLignes');
         }
 
-        return array('__isInitialized__', 'id', 'date', 'nbJustificatifs', 'dateModification', 'montantValide', 'employe', 'etat', 'horsForfaitLignes', 'forfaitLignes');
+        return array('__isInitialized__', 'id', 'date', 'nbJustificatifs', 'dateModification', 'montantValide', 'refusLigne', 'employe', 'etat', 'horsForfaitLignes', 'forfaitLignes');
     }
 
     /**
@@ -395,6 +395,28 @@ class Fiche extends \Gsb\AppliFraisBundle\Entity\Fiche implements \Doctrine\ORM\
         $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', array());
 
         return parent::__toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRefusLigne($refusLigne)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRefusLigne', array($refusLigne));
+
+        return parent::setRefusLigne($refusLigne);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRefusLigne()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRefusLigne', array());
+
+        return parent::getRefusLigne();
     }
 
 }

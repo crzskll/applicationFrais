@@ -153,126 +153,63 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
             }
 
-            if (0 === strpos($pathinfo, '/gsb_f')) {
-                if (0 === strpos($pathinfo, '/gsb_forfaitligne')) {
-                    // gsb_forfaitligne
-                    if (rtrim($pathinfo, '/') === '/gsb_forfaitligne') {
-                        if (substr($pathinfo, -1) !== '/') {
-                            return $this->redirect($pathinfo.'/', 'gsb_forfaitligne');
-                        }
-
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::indexAction',  '_route' => 'gsb_forfaitligne',);
+            if (0 === strpos($pathinfo, '/gsb_forfaitligne')) {
+                // gsb_forfaitligne
+                if (rtrim($pathinfo, '/') === '/gsb_forfaitligne') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'gsb_forfaitligne');
                     }
 
-                    // gsb_forfaitligne_show
-                    if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::showAction',));
-                    }
-
-                    // gsb_forfaitligne_new
-                    if ($pathinfo === '/gsb_forfaitligne/new') {
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::newAction',  '_route' => 'gsb_forfaitligne_new',);
-                    }
-
-                    // gsb_forfaitligne_create
-                    if ($pathinfo === '/gsb_forfaitligne/create') {
-                        if ($this->context->getMethod() != 'POST') {
-                            $allow[] = 'POST';
-                            goto not_gsb_forfaitligne_create;
-                        }
-
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::createAction',  '_route' => 'gsb_forfaitligne_create',);
-                    }
-                    not_gsb_forfaitligne_create:
-
-                    // gsb_forfaitligne_edit
-                    if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::editAction',));
-                    }
-
-                    // gsb_forfaitligne_update
-                    if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                            $allow = array_merge($allow, array('POST', 'PUT'));
-                            goto not_gsb_forfaitligne_update;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_update')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::updateAction',));
-                    }
-                    not_gsb_forfaitligne_update:
-
-                    // gsb_forfaitligne_delete
-                    if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                            $allow = array_merge($allow, array('POST', 'DELETE'));
-                            goto not_gsb_forfaitligne_delete;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::deleteAction',));
-                    }
-                    not_gsb_forfaitligne_delete:
-
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::indexAction',  '_route' => 'gsb_forfaitligne',);
                 }
 
-                if (0 === strpos($pathinfo, '/gsb_fiche')) {
-                    // gsb_fiche
-                    if (rtrim($pathinfo, '/') === '/gsb_fiche') {
-                        if (substr($pathinfo, -1) !== '/') {
-                            return $this->redirect($pathinfo.'/', 'gsb_fiche');
-                        }
-
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::indexAction',  '_route' => 'gsb_fiche',);
-                    }
-
-                    // gsb_fiche_show
-                    if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::showAction',));
-                    }
-
-                    // gsb_fiche_new
-                    if ($pathinfo === '/gsb_fiche/new') {
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::newAction',  '_route' => 'gsb_fiche_new',);
-                    }
-
-                    // gsb_fiche_create
-                    if ($pathinfo === '/gsb_fiche/create') {
-                        if ($this->context->getMethod() != 'POST') {
-                            $allow[] = 'POST';
-                            goto not_gsb_fiche_create;
-                        }
-
-                        return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::createAction',  '_route' => 'gsb_fiche_create',);
-                    }
-                    not_gsb_fiche_create:
-
-                    // gsb_fiche_edit
-                    if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::editAction',));
-                    }
-
-                    // gsb_fiche_update
-                    if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
-                            $allow = array_merge($allow, array('POST', 'PUT'));
-                            goto not_gsb_fiche_update;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_update')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::updateAction',));
-                    }
-                    not_gsb_fiche_update:
-
-                    // gsb_fiche_delete
-                    if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
-                            $allow = array_merge($allow, array('POST', 'DELETE'));
-                            goto not_gsb_fiche_delete;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::deleteAction',));
-                    }
-                    not_gsb_fiche_delete:
-
+                // gsb_forfaitligne_show
+                if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::showAction',));
                 }
+
+                // gsb_forfaitligne_new
+                if ($pathinfo === '/gsb_forfaitligne/new') {
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::newAction',  '_route' => 'gsb_forfaitligne_new',);
+                }
+
+                // gsb_forfaitligne_create
+                if ($pathinfo === '/gsb_forfaitligne/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_gsb_forfaitligne_create;
+                    }
+
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::createAction',  '_route' => 'gsb_forfaitligne_create',);
+                }
+                not_gsb_forfaitligne_create:
+
+                // gsb_forfaitligne_edit
+                if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::editAction',));
+                }
+
+                // gsb_forfaitligne_update
+                if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_gsb_forfaitligne_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_update')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::updateAction',));
+                }
+                not_gsb_forfaitligne_update:
+
+                // gsb_forfaitligne_delete
+                if (preg_match('#^/gsb_forfaitligne/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_gsb_forfaitligne_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_forfaitligne_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\ForfaitLigneController::deleteAction',));
+                }
+                not_gsb_forfaitligne_delete:
 
             }
 
@@ -333,6 +270,66 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_statut_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\StatutController::deleteAction',));
                 }
                 not_gsb_statut_delete:
+
+            }
+
+            if (0 === strpos($pathinfo, '/gsb_fiche')) {
+                // gsb_fiche
+                if (rtrim($pathinfo, '/') === '/gsb_fiche') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'gsb_fiche');
+                    }
+
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::indexAction',  '_route' => 'gsb_fiche',);
+                }
+
+                // gsb_fiche_show
+                if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::showAction',));
+                }
+
+                // gsb_fiche_new
+                if ($pathinfo === '/gsb_fiche/new') {
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::newAction',  '_route' => 'gsb_fiche_new',);
+                }
+
+                // gsb_fiche_create
+                if ($pathinfo === '/gsb_fiche/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_gsb_fiche_create;
+                    }
+
+                    return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::createAction',  '_route' => 'gsb_fiche_create',);
+                }
+                not_gsb_fiche_create:
+
+                // gsb_fiche_edit
+                if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_edit')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::editAction',));
+                }
+
+                // gsb_fiche_update
+                if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_gsb_fiche_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_update')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::updateAction',));
+                }
+                not_gsb_fiche_update:
+
+                // gsb_fiche_delete
+                if (preg_match('#^/gsb_fiche/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_gsb_fiche_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'gsb_fiche_delete')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\FicheController::deleteAction',));
+                }
+                not_gsb_fiche_delete:
 
             }
 
@@ -526,6 +523,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
             not_visiteur_ligneHorsForfait_update:
 
+        }
+
+        // historique
+        if (0 === strpos($pathinfo, '/historique') && preg_match('#^/historique/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::indexAction',));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

@@ -1,0 +1,3 @@
+historique:
+    path:     /{id}
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:index" }

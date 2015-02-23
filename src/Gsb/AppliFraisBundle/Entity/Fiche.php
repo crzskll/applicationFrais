@@ -38,6 +38,11 @@ class Fiche
     protected $montantValide;
     
     /**
+     * @ORM\Column(type="boolean",  nullable=true, options={"default":false})
+     */
+    protected $refusLigne;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Employe", inversedBy="fiches")
      * @ORM\JoinColumn(name="employe_id", referencedColumnName="id")
      */
@@ -285,5 +290,28 @@ class Fiche
     {
 
       return strval($this->getId());
+    }
+
+    /**
+     * Set refusLigne
+     *
+     * @param boolean $refusLigne
+     * @return Fiche
+     */
+    public function setRefusLigne($refusLigne)
+    {
+        $this->refusLigne = $refusLigne;
+
+        return $this;
+    }
+
+    /**
+     * Get refusLigne
+     *
+     * @return boolean 
+     */
+    public function getRefusLigne()
+    {
+        return $this->refusLigne;
     }
 }

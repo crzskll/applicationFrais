@@ -18,7 +18,7 @@ class Etat
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=20)
      */
     protected $libelle;
 
@@ -30,5 +30,76 @@ class Etat
     public function __construct()
     {
         $this->fiches = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return Etat
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Add fiches
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
+     * @return Etat
+     */
+    public function addFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
+    {
+        $this->fiches[] = $fiches;
+
+        return $this;
+    }
+
+    /**
+     * Remove fiches
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiches
+     */
+    public function removeFich(\Gsb\AppliFraisBundle\Entity\Fiche $fiches)
+    {
+        $this->fiches->removeElement($fiches);
+    }
+
+    /**
+     * Get fiches
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiches()
+    {
+        return $this->fiches;
+    }
+
+    public function __toString()
+    {
+      return $this->getLibelle();
     }
 }

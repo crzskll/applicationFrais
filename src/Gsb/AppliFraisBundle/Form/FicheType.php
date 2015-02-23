@@ -19,6 +19,7 @@ class FicheType extends AbstractType
             ->add('nbJustificatifs')
             ->add('dateModification')
             ->add('montantValide')
+            ->add('refusLigne')
             ->add('employe')
             ->add('etat')
         ;

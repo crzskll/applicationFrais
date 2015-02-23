@@ -11,6 +11,7 @@
                 <th>Nbjustificatifs</th>
                 <th>Datemodification</th>
                 <th>Montantvalide</th>
+                <th>Refusligne</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ entity.nbJustificatifs }}</td>
                 <td>{% if entity.dateModification %}{{ entity.dateModification|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.montantValide }}</td>
+                <td>{{ entity.refusLigne }}</td>
                 <td>
                 <ul>
                     <li>

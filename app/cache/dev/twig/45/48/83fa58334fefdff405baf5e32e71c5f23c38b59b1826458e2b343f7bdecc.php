@@ -155,7 +155,7 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
         echo "          <div id=\"historiqueMenu\">
             <a href=\"";
         // line 33
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("visiteur_historique", array("id" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "id", array()))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("historique", array("id" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : $this->getContext($context, "visiteur")), "id", array()))), "html", null, true);
         echo "\">Historique</a>
           </div>
         ";

@@ -75,13 +75,20 @@ class __TwigTemplate_2cc6d548efd27df5d40a74485ee6250777c8686853349d4c72a5518eb91
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "montantValide", array()), "html", null, true);
         echo "</td>
             </tr>
+            <tr>
+                <th>Refusligne</th>
+                <td>";
+        // line 30
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "refusLigne", array()), "html", null, true);
+        echo "</td>
+            </tr>
         </tbody>
     </table>
 
         <ul class=\"record_actions\">
     <li>
         <a href=\"";
-        // line 33
+        // line 37
         echo $this->env->getExtension('routing')->getPath("gsb_fiche");
         echo "\">
             Back to the list
@@ -89,14 +96,14 @@ class __TwigTemplate_2cc6d548efd27df5d40a74485ee6250777c8686853349d4c72a5518eb91
     </li>
     <li>
         <a href=\"";
-        // line 38
+        // line 42
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("gsb_fiche_edit", array("id" => $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "id", array()))), "html", null, true);
         echo "\">
             Edit
         </a>
     </li>
     <li>";
-        // line 42
+        // line 46
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : null), 'form');
         echo "</li>
 </ul>
@@ -115,6 +122,6 @@ class __TwigTemplate_2cc6d548efd27df5d40a74485ee6250777c8686853349d4c72a5518eb91
 
     public function getDebugInfo()
     {
-        return array (  100 => 42,  93 => 38,  85 => 33,  75 => 26,  68 => 22,  61 => 18,  54 => 14,  47 => 10,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  107 => 46,  100 => 42,  92 => 37,  82 => 30,  75 => 26,  68 => 22,  61 => 18,  54 => 14,  47 => 10,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

@@ -38,4 +38,108 @@ class Statut
         $this->forfaitLignes = new ArrayCollection();
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return Statut
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Add horsForfaitLignes
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     * @return Statut
+     */
+    public function addHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    {
+        $this->horsForfaitLignes[] = $horsForfaitLignes;
+
+        return $this;
+    }
+
+    /**
+     * Remove horsForfaitLignes
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes
+     */
+    public function removeHorsForfaitLigne(\Gsb\AppliFraisBundle\Entity\HorsForfaitLigne $horsForfaitLignes)
+    {
+        $this->horsForfaitLignes->removeElement($horsForfaitLignes);
+    }
+
+    /**
+     * Get horsForfaitLignes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHorsForfaitLignes()
+    {
+        return $this->horsForfaitLignes;
+    }
+
+    /**
+     * Add forfaitLignes
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     * @return Statut
+     */
+    public function addForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    {
+        $this->forfaitLignes[] = $forfaitLignes;
+
+        return $this;
+    }
+
+    /**
+     * Remove forfaitLignes
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes
+     */
+    public function removeForfaitLigne(\Gsb\AppliFraisBundle\Entity\ForfaitLigne $forfaitLignes)
+    {
+        $this->forfaitLignes->removeElement($forfaitLignes);
+    }
+
+    /**
+     * Get forfaitLignes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getForfaitLignes()
+    {
+        return $this->forfaitLignes;
+    }
+
+    public function __toString()
+    {
+      return $this->getLibelle();
+    }
 }
