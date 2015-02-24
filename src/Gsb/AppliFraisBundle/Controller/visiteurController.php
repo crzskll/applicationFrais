@@ -13,8 +13,17 @@ use Gsb\AppliFraisBundle\Entity\Fiche;
 
 use \DateTime;
 
+
+/**
+ * Visiteur controller.
+ *
+ */
 class VisiteurController extends Controller{
 
+    /**
+     * Show laste fiche and forms to create and update lignes when init page.
+     *
+     */
 	public function saisieAction($id)
     {   
     	$date = new DateTime();
@@ -48,6 +57,10 @@ class VisiteurController extends Controller{
         
     }
 
+    /**
+     * Show laste fiche and forms to create and update lignes when update ligne forfait.
+     *
+     */
     public function updateForfaitLigneAction(Request $request, $idLigne, $idVisit)
     {
         $em = $this->getDoctrine()->getManager();
@@ -86,6 +99,10 @@ class VisiteurController extends Controller{
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);
     }
 
+    /**
+     * Show laste fiche and forms to create and update lignes when a new ligne hors forfait is created.
+     *
+     */
     public function createHorsForfaitLigneAction(Request $request, $idVisit)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -119,6 +136,11 @@ class VisiteurController extends Controller{
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);
     }
 
+    /**
+     * Show laste fiche and forms to create and update lignes when a hors forfait ligne is edit.
+     * The horsForfaitLigne form is charge whith the editing ligne. 
+     *
+     */
     public function editLigneAction($idVisit, $idLigne)
     {   
 
@@ -171,6 +193,10 @@ class VisiteurController extends Controller{
             ));
     }
 
+    /**
+     * Show laste fiche and forms to create and update lignes when a hor forfait ligne is deleted.
+     *
+     */
     public function deleteLigneAction(Request $request, $idVisit, $id)
     {   
         $form = $this->createDeleteLigneForm($id, $idVisit);
@@ -178,7 +204,7 @@ class VisiteurController extends Controller{
 
         //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
-        
+
         //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
 
@@ -201,6 +227,10 @@ class VisiteurController extends Controller{
         return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
     }
 
+    /**
+     * Show laste fiche and forms to create and update lignes when a hors forfait ligne is update.
+     *
+     */
     public function updateLigneAction(Request $request, $idVisit, $id)
     {
          //Récupération de la base de données
@@ -260,7 +290,14 @@ class VisiteurController extends Controller{
             ));
     }
 
-    //Methode de création du formulair de saisie de ligne forfait
+    /**
+     * Creates a form to update FraisForfait entity.
+     *
+     * @param Fiche $fiche The last fiche of visiteur
+     * @param Integer $id The Visiteur id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFraisForfaitForm(Fiche $fiche, $id)
     {	
     	$lignesForfait = $fiche->getForfaitLignes();
@@ -276,6 +313,15 @@ class VisiteurController extends Controller{
         return $form;
     }
 
+    /**
+     * Creates a form to create HorsFraisForfait entity.
+     *
+     * @param Fiche $fiche The last fiche of visiteur
+     * @param HorsForfaitLigne $ligne A new empty HorsForfaitLigne entity
+     * @param Integer $id The Visiteur id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFraisHorsForfaitForm(Fiche $fiche, HorsForfaitLigne $ligne, $id)
     {	
     	$em = $this->getDoctrine()->getManager();
@@ -293,6 +339,14 @@ class VisiteurController extends Controller{
         return $form;
     }
 
+    /**
+     * Creates a form to delete HorsFraisForfait entity.
+     *
+     * @param Integer $idLigne The ligne id to delete
+     * @param Integer $idVisit The Visiteur id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createDeleteLigneForm($idLigne, $idVisit)
     {
         return $this->createFormBuilder()
@@ -303,6 +357,15 @@ class VisiteurController extends Controller{
         ;
     }
 
+    /**
+     * Creates a form to update HorsFraisForfait entity.
+     *
+     * @param Fiche $fiche The last fiche of visiteur
+     * @param HorsForfaitLigne $ligne The HorsForfaitLigne entity to update
+     * @param Integer $idVisit The Visiteur id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createUpdateLigneForm(Fiche $fiche, HorsForfaitLigne $ligne, $idVisit)
     {  
         $form = $this->createForm(new SaisieHorsForfait(), $ligne, array(
@@ -315,6 +378,13 @@ class VisiteurController extends Controller{
         return $form;
     }
 
+    /**
+     * Get the last visiteur's fiche.
+     *
+     * @param Visiteur $visiteur The current visiteur
+     *
+     * @return Fiche The last visiteur's fiche 
+     */
     private function getDerniereFiche ($visiteur)
     {	
     	$em = $this->getDoctrine()->getManager();
@@ -341,6 +411,13 @@ class VisiteurController extends Controller{
         return $derniereFiche;
     }
 
+    /**
+     * Create a new fiche for the current visieur.
+     *
+     * @param Visiteur $visiteur The current visiteur
+     *
+     * @return Fiche The new current visiteur's fiche 
+     */
     private function createNewFiche ($visiteur)
     {	
     	$em = $this->getDoctrine()->getManager();
@@ -372,6 +449,13 @@ class VisiteurController extends Controller{
         return $newFiche;
     }
 
+    /**
+     * Calculate the value of ligneFraisForfait.
+     *
+     * @param Fiche $fiche The current fiche
+     *
+     * @return Number The sum of ligneFraisForfait 
+     */
     private function calculateFraisForfait ($fiche)
     {
         $em = $this->getDoctrine()->getManager();
@@ -396,6 +480,13 @@ class VisiteurController extends Controller{
         return $tot;
     }
 
+    /**
+     * Calculate the value of ligneHorsFraisForfait.
+     *
+     * @param Fiche $fiche The current fiche
+     *
+     * @return Number The sum of ligneHorsFraisForfait 
+     */
     private function calculateFraisHorsForfait ($fiche){
 
         $em = $this->getDoctrine()->getManager();
@@ -410,6 +501,16 @@ class VisiteurController extends Controller{
         return $tot;
     }     
 
+    /**
+     * Generate the render of saisie visiteur.
+     *
+     * @param Visiteur $visiteur The current visiteur
+     * @param Fiche $fiche The current fiche
+     * @param \Symfony\Component\Form\Form $formSaisieForfait The form for ForfaitLigne entity
+     * @param \Symfony\Component\Form\Form $formSaisieHorsForfait The form for HorsForfaitLigne entity
+     *
+     * @return Number The sum of ligneFraisForfait 
+     */
     private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -436,6 +537,12 @@ class VisiteurController extends Controller{
             ));
     }
 
+    /**
+     * Change DateModification attribut when fiche is update.
+     *
+     * @param Fiche $fiche The current fiche
+     *
+     */
     private function changeDateModif ($fiche){
 
         $em = $this->getDoctrine()->getManager();
