@@ -3,6 +3,7 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/historique.css') }}" type="text/css" media="all" />
+	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/saisie.css') }}" type="text/css" media="all" />
 {% endblock %}
 
 {% block corps %}
@@ -18,5 +19,13 @@
 				{{fiche.etat.libelle}}
 			</div>
 		{% endfor %}
+	</div>
+{% endblock %}
+
+{% block rightUp %}
+	<div id="saisieForfait" class="container">
+		<div class="contentForm">
+			{{ form(formDate)}}
+		</div>
 	</div>
 {% endblock %}

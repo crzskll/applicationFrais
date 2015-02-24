@@ -20,6 +20,7 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
         $this->blocks = array(
             'stylesheets' => array($this, 'block_stylesheets'),
             'corps' => array($this, 'block_corps'),
+            'rightUp' => array($this, 'block_rightUp'),
         );
     }
 
@@ -44,43 +45,47 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
         // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/gsbapplifrais/css/historique.css"), "html", null, true);
         echo "\" type=\"text/css\" media=\"all\" />
+\t<link rel=\"stylesheet\" href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/gsbapplifrais/css/saisie.css"), "html", null, true);
+        echo "\" type=\"text/css\" media=\"all\" />
 ";
     }
 
-    // line 8
+    // line 9
     public function block_corps($context, array $blocks = array())
     {
-        // line 9
+        // line 10
         echo "\t";
         $this->displayParentBlock("corps", $context, $blocks);
         echo "
 
 \t<div class=\"listeHistorique\">
 \t\t";
-        // line 12
+        // line 13
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["fiches"]) ? $context["fiches"] : $this->getContext($context, "fiches")));
         foreach ($context['_seq'] as $context["_key"] => $context["fiche"]) {
-            // line 13
+            // line 14
             echo "\t\t\t<div>
 \t\t\t\t";
-            // line 14
+            // line 15
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "date", array()), "format", array(0 => "m-Y"), "method"), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 15
+            // line 16
             echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "nbJustificatifs", array()), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 16
+            // line 17
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "dateModification", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 17
+            // line 18
             echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "montantValide", array()), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 18
+            // line 19
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "etat", array()), "libelle", array()), "html", null, true);
             echo "
 \t\t\t</div>
@@ -89,8 +94,23 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['fiche'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 21
+        // line 22
         echo "\t</div>
+";
+    }
+
+    // line 25
+    public function block_rightUp($context, array $blocks = array())
+    {
+        // line 26
+        echo "\t<div id=\"saisieForfait\" class=\"container\">
+\t\t<div class=\"contentForm\">
+\t\t\t";
+        // line 28
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formDate"]) ? $context["formDate"] : $this->getContext($context, "formDate")), 'form');
+        echo "
+\t\t</div>
+\t</div>
 ";
     }
 
@@ -106,6 +126,6 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
 
     public function getDebugInfo()
     {
-        return array (  93 => 21,  84 => 18,  80 => 17,  76 => 16,  72 => 15,  68 => 14,  65 => 13,  61 => 12,  54 => 9,  51 => 8,  45 => 5,  40 => 4,  37 => 3,  11 => 1,);
+        return array (  110 => 28,  106 => 26,  103 => 25,  98 => 22,  89 => 19,  85 => 18,  81 => 17,  77 => 16,  73 => 15,  70 => 14,  66 => 13,  59 => 10,  56 => 9,  50 => 6,  46 => 5,  41 => 4,  38 => 3,  11 => 1,);
     }
 }

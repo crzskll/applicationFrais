@@ -1,3 +1,7 @@
 historique:
     path:     /{id}
     defaults: { _controller: "GsbAppliFraisBundle:Historique:index" }
+
+historique_test:
+    path:     /histo
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:test" }

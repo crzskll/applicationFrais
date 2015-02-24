@@ -620,9 +620,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // historique
-        if (0 === strpos($pathinfo, '/historique') && preg_match('#^/historique/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::indexAction',));
+        if (0 === strpos($pathinfo, '/historique')) {
+            // historique
+            if (preg_match('#^/historique/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::indexAction',));
+            }
+
+            // historique_test
+            if ($pathinfo === '/historique/histo') {
+                return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::testAction',  '_route' => 'historique_test',);
+            }
+
         }
 
         // _welcome
