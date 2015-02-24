@@ -176,6 +176,15 @@ class VisiteurController extends Controller{
         $form = $this->createDeleteLigneForm($id, $idVisit);
         $form->handleRequest($request);
 
+        //Récupération de la base de données
+        $em = $this->getDoctrine()->getManager();
+        
+        //Récupération du visiteur connecté
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
+
+        //Récupération de la fiche en cours ou création d'une nouvelle fiche
+        $derniereFiche = $this->getDerniereFiche($visiteur);
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $ligne = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($id);
