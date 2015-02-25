@@ -57,8 +57,18 @@ class HistoriqueController extends Controller{
             $dateDeb = $data['debut'];
             $dateFin = $data['fin'];
 
-             return $this->render('GsbAppliFraisBundle:Visiteur:test.html.twig', array(
-                'date' => $dateDeb->format('d-m-Y'),
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:Fiche')
+              ;
+  
+            $fiches = $repository->ficheByDate($visiteur, $dateDeb, $dateFin);
+
+             return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
+                'visiteur' => $visiteur,
+                'fiches' => $fiches,
+                'formDate' => $formDate->createView(),
             ));
         }
 
