@@ -130,8 +130,19 @@ class HistoriqueController extends Controller{
                 $lignesHorsForfait = $repositoryHorsForfait->ligneByDate($visiteur, $dateDeb, $dateFin);   
             }
 
-        
-            
+            switch ($type)
+            { 
+                case 'Toutes':
+                break;
+                
+                case 'Forfais': 
+                    $lignesHorsForfait = array();
+                break;
+                
+                case 'horsForfais': 
+                    $lignesForfait = array();
+                break;
+            }
 
              return $this->render('GsbAppliFraisBundle:Visiteur:ligneHistorique.html.twig', array(
                 'visiteur' => $visiteur,
