@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class FicheRepository extends EntityRepository
 {
+	public function ficheByDate(QueryBuilder $qb, $dateDeb, $dateFin)
+  {
+    $qb
+      ->Where('f.date BETWEEN :start AND :end')
+      ->setParameter('start', $dateDeb)
+      ->setParameter('end',   $dateFin)
+    ;
+  }
 }
