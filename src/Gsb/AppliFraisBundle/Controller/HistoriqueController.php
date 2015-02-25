@@ -29,27 +29,29 @@ class HistoriqueController extends Controller{
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
         $formFiche = $this->createFindFicheForm($visiteur);
-
-        $formFiche->handleRequest($request);
+        $formLigne = $this->createFindLigneForm($visiteur);
 
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formFiche->createView(),
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
             ));
         
     }
 
-    public function findDateAction(Request $request, $id)
+    public function findFicheAction(Request $request, $id)
     {   
         $em = $this->getDoctrine()->getManager();
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
         $formFiche = $this->createFindFicheForm($visiteur);
+        $formLigne = $this->createFindLigneForm($visiteur);
 
         $formFiche->handleRequest($request);
+
 
         if($formFiche->isValid()){
 
@@ -74,14 +76,77 @@ class HistoriqueController extends Controller{
              return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formFiche->createView(),
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
             ));
         }
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formFiche->createView(),
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
+            ));
+        
+    }
+
+    public function findLigneAction(Request $request, $id)
+    {   
+        $em = $this->getDoctrine()->getManager();
+
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
+        $fiches = $visiteur->getFiches();
+        $formFiche = $this->createFindFicheForm($visiteur);
+        $formLigne = $this->createFindLigneForm($visiteur);
+
+        $formLigne->handleRequest($request);
+
+
+        if($formLigne->isValid()){
+
+            $data = $formLigne->getData();
+            $dateDeb = $data['debut'];
+            $dateFin = $data['fin'];
+            $statut= $data['statut'];
+            $type = $data['type'];
+
+            $repositoryForfait = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:ForfaitLigne')
+              ;
+
+            $repositoryHorsForfait = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')
+              ;
+
+            if ($statut){
+                $lignesForfait = $repositoryForfait->ligneByDateStatut($visiteur, $dateDeb, $dateFin, $statut);
+                $lignesHorsForfait = $repositoryHorsForfait->ligneByDateStatut($visiteur, $dateDeb, $dateFin, $statut);
+            }else{
+                $lignesForfait = $repositoryForfait->ligneByDate($visiteur, $dateDeb, $dateFin); 
+                $lignesHorsForfait = $repositoryHorsForfait->ligneByDate($visiteur, $dateDeb, $dateFin);   
+            }
+
+        
+            
+
+             return $this->render('GsbAppliFraisBundle:Visiteur:ligneHistorique.html.twig', array(
+                'visiteur' => $visiteur,
+                'lignesForfait' => $lignesForfait,
+                'lignesHorsForfait' => $lignesHorsForfait,
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
+            ));
+        }
+
+        return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
+                'visiteur' => $visiteur,
+                'fiches' => $fiches,
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
             ));
         
     }
@@ -96,7 +161,7 @@ class HistoriqueController extends Controller{
         $date = $visiteur->getDateEmbauche();
 
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('historique_test', array('id' => $visiteur->getId())))
+            ->setAction($this->generateUrl('historique_find_dateEtat', array('id' => $visiteur->getId())))
             ->setMethod('POST')
             ->add('debut', 'date', array('data' => $date))
             ->add('fin', 'date', array('data' => new DateTime() ))
@@ -110,5 +175,38 @@ class HistoriqueController extends Controller{
             ->getForm()
         ;
     }
-}	
 
+    /**
+     * Creates a form to find ligne by statut.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createFindLigneForm($visiteur)
+    {   
+        $date = $visiteur->getDateEmbauche();
+
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('historique_find_dateStatut', array('id' => $visiteur->getId())))
+            ->setMethod('POST')
+            ->add('debut', 'date', array('data' => $date))
+            ->add('fin', 'date', array('data' => new DateTime() ))
+            ->add('statut', 'entity', array(
+                'class' => 'GsbAppliFraisBundle:Statut',
+                'property' => 'libelle',
+                'required' => false,
+                'empty_value' => 'Tous',
+            ))
+            ->add('type', 'choice', array(
+                'choices'   => array(
+                    'Toutes'   => 'Toutes',
+                    'Forfais' => 'Forfaitisées',
+                    'horsForfais'   => 'Non forfaitisées',
+                ),
+                'multiple'  => false,
+                'expanded' => true,
+            ))
+            ->add('submit', 'submit', array('label' => 'Find'))
+            ->getForm()
+        ;
+    }
+}	

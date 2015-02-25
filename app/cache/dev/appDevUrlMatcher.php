@@ -626,16 +626,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::indexAction',));
             }
 
-            // historique_test
-            if (0 === strpos($pathinfo, '/historique/date') && preg_match('#^/historique/date/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            // historique_find_dateEtat
+            if (0 === strpos($pathinfo, '/historique/search') && preg_match('#^/historique/search/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
                     $allow = array_merge($allow, array('POST', 'PUT'));
-                    goto not_historique_test;
+                    goto not_historique_find_dateEtat;
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_test')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::findDateAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_find_dateEtat')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::findFicheAction',));
             }
-            not_historique_test:
+            not_historique_find_dateEtat:
+
+            // historique_find_dateStatut
+            if (0 === strpos($pathinfo, '/historique/find') && preg_match('#^/historique/find/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_historique_find_dateStatut;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_find_dateStatut')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::findLigneAction',));
+            }
+            not_historique_find_dateStatut:
 
         }
 

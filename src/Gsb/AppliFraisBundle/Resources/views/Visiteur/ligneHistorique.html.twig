@@ -1,1 +1,24 @@
-{% extends 'GsbAppliFraisBundle::historique.html.twig' %}
+{% extends 'GsbAppliFraisBundle:visiteur:historique.html.twig' %}
+
+{% block corps %}
+	<div class="listeHistorique">
+		{% for ligne in lignesForfait %}
+			<div>
+				{{ligne.nbKm}}
+				{{ligne.nbEtape}}
+				{{ligne.nbNuit}}
+				{{ligne.nbRepas}}
+				{{ligne.statut.libelle}}
+			</div>
+		{% endfor %}
+
+		{% for ligne in lignesHorsForfait %}
+			<div>
+				{{ligne.date.format('d-m-Y')}}
+				{{ligne.libelle}}
+				{{ligne.montant}}
+				{{ligne.statut.libelle}}
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

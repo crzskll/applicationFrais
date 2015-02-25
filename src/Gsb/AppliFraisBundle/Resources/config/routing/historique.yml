@@ -3,7 +3,12 @@ historique:
     defaults: { _controller: "GsbAppliFraisBundle:Historique:index" }
 
 
-historique_test:
-    path:     /date/{id}
-    defaults: { _controller: "GsbAppliFraisBundle:Historique:findDate" }
+historique_find_dateEtat:
+    path:     /search/{id}
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:findFiche" }
+    methods:  [POST, PUT]
+
+historique_find_dateStatut:
+    path:     /find/{id}
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:findLigne" }
     methods:  [POST, PUT]

@@ -21,6 +21,7 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
             'stylesheets' => array($this, 'block_stylesheets'),
             'corps' => array($this, 'block_corps'),
             'rightUp' => array($this, 'block_rightUp'),
+            'rightDown' => array($this, 'block_rightDown'),
         );
     }
 
@@ -56,36 +57,32 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
     public function block_corps($context, array $blocks = array())
     {
         // line 10
-        echo "\t";
-        $this->displayParentBlock("corps", $context, $blocks);
-        echo "
-
-\t<div class=\"listeHistorique\">
+        echo "\t<div class=\"listeHistorique\">
 \t\t";
-        // line 13
+        // line 11
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["fiches"]) ? $context["fiches"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["fiche"]) {
-            // line 14
+            // line 12
             echo "\t\t\t<div>
 \t\t\t\t";
-            // line 15
+            // line 13
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "date", array()), "format", array(0 => "m-Y"), "method"), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 16
+            // line 14
             echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "nbJustificatifs", array()), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 17
+            // line 15
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "dateModification", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 18
+            // line 16
             echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "montantValide", array()), "html", null, true);
             echo "
 \t\t\t\t";
-            // line 19
+            // line 17
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "etat", array()), "libelle", array()), "html", null, true);
             echo "
 \t\t\t</div>
@@ -94,23 +91,34 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['fiche'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 22
+        // line 20
         echo "\t</div>
 ";
     }
 
-    // line 25
+    // line 23
     public function block_rightUp($context, array $blocks = array())
     {
-        // line 26
-        echo "\t<div id=\"saisieForfait\" class=\"container\">
-\t\t<div class=\"contentForm\">
+        // line 24
+        echo "\t\t<div class=\"contentForm\">
 \t\t\t";
-        // line 28
-        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formDate"]) ? $context["formDate"] : null), 'form');
+        // line 25
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formFiche"]) ? $context["formFiche"] : null), 'form');
         echo "
 \t\t</div>
-\t</div>
+";
+    }
+
+    // line 29
+    public function block_rightDown($context, array $blocks = array())
+    {
+        // line 30
+        echo "\t\t<div class=\"contentForm\">
+\t\t\t";
+        // line 31
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formLigne"]) ? $context["formLigne"] : null), 'form');
+        echo "
+\t\t</div> 
 ";
     }
 
@@ -126,6 +134,6 @@ class __TwigTemplate_daff10884048e3fb7637214ae405e54bcf7482e494d06c26e47eb7ef959
 
     public function getDebugInfo()
     {
-        return array (  110 => 28,  106 => 26,  103 => 25,  98 => 22,  89 => 19,  85 => 18,  81 => 17,  77 => 16,  73 => 15,  70 => 14,  66 => 13,  59 => 10,  56 => 9,  50 => 6,  46 => 5,  41 => 4,  38 => 3,  11 => 1,);
+        return array (  119 => 31,  116 => 30,  113 => 29,  106 => 25,  103 => 24,  100 => 23,  95 => 20,  86 => 17,  82 => 16,  78 => 15,  74 => 14,  70 => 13,  67 => 12,  63 => 11,  60 => 10,  57 => 9,  51 => 6,  47 => 5,  42 => 4,  39 => 3,  11 => 1,);
     }
 }

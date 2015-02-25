@@ -14,40 +14,40 @@ use Doctrine\ORM\QueryBuilder;
 class FicheRepository extends EntityRepository
 {
 	public function ficheByDate($visiteur, $dateDeb, $dateFin)
-  {
-  	$qb = $this->createQueryBuilder('f');
+  	{
+	  	$qb = $this->createQueryBuilder('f');
 
-    $qb
-      ->where('f.employe = :visiteur')
-      	->setParameter('visiteur', $visiteur)
-      ->andWhere('f.date BETWEEN :start AND :end')
-	    ->setParameter('start', $dateDeb)
-	    ->setParameter('end',   $dateFin)
-    ;
+	    $qb
+	      ->where('f.employe = :visiteur')
+	      	->setParameter('visiteur', $visiteur)
+	      ->andWhere('f.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+	    ;
 
-    return $qb
-    	->getQuery()
-    	->getResult()
-  ;
-  }
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+	}
 
-  public function ficheByDateEtat($visiteur, $dateDeb, $dateFin, $etat)
-  {
-  	$qb = $this->createQueryBuilder('f');
+  	public function ficheByDateEtat($visiteur, $dateDeb, $dateFin, $etat)
+  	{
+  		$qb = $this->createQueryBuilder('f');
 
-    $qb
-      ->where('f.employe = :visiteur')
-      	->setParameter('visiteur', $visiteur)
-      ->andWhere('f.date BETWEEN :start AND :end')
-	    ->setParameter('start', $dateDeb)
-	    ->setParameter('end',   $dateFin)
-	  ->andWhere('f.etat = :etat')
-	  	->setParameter('etat', $etat)
-    ;
+	    $qb
+	      ->where('f.employe = :visiteur')
+	      	->setParameter('visiteur', $visiteur)
+	      ->andWhere('f.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+		  ->andWhere('f.etat = :etat')
+		  	->setParameter('etat', $etat)
+	    ;
 
-    return $qb
-    	->getQuery()
-    	->getResult()
-  ;
-  }
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+ 	}
 }

@@ -12,4 +12,48 @@ use Doctrine\ORM\EntityRepository;
  */
 class HorsForfaitLigneRepository extends EntityRepository
 {
+	public function ligneByDate($visiteur, $dateDeb, $dateFin)
+  	{
+	  	$qb = $this->createQueryBuilder('l');
+
+	    $qb
+	      ->leftJoin('l.fiche', 'f')
+	      ->addSelect('f')
+	      ->leftJoin('f.employe', 'e')
+	      ->where('e = :visiteur')
+	      	->setParameter('visiteur', $visiteur)
+	      ->andWhere('l.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+	}
+
+  	public function ligneByDateStatut($visiteur, $dateDeb, $dateFin, $statut)
+  	{
+  		$qb = $this->createQueryBuilder('l');
+
+	    $qb
+	   	  ->leftJoin('l.fiche', 'f')
+	      ->addSelect('f')
+	      ->leftJoin('f.employe', 'e')
+	      ->where('e = :visiteur')
+	      	->setParameter('visiteur', $visiteur)
+	      ->andWhere('l.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+	      ->andWhere('l.statut = :statut')
+		  	->setParameter('statut', $statut)
+		  
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+ 	}
 }

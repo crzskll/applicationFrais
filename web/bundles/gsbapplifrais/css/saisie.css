@@ -1,10 +1,3 @@
-#fiche{
-    position: absolute;
-    top: 20%;
-	width: 70%;
-	min-height: 77%;
-	margin-bottom: 11px;
-}
 
 #ligneForfait{
 	top: 17%;
@@ -21,22 +14,6 @@
 	left: 4%;
 	text-align: center;
 	position: relative;
-}
-
-#saisieForfait{
-	right: 1%;
-	height: 37%;
-	top: 20%;
-	width: 26%;
-    position: absolute;
-}
-
-#saisieHorsForfait{
-	right: 1%;
-	height: 37%;
-	top: 60%;
-	width: 26%;
-    position: absolute;
 }
 
 .quantiteForfait{
