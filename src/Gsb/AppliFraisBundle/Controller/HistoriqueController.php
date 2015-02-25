@@ -28,15 +28,15 @@ class HistoriqueController extends Controller{
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
-        $formDate = $this->createFindDateForm($visiteur);
+        $formFiche = $this->createFindFicheForm($visiteur);
 
-        $formDate->handleRequest($request);
+        $formFiche->handleRequest($request);
 
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formDate->createView(),
+                'formDate' => $formFiche->createView(),
             ));
         
     }
@@ -47,35 +47,41 @@ class HistoriqueController extends Controller{
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
-        $formDate = $this->createFindDateForm($visiteur);
+        $formFiche = $this->createFindFicheForm($visiteur);
 
-        $formDate->handleRequest($request);
+        $formFiche->handleRequest($request);
 
-        if($formDate->isValid()){
+        if($formFiche->isValid()){
 
-            $data = $formDate->getData();
+            $data = $formFiche->getData();
             $dateDeb = $data['debut'];
             $dateFin = $data['fin'];
+            $etat = $data['etat'];
 
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
                 ->getRepository('GsbAppliFraisBundle:Fiche')
               ;
-  
-            $fiches = $repository->ficheByDate($visiteur, $dateDeb, $dateFin);
+            
+            if ($etat){
+                $fiches = $repository->ficheByDateEtat($visiteur, $dateDeb, $dateFin, $etat);
+            }else{
+                $fiches = $repository->ficheByDate($visiteur, $dateDeb, $dateFin);    
+            }
+            
 
              return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formDate->createView(),
+                'formDate' => $formFiche->createView(),
             ));
         }
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiches' => $fiches,
-                'formDate' => $formDate->createView(),
+                'formDate' => $formFiche->createView(),
             ));
         
     }
@@ -85,7 +91,7 @@ class HistoriqueController extends Controller{
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createFindDateForm($visiteur)
+    private function createFindFicheForm($visiteur)
     {   
         $date = $visiteur->getDateEmbauche();
 
@@ -94,7 +100,13 @@ class HistoriqueController extends Controller{
             ->setMethod('POST')
             ->add('debut', 'date', array('data' => $date))
             ->add('fin', 'date', array('data' => new DateTime() ))
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('etat', 'entity', array(
+                'class' => 'GsbAppliFraisBundle:Etat',
+                'property' => 'libelle',
+                'required' => false,
+                'empty_value' => 'Tous',
+            ))
+            ->add('submit', 'submit', array('label' => 'Find'))
             ->getForm()
         ;
     }

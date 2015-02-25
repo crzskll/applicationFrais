@@ -30,4 +30,24 @@ class FicheRepository extends EntityRepository
     	->getResult()
   ;
   }
+
+  public function ficheByDateEtat($visiteur, $dateDeb, $dateFin, $etat)
+  {
+  	$qb = $this->createQueryBuilder('f');
+
+    $qb
+      ->where('f.employe = :visiteur')
+      	->setParameter('visiteur', $visiteur)
+      ->andWhere('f.date BETWEEN :start AND :end')
+	    ->setParameter('start', $dateDeb)
+	    ->setParameter('end',   $dateFin)
+	  ->andWhere('f.etat = :etat')
+	  	->setParameter('etat', $etat)
+    ;
+
+    return $qb
+    	->getQuery()
+    	->getResult()
+  ;
+  }
 }
