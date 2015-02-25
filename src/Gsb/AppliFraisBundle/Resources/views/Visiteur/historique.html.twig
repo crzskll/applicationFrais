@@ -7,8 +7,6 @@
 {% endblock %}
 
 {% block corps %}
-	{{parent()}}
-
 	<div class="listeHistorique">
 		{% for fiche in fiches %}
 			<div>
@@ -23,9 +21,13 @@
 {% endblock %}
 
 {% block rightUp %}
-	<div id="saisieForfait" class="container">
 		<div class="contentForm">
-			{{ form(formDate)}}
+			{{ form(formFiche) }}
 		</div>
-	</div>
+{% endblock %}
+
+{% block rightDown %}
+		<div class="contentForm">
+			{{ form(formLigne) }}
+		</div> 
 {% endblock %}

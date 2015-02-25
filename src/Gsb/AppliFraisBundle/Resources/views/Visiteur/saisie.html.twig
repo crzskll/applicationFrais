@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block corps %}
-	<div id="fiche" class="container">
 
 		<div>
 			<div>
@@ -212,11 +211,10 @@
 	      </tr>
 	    </table>  
 	  {% endblock %}
-	</div>
+	
 {% endblock %}
 
 {% block rightUp %}
-	<div id="saisieForfait" class="container">
 		<div class="contentForm">
 			{{ form_start(formSaisieForfait) }}
 			    {{ form_errors(formSaisieForfait) }}
@@ -260,11 +258,9 @@
 			{{ form_end(formSaisieForfait) }}
 
 		</div>
-	</div>
 {% endblock %}
 
 {% block rightDown %}
-	<div id="saisieHorsForfait" class="container">
 		<div class="contentForm">
 			{{ form_start(formSaisieHorsForfait) }}
 			    {{ form_errors(formSaisieHorsForfait) }}
@@ -304,5 +300,4 @@
 			{% block deleteForm%}
 			{% endblock %}
 		</div> 
-	</div>
 {% endblock %}

@@ -4,7 +4,7 @@
     <title>
 
       {% block title %}
-        Jobeet - Your best job board
+        GSB
       {% endblock %}
 
     </title>
@@ -21,58 +21,78 @@
   <body>
     <div>
       
-      {% block menu %}
       <div id="menu" class="container">
+      {% block menu %}
+        <div id="dateMenu">
         {% block date %}
-          <div id="dateMenu">
+          
             date
-          </div>
+          
         {% endblock %}
-        {% block historique %}
-          <div id="historiqueMenu">
-            <a href="{{ path('historique', { 'id': visiteur.id }) }}">Historique</a>
-          </div>
-        {% endblock %}
-        {% block saisie %}
-          <div id="saisieMenu">
-            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
-          </div>
-        {% endblock %}
-        {% block nom %}
-          <div id="nomMenu">
-            {{visiteur.nom}} {{visiteur.prenom}}
-          </div>
-        {% endblock %}
-        {% block deconnexion %}
-          <div id="deconnexionMenu">
-            <a href="{{ path('gsb_appli_frais_portal') }}">Deconnexion</a>
-          </div>
-        {% endblock %}
-      </div>
-      {% endblock %}
+        </div>
 
-      {% block logo %}
-      <div id="logo" class="container">
-        <img   src="{{ asset('bundles/gsbapplifrais/images/logo.png') }}" class="imglogo"/>
-      </div>
+        <div id="historiqueMenu">
+        {% block historique %}
+          
+            <a href="{{ path('historique', { 'id': visiteur.id }) }}">Historique</a>
+          
+        {% endblock %}
+        </div>
+        <div id="saisieMenu">
+        {% block saisie %}
+          
+            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
+          
+        {% endblock %}
+        </div>
+        <div id="nomMenu">
+        {% block nom %}
+          
+            {{visiteur.nom}} {{visiteur.prenom}}
+          
+        {% endblock %}
+        </div>
+        <div id="deconnexionMenu">
+        {% block deconnexion %}
+          
+            <a href="{{ path('gsb_appli_frais_portal') }}">Deconnexion</a>
+          
+        {% endblock %}
+        </div>
+      
       {% endblock %}
+      </div>
+
+      <div id="logo" class="container">
+      {% block logo %}
+      
+        <img   src="{{ asset('bundles/gsbapplifrais/images/logo.png') }}" class="imglogo"/>
+      
+      {% endblock %}
+      </div>
 
       <h1>Laboratoir Galaxy Swiss Bourdin</h1>
       
+      <div id="center" class="container">
       {% block corps %}
-        <div id="center" class="container">
-        </div>
+        
+        
       {% endblock %}
+      </div>
 
+      <div id="rightUp" class="container">
       {% block rightUp %}
-        <div id="rightUp" class="container">
-        </div>
+        
+        
       {% endblock %}
+      </div>
 
+      <div id="rightDown" class="container">
       {% block rightDown %}
-        <div id="rightDown" class="container">
-        </div>
+        
+        
       {% endblock %}
+      </div>
  
     </div>
   </body>
