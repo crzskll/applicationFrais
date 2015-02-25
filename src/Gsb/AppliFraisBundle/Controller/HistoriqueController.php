@@ -4,7 +4,6 @@ namespace Gsb\AppliFraisBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Gsb\AppliFraisBundle\Form\FindDate;
 use Gsb\AppliFraisBundle\Form\SaisieHorsForfait;
 
 use Gsb\AppliFraisBundle\Entity\ForfaitLigne;
@@ -23,13 +22,16 @@ class HistoriqueController extends Controller{
      * Lists all fiche of vurrent visiteur.
      *
      */
-	public function indexAction($id)
+	public function indexAction(Request $request, $id)
     {   
     	$em = $this->getDoctrine()->getManager();
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
         $formDate = $this->createFindDateForm($visiteur);
+
+        $formDate->handleRequest($request);
+
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
@@ -39,13 +41,26 @@ class HistoriqueController extends Controller{
         
     }
 
-    public function testAction()
+    public function findDateAction(Request $request, $id)
     {   
         $em = $this->getDoctrine()->getManager();
 
-        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find(25);
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
         $formDate = $this->createFindDateForm($visiteur);
+
+        $formDate->handleRequest($request);
+
+        if($formDate->isValid()){
+
+            $data = $formDate->getData();
+            $dateDeb = $data['debut'];
+            $dateFin = $data['fin'];
+
+             return $this->render('GsbAppliFraisBundle:Visiteur:test.html.twig', array(
+                'date' => $dateDeb->format('d-m-Y'),
+            ));
+        }
 
         return $this->render('GsbAppliFraisBundle:Visiteur:historique.html.twig', array(
                 'visiteur' => $visiteur,
@@ -64,14 +79,14 @@ class HistoriqueController extends Controller{
     {   
         $date = $visiteur->getDateEmbauche();
 
-        $form = $this->createForm(new FindDate(array('date' => $date)), array(
-            'action' => $this->generateUrl('historique_test'),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Find'));
-
-        return $form;
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('historique_test', array('id' => $visiteur->getId())))
+            ->setMethod('POST')
+            ->add('debut', 'date', array('data' => $date))
+            ->add('fin', 'date', array('data' => new DateTime() ))
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
     }
 }	
 

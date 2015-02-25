@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\EmployeRepository")
  * @ORM\Table(name="employe")
  */
 class Employe

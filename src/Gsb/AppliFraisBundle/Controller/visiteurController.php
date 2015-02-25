@@ -43,14 +43,6 @@ class VisiteurController extends Controller{
         //Création form horsForfait
         $ligneHorsForfait = new HorsForfaitLigne();
         $formSaisieHorsForfait = $this->createFraisHorsForfaitForm($derniereFiche, $ligneHorsForfait, $id);
-        
-        //Control du formulair ligneForfait
-        if ($formSaisieForfait->isValid()) {
-            
-            $em->flush();
-            $this->changeDateModif($derniereFiche);
-            return $this->redirect($this->generateUrl('visiteur', array('id' => $id)));
-        }
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);

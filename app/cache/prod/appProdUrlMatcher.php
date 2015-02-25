@@ -532,9 +532,15 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
 
             // historique_test
-            if ($pathinfo === '/historique/histo') {
-                return array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::testAction',  '_route' => 'historique_test',);
+            if (0 === strpos($pathinfo, '/historique/date') && preg_match('#^/historique/date/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_historique_test;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_test')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::findDateAction',));
             }
+            not_historique_test:
 
         }
 

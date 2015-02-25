@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\EtatRepository")
  * @ORM\Table(name="etat")
  */
 class Etat

@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\FicheRepository")
  * @ORM\Table(name="fiche")
  */
 class Fiche
@@ -290,5 +290,28 @@ class Fiche
     {
 
       return strval($this->getId());
+    }
+
+    /**
+     * Set refusLigne
+     *
+     * @param boolean $refusLigne
+     * @return Fiche
+     */
+    public function setRefusLigne($refusLigne)
+    {
+        $this->refusLigne = $refusLigne;
+
+        return $this;
+    }
+
+    /**
+     * Get refusLigne
+     *
+     * @return boolean 
+     */
+    public function getRefusLigne()
+    {
+        return $this->refusLigne;
     }
 }
