@@ -211,22 +211,7 @@
 
 {% block rightUp %}
 		<div class="contentForm">
-			{{ form_start(formSaisieForfait) }}
-			    {{ form_errors(formSaisieForfait) }}
-
-			    <div class="hiden">
-			        {{ form_label(formSaisieForfait.statut) }}
-			        {{ form_errors(formSaisieForfait.statut) }}
-			        {{ form_widget(formSaisieForfait.statut) }}
-			    </div>
-
-			    <div class="hiden">
-			        {{ form_label(formSaisieForfait.fiche) }}
-			        {{ form_errors(formSaisieForfait.fiche) }}
-			        {{ form_widget(formSaisieForfait.fiche) }}
-			    </div>
-
-			{{ form_end(formSaisieForfait) }}
+			{{ form(formSaisieForfait) }}
 
 		</div>
 {% endblock %}

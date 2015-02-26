@@ -84,6 +84,19 @@ class VisiteurController extends Controller{
         //Verrification du formulaire
         if ($formSaisieForfait->isValid()) {
             
+            $data = $formSaisieForfait->getData();
+
+            $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+            $frais = $ligneForfait->getFraisForfaits();
+
+            foreach ($frais as $aFrais) {
+                $forfait = $aFrais->getForfait();
+                $quantite = $aFrais->getQuantite();
+                $newQuantite =  $data[$forfait->getLibelle()];
+
+                $aFrais->setQuantite($quantite + $newQuantite);
+            }
+
             $em->flush();
             $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
@@ -249,12 +262,6 @@ class VisiteurController extends Controller{
         //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
-        //Recupération des forfaits
-        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
-        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
-        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
-        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
-
         //Calcul des totaux
         $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
         $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
@@ -264,10 +271,6 @@ class VisiteurController extends Controller{
                 'fiche' => $derniereFiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'forfaitNuit' => $forfaitNuit, 
-                'forfaitRepas' => $forfaitRepas, 
-                'forfaitKm' => $forfaitKm, 
-                'forfaitEtape' => $forfaitEtape,
                 'totFraisForfait' => $totFraisForfait,
                 'totFraisHorsForfait' => $totFraisHorsForfait, 
                 'formDelete' => $deleteForm->createView(),                
@@ -284,13 +287,23 @@ class VisiteurController extends Controller{
      */
     private function createFraisForfaitForm(Fiche $fiche, $id)
     {	
-    	$lignesForfait = $fiche->getForfaitLignes();
-    	$ligne = $lignesForfait[0];
+        $forfaitLignes = $fiche->getForfaitLignes();
+        $ligne = $forfaitLignes[0];
 
-        $form = $this->createForm(new SaisieForfait(), $ligne, array(
-            'action' => $this->generateUrl('visiteur_update_forfait_ligne', array('idLigne' => $ligne->getId(), 'idVisit' => $id)),
-            'method' => 'PUT',
-        ));
+        $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('visiteur_update_forfait_ligne', array('idLigne' => $ligne->getId(), 'idVisit' => $id)))
+                ->setMethod('PUT')
+                ->getForm();
+            
+        foreach ($forfaitLignes as $ligne){
+            $listeFrais = $ligne->getFraisForfaits();
+            foreach ($listeFrais as $frais) {
+                $libelle = $frais->getForfait()->getLibelle();
+                $form->add($libelle, 'integer', array(
+                    'data' => 0,
+                ));
+            }
+        }
 
         $form->add('submit', 'submit', array('label' => 'Ajouter'));
 
