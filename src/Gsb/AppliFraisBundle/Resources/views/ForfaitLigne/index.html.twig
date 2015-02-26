@@ -7,10 +7,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nbkm</th>
-                <th>Nbetape</th>
-                <th>Nbnuit</th>
-                <th>Nbrepas</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,10 +14,6 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('gsb_forfaitligne_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nbKm }}</td>
-                <td>{{ entity.nbEtape }}</td>
-                <td>{{ entity.nbNuit }}</td>
-                <td>{{ entity.nbRepas }}</td>
                 <td>
                 <ul>
                     <li>

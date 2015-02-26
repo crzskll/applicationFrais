@@ -48,25 +48,7 @@
 	      </tr>
 	      <tr>
 
-	        {% for ligneForfait in fiche.forfaitLignes %}
-
-	        <td class="legende">
-	      		Quantite
-	      	</td>
-	        <td class="quantiteForfait">
-	        	{{ ligneForfait.nbEtape }}
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{ ligneForfait.nbKm }}
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{ ligneForfait.nbNuit }}
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{ ligneForfait.nbRepas }}
-	        </td>
-
-	        {% endfor %}
+	        
 
 	      </tr>
 
@@ -76,16 +58,16 @@
 	      		Cout unitaire
 	      	</td>
 	      	<td class="quantiteForfait">
-	        	{{forfaitEtape.montant}} €
+	        	
 	        </td>
 	        <td class="quantiteForfait">
-	        	{{forfaitKm.montant}} €
+	        	
 	        </td>
 	        <td class="quantiteForfait">
-	        	{{forfaitNuit.montant}} €
+	        	
 	        </td>
 	        <td class="quantiteForfait">
-	        	{{forfaitRepas.montant}} €
+	        	
 	        </td>
 	        
 	        
@@ -218,30 +200,6 @@
 		<div class="contentForm">
 			{{ form_start(formSaisieForfait) }}
 			    {{ form_errors(formSaisieForfait) }}
-
-			    <div>
-			        {{ form_label(formSaisieForfait.nbEtape) }}
-			        {{ form_errors(formSaisieForfait.nbEtape) }}
-			        {{ form_widget(formSaisieForfait.nbEtape) }}
-			    </div>
-
-			    <div>
-			        {{ form_label(formSaisieForfait.nbKm) }}
-			        {{ form_errors(formSaisieForfait.nbKm) }}
-			        {{ form_widget(formSaisieForfait.nbKm) }}
-			    </div>
-
-			    <div>
-			        {{ form_label(formSaisieForfait.nbNuit) }}
-			        {{ form_errors(formSaisieForfait.nbNuit) }}
-			        {{ form_widget(formSaisieForfait.nbNuit) }}
-			    </div>
-
-			    <div>
-			        {{ form_label(formSaisieForfait.nbRepas) }}
-			        {{ form_errors(formSaisieForfait.nbRepas) }}
-			        {{ form_widget(formSaisieForfait.nbRepas) }}
-			    </div>
 
 			    <div class="hiden">
 			        {{ form_label(formSaisieForfait.statut) }}

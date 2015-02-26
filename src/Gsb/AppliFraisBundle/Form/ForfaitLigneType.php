@@ -15,10 +15,6 @@ class ForfaitLigneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nbKm')
-            ->add('nbEtape')
-            ->add('nbNuit')
-            ->add('nbRepas')
             ->add('statut')
             ->add('fiche')
         ;

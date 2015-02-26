@@ -64,10 +64,10 @@ class ForfaitLigne extends \Gsb\AppliFraisBundle\Entity\ForfaitLigne implements 
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'nbKm', 'nbEtape', 'nbNuit', 'nbRepas', 'statut', 'fiche');
+            return array('__isInitialized__', 'id', 'statut', 'fiche', 'fraisForfaits');
         }
 
-        return array('__isInitialized__', 'id', 'nbKm', 'nbEtape', 'nbNuit', 'nbRepas', 'statut', 'fiche');
+        return array('__isInitialized__', 'id', 'statut', 'fiche', 'fraisForfaits');
     }
 
     /**
@@ -191,94 +191,6 @@ class ForfaitLigne extends \Gsb\AppliFraisBundle\Entity\ForfaitLigne implements 
     /**
      * {@inheritDoc}
      */
-    public function setNbKm($nbKm)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNbKm', array($nbKm));
-
-        return parent::setNbKm($nbKm);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNbKm()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNbKm', array());
-
-        return parent::getNbKm();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNbEtape($nbEtape)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNbEtape', array($nbEtape));
-
-        return parent::setNbEtape($nbEtape);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNbEtape()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNbEtape', array());
-
-        return parent::getNbEtape();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNbNuit($nbNuit)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNbNuit', array($nbNuit));
-
-        return parent::setNbNuit($nbNuit);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNbNuit()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNbNuit', array());
-
-        return parent::getNbNuit();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNbRepas($nbRepas)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNbRepas', array($nbRepas));
-
-        return parent::setNbRepas($nbRepas);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNbRepas()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNbRepas', array());
-
-        return parent::getNbRepas();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setStatut(\Gsb\AppliFraisBundle\Entity\Statut $statut = NULL)
     {
 
@@ -318,6 +230,39 @@ class ForfaitLigne extends \Gsb\AppliFraisBundle\Entity\ForfaitLigne implements 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFiche', array());
 
         return parent::getFiche();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addFraisForfait', array($fraisForfaits));
+
+        return parent::addFraisForfait($fraisForfaits);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeFraisForfait', array($fraisForfaits));
+
+        return parent::removeFraisForfait($fraisForfaits);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFraisForfaits()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFraisForfaits', array());
+
+        return parent::getFraisForfaits();
     }
 
 }

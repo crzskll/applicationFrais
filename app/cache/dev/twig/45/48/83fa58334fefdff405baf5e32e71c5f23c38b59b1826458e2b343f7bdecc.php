@@ -70,7 +70,7 @@ class __TwigTemplate_454883fa58334fefdff405baf5e32e71c5f23c38b59b1826458e2b343f7
         // line 72
         echo "      </div>
 
-      <h1>Laboratoir Galaxy Swiss Bourdin</h1>
+      <h1>Laboratoire Galaxy Swiss Bourdin</h1>
       
       <div id=\"center\" class=\"container\">
       ";

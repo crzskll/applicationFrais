@@ -2,6 +2,7 @@
 namespace Gsb\AppliFraisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\ForfaitLigneRepository")
@@ -16,26 +17,6 @@ class ForfaitLigne
      */
     protected $id;
     
-     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $nbKm;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $nbEtape;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $nbNuit;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $nbRepas;
-    
     /**
      * @ORM\ManyToOne(targetEntity="Statut", inversedBy="forfaitLignes")
      * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
@@ -48,6 +29,16 @@ class ForfaitLigne
      */
     protected $fiche;
 
+    /**
+     * @ORM\OneToMany(targetEntity="FraisForfait", mappedBy="forfaitLigne")
+     */
+    protected $fraisForfaits;
+
+    public function __construct()
+    {
+        $this->fraisForfaits = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -57,98 +48,6 @@ class ForfaitLigne
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nbKm
-     *
-     * @param integer $nbKm
-     * @return ForfaitLigne
-     */
-    public function setNbKm($nbKm)
-    {
-        $this->nbKm = $nbKm;
-
-        return $this;
-    }
-
-    /**
-     * Get nbKm
-     *
-     * @return integer 
-     */
-    public function getNbKm()
-    {
-        return $this->nbKm;
-    }
-
-    /**
-     * Set nbEtape
-     *
-     * @param integer $nbEtape
-     * @return ForfaitLigne
-     */
-    public function setNbEtape($nbEtape)
-    {
-        $this->nbEtape = $nbEtape;
-
-        return $this;
-    }
-
-    /**
-     * Get nbEtape
-     *
-     * @return integer 
-     */
-    public function getNbEtape()
-    {
-        return $this->nbEtape;
-    }
-
-    /**
-     * Set nbNuit
-     *
-     * @param integer $nbNuit
-     * @return ForfaitLigne
-     */
-    public function setNbNuit($nbNuit)
-    {
-        $this->nbNuit = $nbNuit;
-
-        return $this;
-    }
-
-    /**
-     * Get nbNuit
-     *
-     * @return integer 
-     */
-    public function getNbNuit()
-    {
-        return $this->nbNuit;
-    }
-
-    /**
-     * Set nbRepas
-     *
-     * @param integer $nbRepas
-     * @return ForfaitLigne
-     */
-    public function setNbRepas($nbRepas)
-    {
-        $this->nbRepas = $nbRepas;
-
-        return $this;
-    }
-
-    /**
-     * Get nbRepas
-     *
-     * @return integer 
-     */
-    public function getNbRepas()
-    {
-        return $this->nbRepas;
     }
 
     /**
@@ -195,5 +94,38 @@ class ForfaitLigne
     public function getFiche()
     {
         return $this->fiche;
+    }
+
+    /**
+     * Add fraisForfaits
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits
+     * @return ForfaitLigne
+     */
+    public function addFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+        $this->fraisForfaits[] = $fraisForfaits;
+
+        return $this;
+    }
+
+    /**
+     * Remove fraisForfaits
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits
+     */
+    public function removeFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+        $this->fraisForfaits->removeElement($fraisForfaits);
+    }
+
+    /**
+     * Get fraisForfaits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFraisForfaits()
+    {
+        return $this->fraisForfaits;
     }
 }

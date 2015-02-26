@@ -42,54 +42,34 @@ class __TwigTemplate_f6abf79fafb862db3c2c4a6800605f60e3e47005f828b64b9fd271d5dcc
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nbkm</th>
-                <th>Nbetape</th>
-                <th>Nbnuit</th>
-                <th>Nbrepas</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         ";
-        // line 18
+        // line 14
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["entities"]) ? $context["entities"] : $this->getContext($context, "entities")));
         foreach ($context['_seq'] as $context["_key"] => $context["entity"]) {
-            // line 19
+            // line 15
             echo "            <tr>
                 <td><a href=\"";
-            // line 20
+            // line 16
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("gsb_forfaitligne_show", array("id" => $this->getAttribute($context["entity"], "id", array()))), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["entity"], "id", array()), "html", null, true);
             echo "</a></td>
-                <td>";
-            // line 21
-            echo twig_escape_filter($this->env, $this->getAttribute($context["entity"], "nbKm", array()), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 22
-            echo twig_escape_filter($this->env, $this->getAttribute($context["entity"], "nbEtape", array()), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 23
-            echo twig_escape_filter($this->env, $this->getAttribute($context["entity"], "nbNuit", array()), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 24
-            echo twig_escape_filter($this->env, $this->getAttribute($context["entity"], "nbRepas", array()), "html", null, true);
-            echo "</td>
                 <td>
                 <ul>
                     <li>
                         <a href=\"";
-            // line 28
+            // line 20
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("gsb_forfaitligne_show", array("id" => $this->getAttribute($context["entity"], "id", array()))), "html", null, true);
             echo "\">show</a>
                     </li>
                     <li>
                         <a href=\"";
-            // line 31
+            // line 23
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("gsb_forfaitligne_edit", array("id" => $this->getAttribute($context["entity"], "id", array()))), "html", null, true);
             echo "\">edit</a>
                     </li>
@@ -101,14 +81,14 @@ class __TwigTemplate_f6abf79fafb862db3c2c4a6800605f60e3e47005f828b64b9fd271d5dcc
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
+        // line 29
         echo "        </tbody>
     </table>
 
         <ul>
         <li>
             <a href=\"";
-        // line 42
+        // line 34
         echo $this->env->getExtension('routing')->getPath("gsb_forfaitligne_new");
         echo "\">
                 Create a new entry
@@ -130,6 +110,6 @@ class __TwigTemplate_f6abf79fafb862db3c2c4a6800605f60e3e47005f828b64b9fd271d5dcc
 
     public function getDebugInfo()
     {
-        return array (  112 => 42,  105 => 37,  93 => 31,  87 => 28,  80 => 24,  76 => 23,  72 => 22,  68 => 21,  62 => 20,  59 => 19,  55 => 18,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  92 => 34,  85 => 29,  73 => 23,  67 => 20,  58 => 16,  55 => 15,  51 => 14,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

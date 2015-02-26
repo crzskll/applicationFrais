@@ -10,6 +10,8 @@ use Gsb\AppliFraisBundle\Form\SaisieHorsForfait;
 use Gsb\AppliFraisBundle\Entity\ForfaitLigne;
 use Gsb\AppliFraisBundle\Entity\HorsForfaitLigne;
 use Gsb\AppliFraisBundle\Entity\Fiche;
+use Gsb\AppliFraisBundle\Entity\FraisForfait;
+use Gsb\AppliFraisBundle\Entity\Forfait;
 
 use \DateTime;
 
@@ -160,12 +162,6 @@ class VisiteurController extends Controller{
         //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
-        //Recupération des forfaits
-        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
-        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
-        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
-        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
-
         //Calcul des totaux
         $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
         $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
@@ -175,10 +171,6 @@ class VisiteurController extends Controller{
                 'fiche' => $derniereFiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'forfaitNuit' => $forfaitNuit, 
-                'forfaitRepas' => $forfaitRepas, 
-                'forfaitKm' => $forfaitKm, 
-                'forfaitEtape' => $forfaitEtape,
                 'totFraisForfait' => $totFraisForfait,
                 'totFraisHorsForfait' => $totFraisHorsForfait, 
                 'formDelete' => $deleteForm->createView(),                
@@ -416,6 +408,11 @@ class VisiteurController extends Controller{
     	$etat = $em->getRepository('GsbAppliFraisBundle:Etat')->findOneByLibelle('En cours');
     	$statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
 
+        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
+        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
+        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
+        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');   
+
     	$newFiche = new Fiche();
     	$newFiche->setDate(new DateTime());
     	$newFiche->setNbJustificatifs(0);
@@ -428,14 +425,37 @@ class VisiteurController extends Controller{
         $em->flush();
 
         $newLigneForfait = new ForfaitLigne();
-        $newLigneForfait->setNbKm(0);
-        $newLigneForfait->setNbEtape(0);
-        $newLigneForfait->setNbNuit(0);
-        $newLigneForfait->setNbRepas(0);
         $newLigneForfait->setStatut($statut);
         $newLigneForfait->setFiche($newFiche);
 
         $em->persist($newLigneForfait);
+        $em->fluck();
+
+        $newFraisNuit = new FraisForfait();
+        $newFraisNuit->setQuantite(0);
+        $newFraisNuit->setForfait($forfaitNuit);
+        $newFraisNuit->setForfaitLigne($newLigneForfait);
+
+        $newFraisKm = new FraisForfait();
+        $newFraisKm->setQuantite(0);
+        $newFraisKm->setForfait($forfaitKm);
+        $newFraisKm->setForfaitLigne($newLigneForfait);
+
+        $newFraisEtape = new FraisForfait();
+        $newFraisEtape->setQuantite(0);
+        $newFraisEtape->setForfait($forfaitEtape);
+        $newFraisEtape->setForfaitLigne($newLigneForfait);
+
+        $newFraisRepas = new FraisForfait();
+        $newFraisRepas->setQuantite(0);
+        $newFraisRepas->setForfait($forfaitRepas);
+        $newFraisRepas->setForfaitLigne($newLigneForfait);
+
+        $en->persist($newFraisNuit);
+        $en->persist($newFraisKm);
+        $en->persist($newFraisEtape);
+        $en->persist($newFraisRepas);       
+
         $em->flush();
 
         return $newFiche;
@@ -452,21 +472,18 @@ class VisiteurController extends Controller{
     {
         $em = $this->getDoctrine()->getManager();
 
-        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
-        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
-        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
-        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
-
         $lignesForfait = $fiche->getForfaitLignes();
 
         $tot = 0;
+
         foreach ($lignesForfait as $ligne) {
-            $nbKm = $ligne->getNbKm();             
-            $nbEtape = $ligne->getNbEtape(); 
-            $nbNuit = $ligne->getNbNuit(); 
-            $nbRepas = $ligne->getNbRepas();   
-            
-            $tot = $nbKm*$forfaitKm->getMontant() + $nbEtape*$forfaitEtape->getMontant() + $nbNuit*$forfaitNuit->getMontant() + $nbRepas*$forfaitRepas->getMontant();
+            $listeFrais = $ligne->getFraisForfaits();
+            foreach ($listeFrais as $frais) {
+                $montant = $frais->getForfait()->getMontant();
+                $quantite = $frais->getQuantite();
+
+                $tot += $montant * $quantite;
+            }
         }
 
         return $tot;
@@ -491,7 +508,7 @@ class VisiteurController extends Controller{
         }
 
         return $tot;
-    }     
+    }  
 
     /**
      * Generate the render of saisie visiteur.
@@ -505,12 +522,6 @@ class VisiteurController extends Controller{
      */
     private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
     {   
-        $em = $this->getDoctrine()->getManager();
-
-        $forfaitNuit = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('nuit');
-        $forfaitRepas = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('repas');
-        $forfaitKm = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('km');
-        $forfaitEtape = $em->getRepository('GsbAppliFraisBundle:Forfait')->findOneByLibelle('etape');
 
         $totFraisForfait = $this->calculateFraisForfait($fiche);
         $totFraisHorsForfait = $this->calculateFraisHorsForfait($fiche);
@@ -520,10 +531,6 @@ class VisiteurController extends Controller{
                 'fiche' => $fiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'forfaitNuit' => $forfaitNuit, 
-                'forfaitRepas' => $forfaitRepas, 
-                'forfaitKm' => $forfaitKm, 
-                'forfaitEtape' => $forfaitEtape,
                 'totFraisForfait' => $totFraisForfait,
                 'totFraisHorsForfait' => $totFraisHorsForfait,                 
             ));

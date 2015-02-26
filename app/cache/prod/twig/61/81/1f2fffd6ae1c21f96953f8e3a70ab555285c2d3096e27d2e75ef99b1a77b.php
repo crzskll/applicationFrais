@@ -47,41 +47,13 @@ class __TwigTemplate_61811f2fffd6ae1c21f96953f8e3a70ab555285c2d3096e27d2e75ef99b
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "id", array()), "html", null, true);
         echo "</td>
             </tr>
-            <tr>
-                <th>Nbkm</th>
-                <td>";
-        // line 14
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "nbKm", array()), "html", null, true);
-        echo "</td>
-            </tr>
-            <tr>
-                <th>Nbetape</th>
-                <td>";
-        // line 18
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "nbEtape", array()), "html", null, true);
-        echo "</td>
-            </tr>
-            <tr>
-                <th>Nbnuit</th>
-                <td>";
-        // line 22
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "nbNuit", array()), "html", null, true);
-        echo "</td>
-            </tr>
-            <tr>
-                <th>Nbrepas</th>
-                <td>";
-        // line 26
-        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "nbRepas", array()), "html", null, true);
-        echo "</td>
-            </tr>
         </tbody>
     </table>
 
         <ul class=\"record_actions\">
     <li>
         <a href=\"";
-        // line 33
+        // line 17
         echo $this->env->getExtension('routing')->getPath("gsb_forfaitligne");
         echo "\">
             Back to the list
@@ -89,14 +61,14 @@ class __TwigTemplate_61811f2fffd6ae1c21f96953f8e3a70ab555285c2d3096e27d2e75ef99b
     </li>
     <li>
         <a href=\"";
-        // line 38
+        // line 22
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("gsb_forfaitligne_edit", array("id" => $this->getAttribute((isset($context["entity"]) ? $context["entity"] : null), "id", array()))), "html", null, true);
         echo "\">
             Edit
         </a>
     </li>
     <li>";
-        // line 42
+        // line 26
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["delete_form"]) ? $context["delete_form"] : null), 'form');
         echo "</li>
 </ul>
@@ -115,6 +87,6 @@ class __TwigTemplate_61811f2fffd6ae1c21f96953f8e3a70ab555285c2d3096e27d2e75ef99b
 
     public function getDebugInfo()
     {
-        return array (  100 => 42,  93 => 38,  85 => 33,  75 => 26,  68 => 22,  61 => 18,  54 => 14,  47 => 10,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  72 => 26,  65 => 22,  57 => 17,  47 => 10,  39 => 4,  36 => 3,  11 => 1,);
     }
 }
