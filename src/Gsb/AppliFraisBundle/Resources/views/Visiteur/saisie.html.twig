@@ -33,22 +33,36 @@
 	      	<th class="legende">
 	      		Forfait
 	      	</th>
-	        <th class="quantiteForfait">
-	          Etapes
-	        </th>
-	        <th class="quantiteForfait">
-	          Kilométres
-	        </th>
-	        <th class="quantiteForfait">
-	          Nuits
-	        </th>
-	        <th class="quantiteForfait">
-	          Repas
-	        </th>
+	        {% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.forfait.libelle}}
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
 	      </tr>
 	      <tr>
 
-	        
+	
+
+	        <td class="legende">
+	      		Quantite
+	      	</td>
+	      	{% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.quantite}}
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
 
 	      </tr>
 
@@ -57,19 +71,18 @@
 	        <td class="legende">
 	      		Cout unitaire
 	      	</td>
-	      	<td class="quantiteForfait">
-	        	
-	        </td>
-	        <td class="quantiteForfait">
-	        	
-	        </td>
-	        <td class="quantiteForfait">
-	        	
-	        </td>
-	        <td class="quantiteForfait">
-	        	
-	        </td>
-	        
+	      	
+	        {% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.forfait.montant}} €
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
 	        
 
 	      </tr>
