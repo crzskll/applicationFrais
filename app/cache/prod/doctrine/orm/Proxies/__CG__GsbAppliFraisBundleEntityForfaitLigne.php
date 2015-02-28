@@ -64,10 +64,10 @@ class ForfaitLigne extends \Gsb\AppliFraisBundle\Entity\ForfaitLigne implements 
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'statut', 'fiche', 'fraisForfaits');
+            return array('__isInitialized__', 'id', 'motif', 'statut', 'fiche', 'fraisForfaits');
         }
 
-        return array('__isInitialized__', 'id', 'statut', 'fiche', 'fraisForfaits');
+        return array('__isInitialized__', 'id', 'motif', 'statut', 'fiche', 'fraisForfaits');
     }
 
     /**
@@ -263,6 +263,28 @@ class ForfaitLigne extends \Gsb\AppliFraisBundle\Entity\ForfaitLigne implements 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFraisForfaits', array());
 
         return parent::getFraisForfaits();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMotif($motif)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMotif', array($motif));
+
+        return parent::setMotif($motif);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMotif()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMotif', array());
+
+        return parent::getMotif();
     }
 
 }

@@ -64,10 +64,10 @@ class HorsForfaitLigne extends \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne imp
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'date', 'libelle', 'montant', 'statut', 'fiche');
+            return array('__isInitialized__', 'id', 'date', 'libelle', 'montant', 'motif', 'statut', 'fiche');
         }
 
-        return array('__isInitialized__', 'id', 'date', 'libelle', 'montant', 'statut', 'fiche');
+        return array('__isInitialized__', 'id', 'date', 'libelle', 'montant', 'motif', 'statut', 'fiche');
     }
 
     /**
@@ -296,6 +296,28 @@ class HorsForfaitLigne extends \Gsb\AppliFraisBundle\Entity\HorsForfaitLigne imp
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFiche', array());
 
         return parent::getFiche();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMotif($motif)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMotif', array($motif));
+
+        return parent::setMotif($motif);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMotif()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMotif', array());
+
+        return parent::getMotif();
     }
 
 }

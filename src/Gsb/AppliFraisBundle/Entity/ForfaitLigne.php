@@ -16,6 +16,11 @@ class ForfaitLigne
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=250,  nullable=true)
+     */
+    protected $motif;
     
     /**
      * @ORM\ManyToOne(targetEntity="Statut", inversedBy="forfaitLignes")
@@ -127,5 +132,28 @@ class ForfaitLigne
     public function getFraisForfaits()
     {
         return $this->fraisForfaits;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param string $motif
+     * @return ForfaitLigne
+     */
+    public function setMotif($motif)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return string 
+     */
+    public function getMotif()
+    {
+        return $this->motif;
     }
 }

@@ -5,6 +5,11 @@
 		{% for ligne in lignesForfait %}
 			<div>
 				{{ligne.statut.libelle}}
+				{{ligne.fiche.date.format('F Y')}}
+
+				{% for frais in ligne.fraisForfaits %}
+					{{frais.quantite}}
+				{% endfor %}
 			</div>
 		{% endfor %}
 

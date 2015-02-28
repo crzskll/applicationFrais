@@ -2,6 +2,7 @@
 namespace Gsb\AppliFraisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\ForfaitLigneRepository")
@@ -15,6 +16,11 @@ class ForfaitLigne
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=250,  nullable=true)
+     */
+    protected $motif;
     
     /**
      * @ORM\ManyToOne(targetEntity="Statut", inversedBy="forfaitLignes")
@@ -38,4 +44,116 @@ class ForfaitLigne
         $this->fraisForfaits = new ArrayCollection();
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\Statut $statut
+     * @return ForfaitLigne
+     */
+    public function setStatut(\Gsb\AppliFraisBundle\Entity\Statut $statut = null)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \Gsb\AppliFraisBundle\Entity\Statut 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set fiche
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\Fiche $fiche
+     * @return ForfaitLigne
+     */
+    public function setFiche(\Gsb\AppliFraisBundle\Entity\Fiche $fiche = null)
+    {
+        $this->fiche = $fiche;
+
+        return $this;
+    }
+
+    /**
+     * Get fiche
+     *
+     * @return \Gsb\AppliFraisBundle\Entity\Fiche 
+     */
+    public function getFiche()
+    {
+        return $this->fiche;
+    }
+
+    /**
+     * Add fraisForfaits
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits
+     * @return ForfaitLigne
+     */
+    public function addFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+        $this->fraisForfaits[] = $fraisForfaits;
+
+        return $this;
+    }
+
+    /**
+     * Remove fraisForfaits
+     *
+     * @param \Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits
+     */
+    public function removeFraisForfait(\Gsb\AppliFraisBundle\Entity\FraisForfait $fraisForfaits)
+    {
+        $this->fraisForfaits->removeElement($fraisForfaits);
+    }
+
+    /**
+     * Get fraisForfaits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFraisForfaits()
+    {
+        return $this->fraisForfaits;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param string $motif
+     * @return ForfaitLigne
+     */
+    public function setMotif($motif)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return string 
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
 }

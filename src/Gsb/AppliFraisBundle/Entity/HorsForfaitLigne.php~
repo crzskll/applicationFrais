@@ -30,6 +30,11 @@ class HorsForfaitLigne
      * @ORM\Column(type="decimal", scale=2)
      */
     protected $montant;
+
+    /**
+     * @ORM\Column(type="string", length=250,  nullable=true)
+     */
+    protected $motif;
     
     /**
      * @ORM\ManyToOne(targetEntity="Statut", inversedBy="horsForfaitLignes")
@@ -167,5 +172,28 @@ class HorsForfaitLigne
     public function getFiche()
     {
         return $this->fiche;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param string $motif
+     * @return HorsForfaitLigne
+     */
+    public function setMotif($motif)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return string 
+     */
+    public function getMotif()
+    {
+        return $this->motif;
     }
 }
