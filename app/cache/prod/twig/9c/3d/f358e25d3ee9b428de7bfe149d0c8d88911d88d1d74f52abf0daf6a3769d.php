@@ -37,76 +37,125 @@ class __TwigTemplate_9c3df358e25d3ee9b428de7bfe149d0c8d88911d88d1d74f52abf0daf6a
     {
         // line 4
         echo "\t<div class=\"listeHistorique\">
-\t\t";
-        // line 5
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["lignesForfait"]) ? $context["lignesForfait"] : null));
-        foreach ($context['_seq'] as $context["_key"] => $context["ligne"]) {
-            // line 6
-            echo "\t\t\t<div>
-\t\t\t\t";
-            // line 7
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["ligne"], "statut", array()), "libelle", array()), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 8
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["ligne"], "fiche", array()), "date", array()), "format", array(0 => "F Y"), "method"), "html", null, true);
-            echo "
 
-\t\t\t\t";
-            // line 10
+
+\t\t";
+        // line 7
+        if (((isset($context["type"]) ? $context["type"] : null) != "horsForfait")) {
+            // line 8
+            echo "\t\t\t<table>
+\t\t\t   <caption>Lignes forfaitisées</caption>
+
+\t\t\t   <tr>
+\t\t\t       <th>Date</th>
+\t\t\t       <th>Nuit</th>
+\t\t\t       <th>Repas</th>
+\t\t\t       <th>Km</th>
+\t\t\t       <th>Etape</th>
+\t\t\t       <th>Statut</th>
+\t\t\t       <th>Motif</th>
+\t\t\t   </tr>
+
+\t\t\t   ";
+            // line 21
             $context['_parent'] = (array) $context;
-            $context['_seq'] = twig_ensure_traversable($this->getAttribute($context["ligne"], "fraisForfaits", array()));
-            foreach ($context['_seq'] as $context["_key"] => $context["frais"]) {
-                // line 11
-                echo "\t\t\t\t\t";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["frais"], "quantite", array()), "html", null, true);
-                echo "
+            $context['_seq'] = twig_ensure_traversable((isset($context["lignesForfait"]) ? $context["lignesForfait"] : null));
+            foreach ($context['_seq'] as $context["_key"] => $context["ligne"]) {
+                // line 22
+                echo "\t\t\t\t   <tr>
+\t\t\t\t       <td>";
+                // line 23
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["ligne"], "fiche", array()), "date", array()), "format", array(0 => "F Y"), "method"), "html", null, true);
+                echo "</td>
+\t\t\t\t       ";
+                // line 24
+                $context['_parent'] = (array) $context;
+                $context['_seq'] = twig_ensure_traversable($this->getAttribute($context["ligne"], "fraisForfaits", array()));
+                foreach ($context['_seq'] as $context["_key"] => $context["frais"]) {
+                    // line 25
+                    echo "\t\t\t\t\t\t\t<td>";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["frais"], "quantite", array()), "html", null, true);
+                    echo "</td>
+\t\t\t\t\t\t";
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['frais'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 27
+                echo "\t\t\t\t\t\t<td>";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "statut", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t       <td>";
+                // line 28
+                echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "motif", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t   </tr>
 \t\t\t\t";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['frais'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ligne'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 13
-            echo "\t\t\t</div>
+            // line 31
+            echo "\t\t\t</table>
 \t\t";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ligne'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 15
+        // line 33
         echo "
 \t\t";
-        // line 16
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["lignesHorsForfait"]) ? $context["lignesHorsForfait"] : null));
-        foreach ($context['_seq'] as $context["_key"] => $context["ligne"]) {
-            // line 17
-            echo "\t\t\t<div>
+        // line 34
+        if (((isset($context["type"]) ? $context["type"] : null) != "Forfait")) {
+            // line 35
+            echo "\t\t\t<table>
+\t\t\t   <caption>Lignes non forfaitisées</caption>
+
+\t\t\t   <tr>
+\t\t\t       <th>Date</th>
+\t\t\t       <th>Description</th>
+\t\t\t       <th>Montant</th>
+\t\t\t       <th>Statut</th>
+\t\t\t       <th>Motif</th>
+\t\t\t   </tr>
+
+\t\t\t   ";
+            // line 46
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["lignesHorsForfait"]) ? $context["lignesHorsForfait"] : null));
+            foreach ($context['_seq'] as $context["_key"] => $context["ligne"]) {
+                // line 47
+                echo "\t\t\t\t   <tr>
+\t\t\t\t\t<td>";
+                // line 48
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["ligne"], "date", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
+                echo "</td>
+\t\t\t\t\t<td>";
+                // line 49
+                echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "libelle", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t\t<td>";
+                // line 50
+                echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "montant", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t\t<td>";
+                // line 51
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["ligne"], "statut", array()), "libelle", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t\t<td>";
+                // line 52
+                echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "motif", array()), "html", null, true);
+                echo "</td>
+\t\t\t\t\t</tr>
 \t\t\t\t";
-            // line 18
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["ligne"], "date", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 19
-            echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "libelle", array()), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 20
-            echo twig_escape_filter($this->env, $this->getAttribute($context["ligne"], "montant", array()), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 21
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["ligne"], "statut", array()), "libelle", array()), "html", null, true);
-            echo "
-\t\t\t</div>
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ligne'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 55
+            echo "\t\t\t</table>
 \t\t";
         }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ligne'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 24
-        echo "\t</div>
+        // line 57
+        echo "
+\t</div>
 ";
     }
 
@@ -122,6 +171,6 @@ class __TwigTemplate_9c3df358e25d3ee9b428de7bfe149d0c8d88911d88d1d74f52abf0daf6a
 
     public function getDebugInfo()
     {
-        return array (  109 => 24,  100 => 21,  96 => 20,  92 => 19,  88 => 18,  85 => 17,  81 => 16,  78 => 15,  71 => 13,  62 => 11,  58 => 10,  53 => 8,  49 => 7,  46 => 6,  42 => 5,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  157 => 57,  153 => 55,  144 => 52,  140 => 51,  136 => 50,  132 => 49,  128 => 48,  125 => 47,  121 => 46,  108 => 35,  106 => 34,  103 => 33,  99 => 31,  90 => 28,  85 => 27,  76 => 25,  72 => 24,  68 => 23,  65 => 22,  61 => 21,  46 => 8,  44 => 7,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

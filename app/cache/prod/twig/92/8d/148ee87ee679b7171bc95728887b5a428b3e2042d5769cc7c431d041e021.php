@@ -58,64 +58,76 @@ class __TwigTemplate_928d148ee87ee679b7171bc95728887b5a428b3e2042d5769cc7c431d04
     {
         // line 10
         echo "\t<div class=\"listeHistorique\">
-\t\t";
-        // line 11
+\t\t
+\t\t\t<div>
+
+\t\t\t\t<table>
+\t\t\t\t   <caption>Fiches</caption>
+
+\t\t\t\t   <tr>
+\t\t\t\t       <th>Date</th>
+\t\t\t\t       <th>Derniere modif</th>
+\t\t\t\t       <th>Montant tot</th>
+\t\t\t\t       <th>Montant validé</th>
+\t\t\t\t       <th>Etat</th>
+\t\t\t\t   </tr>
+
+\t\t\t\t   ";
+        // line 25
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["fiches"]) ? $context["fiches"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["fiche"]) {
-            // line 12
-            echo "\t\t\t<div>
-\t\t\t\t";
-            // line 13
+            // line 26
+            echo "\t\t\t\t\t   <tr>
+\t\t\t\t\t\t<td>";
+            // line 27
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "date", array()), "format", array(0 => "m-Y"), "method"), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 14
-            echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "nbJustificatifs", array()), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 15
+            echo "</td>
+\t\t\t\t\t\t<td>";
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "dateModification", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 16
-            echo twig_escape_filter($this->env, $this->getAttribute($context["fiche"], "montantValide", array()), "html", null, true);
-            echo "
-\t\t\t\t";
-            // line 17
+            echo "</td>
+\t\t\t\t\t\t<td>0</td>
+\t\t\t\t\t\t<td>0</td>
+\t\t\t\t\t\t<td>";
+            // line 31
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "etat", array()), "libelle", array()), "html", null, true);
-            echo "
-\t\t\t</div>
-\t\t";
+            echo "</td>
+\t\t\t\t\t\t</tr>
+\t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['fiche'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 20
-        echo "\t</div>
+        // line 34
+        echo "\t\t\t\t</table>
+\t\t\t
+\t\t\t</div>
+\t\t
+\t</div>
 ";
     }
 
-    // line 23
+    // line 41
     public function block_rightUp($context, array $blocks = array())
     {
-        // line 24
+        // line 42
         echo "\t\t<div class=\"contentForm\">
 \t\t\t";
-        // line 25
+        // line 43
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formFiche"]) ? $context["formFiche"] : null), 'form');
         echo "
 \t\t</div>
 ";
     }
 
-    // line 29
+    // line 47
     public function block_rightDown($context, array $blocks = array())
     {
-        // line 30
+        // line 48
         echo "\t\t<div class=\"contentForm\">
 \t\t\t";
-        // line 31
+        // line 49
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formLigne"]) ? $context["formLigne"] : null), 'form');
         echo "
 \t\t</div> 
@@ -134,6 +146,6 @@ class __TwigTemplate_928d148ee87ee679b7171bc95728887b5a428b3e2042d5769cc7c431d04
 
     public function getDebugInfo()
     {
-        return array (  119 => 31,  116 => 30,  113 => 29,  106 => 25,  103 => 24,  100 => 23,  95 => 20,  86 => 17,  82 => 16,  78 => 15,  74 => 14,  70 => 13,  67 => 12,  63 => 11,  60 => 10,  57 => 9,  51 => 6,  47 => 5,  42 => 4,  39 => 3,  11 => 1,);
+        return array (  131 => 49,  128 => 48,  125 => 47,  118 => 43,  115 => 42,  112 => 41,  103 => 34,  94 => 31,  88 => 28,  84 => 27,  81 => 26,  77 => 25,  60 => 10,  57 => 9,  51 => 6,  47 => 5,  42 => 4,  39 => 3,  11 => 1,);
     }
 }

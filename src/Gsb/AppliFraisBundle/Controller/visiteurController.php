@@ -401,8 +401,8 @@ class VisiteurController extends Controller{
 
                 $derniereFiche->setEtat($etatClot);
                 $em->flush();
-                $derniereFiche = $this->createNewFiche($visiteur);
             }
+            $derniereFiche = $this->createNewFiche($visiteur);
         }
 
         return $derniereFiche;
@@ -442,7 +442,7 @@ class VisiteurController extends Controller{
         $newLigneForfait->setFiche($newFiche);
 
         $em->persist($newLigneForfait);
-        $em->fluck();
+        $em->flush();
 
         $newFraisNuit = new FraisForfait();
         $newFraisNuit->setQuantite(0);
@@ -464,10 +464,10 @@ class VisiteurController extends Controller{
         $newFraisRepas->setForfait($forfaitRepas);
         $newFraisRepas->setForfaitLigne($newLigneForfait);
 
-        $en->persist($newFraisNuit);
-        $en->persist($newFraisKm);
-        $en->persist($newFraisEtape);
-        $en->persist($newFraisRepas);       
+        $em->persist($newFraisNuit);
+        $em->persist($newFraisKm);
+        $em->persist($newFraisEtape);
+        $em->persist($newFraisRepas);       
 
         $em->flush();
 

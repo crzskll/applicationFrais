@@ -8,15 +8,33 @@
 
 {% block corps %}
 	<div class="listeHistorique">
-		{% for fiche in fiches %}
+		
 			<div>
-				{{fiche.date.format('m-Y')}}
-				{{fiche.nbJustificatifs}}
-				{{fiche.dateModification.format('d-m-Y')}}
-				{{fiche.montantValide}}
-				{{fiche.etat.libelle}}
+
+				<table>
+				   <caption>Fiches</caption>
+
+				   <tr>
+				       <th>Date</th>
+				       <th>Derniere modif</th>
+				       <th>Montant tot</th>
+				       <th>Montant validé</th>
+				       <th>Etat</th>
+				   </tr>
+
+				   {% for fiche in fiches %}
+					   <tr>
+						<td>{{fiche.date.format('m-Y')}}</td>
+						<td>{{fiche.dateModification.format('d-m-Y')}}</td>
+						<td>0</td>
+						<td>0</td>
+						<td>{{fiche.etat.libelle}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			
 			</div>
-		{% endfor %}
+		
 	</div>
 {% endblock %}
 

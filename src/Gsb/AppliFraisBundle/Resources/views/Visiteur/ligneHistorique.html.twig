@@ -2,24 +2,58 @@
 
 {% block corps %}
 	<div class="listeHistorique">
-		{% for ligne in lignesForfait %}
-			<div>
-				{{ligne.statut.libelle}}
-				{{ligne.fiche.date.format('F Y')}}
 
-				{% for frais in ligne.fraisForfaits %}
-					{{frais.quantite}}
+
+		{% if type != 'horsForfait' %}
+			<table>
+			   <caption>Lignes forfaitisées</caption>
+
+			   <tr>
+			       <th>Date</th>
+			       <th>Nuit</th>
+			       <th>Repas</th>
+			       <th>Km</th>
+			       <th>Etape</th>
+			       <th>Statut</th>
+			       <th>Motif</th>
+			   </tr>
+
+			   {% for ligne in lignesForfait %}
+				   <tr>
+				       <td>{{ligne.fiche.date.format('F Y')}}</td>
+				       {% for frais in ligne.fraisForfaits %}
+							<td>{{frais.quantite}}</td>
+						{% endfor %}
+						<td>{{ligne.statut}}</td>
+				       <td>{{ligne.motif}}</td>
+				   </tr>
 				{% endfor %}
-			</div>
-		{% endfor %}
+			</table>
+		{% endif %}
 
-		{% for ligne in lignesHorsForfait %}
-			<div>
-				{{ligne.date.format('d-m-Y')}}
-				{{ligne.libelle}}
-				{{ligne.montant}}
-				{{ligne.statut.libelle}}
-			</div>
-		{% endfor %}
+		{% if type != 'Forfait' %}
+			<table>
+			   <caption>Lignes non forfaitisées</caption>
+
+			   <tr>
+			       <th>Date</th>
+			       <th>Description</th>
+			       <th>Montant</th>
+			       <th>Statut</th>
+			       <th>Motif</th>
+			   </tr>
+
+			   {% for ligne in lignesHorsForfait %}
+				   <tr>
+					<td>{{ligne.date.format('d-m-Y')}}</td>
+					<td>{{ligne.libelle}}</td>
+					<td>{{ligne.montant}}</td>
+					<td>{{ligne.statut.libelle}}</td>
+					<td>{{ligne.motif}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+
 	</div>
 {% endblock %}

@@ -135,11 +135,11 @@ class HistoriqueController extends Controller{
                 case 'Toutes':
                 break;
                 
-                case 'Forfais': 
+                case 'Forfait': 
                     $lignesHorsForfait = array();
                 break;
                 
-                case 'horsForfais': 
+                case 'horsForfait': 
                     $lignesForfait = array();
                 break;
             }
@@ -150,6 +150,7 @@ class HistoriqueController extends Controller{
                 'lignesHorsForfait' => $lignesHorsForfait,
                 'formFiche' => $formFiche->createView(),
                 'formLigne' => $formLigne->createView(),
+                'type' => $type,
             ));
         }
 
@@ -210,8 +211,8 @@ class HistoriqueController extends Controller{
             ->add('type', 'choice', array(
                 'choices'   => array(
                     'Toutes'   => 'Toutes',
-                    'Forfais' => 'Forfaitisées',
-                    'horsForfais'   => 'Non forfaitisées',
+                    'Forfait' => 'Forfaitisées',
+                    'horsForfait'   => 'Non forfaitisées',
                 ),
                 'multiple'  => false,
                 'expanded' => true,
