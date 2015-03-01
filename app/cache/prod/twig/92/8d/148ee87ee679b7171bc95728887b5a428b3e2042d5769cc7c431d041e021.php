@@ -70,36 +70,41 @@ class __TwigTemplate_928d148ee87ee679b7171bc95728887b5a428b3e2042d5769cc7c431d04
 \t\t\t\t       <th>Montant tot</th>
 \t\t\t\t       <th>Montant validé</th>
 \t\t\t\t       <th>Etat</th>
+\t\t\t\t       <th></th>
 \t\t\t\t   </tr>
 
 \t\t\t\t   ";
-        // line 25
+        // line 26
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["fiches"]) ? $context["fiches"] : null));
         foreach ($context['_seq'] as $context["_key"] => $context["fiche"]) {
-            // line 26
-            echo "\t\t\t\t\t   <tr>
-\t\t\t\t\t\t<td>";
             // line 27
+            echo "\t\t\t\t\t    <tr>
+\t\t\t\t\t\t\t<td>";
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "date", array()), "format", array(0 => "m-Y"), "method"), "html", null, true);
             echo "</td>
-\t\t\t\t\t\t<td>";
-            // line 28
+\t\t\t\t\t\t\t<td>";
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "dateModification", array()), "format", array(0 => "d-m-Y"), "method"), "html", null, true);
             echo "</td>
-\t\t\t\t\t\t<td>0</td>
-\t\t\t\t\t\t<td>0</td>
-\t\t\t\t\t\t<td>";
-            // line 31
+\t\t\t\t\t\t\t<td>0</td>
+\t\t\t\t\t\t\t<td>0</td>
+\t\t\t\t\t\t\t<td>";
+            // line 32
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["fiche"], "etat", array()), "libelle", array()), "html", null, true);
             echo "</td>
+\t\t\t\t\t\t\t<td><a href=\"";
+            // line 33
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("historique_show", array("idVisit" => $this->getAttribute((isset($context["visiteur"]) ? $context["visiteur"] : null), "id", array()), "idFiche" => $this->getAttribute($context["fiche"], "id", array()))), "html", null, true);
+            echo "\">show</a></td>
 \t\t\t\t\t\t</tr>
 \t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['fiche'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 34
+        // line 36
         echo "\t\t\t\t</table>
 \t\t\t
 \t\t\t</div>
@@ -108,26 +113,26 @@ class __TwigTemplate_928d148ee87ee679b7171bc95728887b5a428b3e2042d5769cc7c431d04
 ";
     }
 
-    // line 41
+    // line 43
     public function block_rightUp($context, array $blocks = array())
     {
-        // line 42
+        // line 44
         echo "\t\t<div class=\"contentForm\">
 \t\t\t";
-        // line 43
+        // line 45
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formFiche"]) ? $context["formFiche"] : null), 'form');
         echo "
 \t\t</div>
 ";
     }
 
-    // line 47
+    // line 49
     public function block_rightDown($context, array $blocks = array())
     {
-        // line 48
+        // line 50
         echo "\t\t<div class=\"contentForm\">
 \t\t\t";
-        // line 49
+        // line 51
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["formLigne"]) ? $context["formLigne"] : null), 'form');
         echo "
 \t\t</div> 
@@ -146,6 +151,6 @@ class __TwigTemplate_928d148ee87ee679b7171bc95728887b5a428b3e2042d5769cc7c431d04
 
     public function getDebugInfo()
     {
-        return array (  131 => 49,  128 => 48,  125 => 47,  118 => 43,  115 => 42,  112 => 41,  103 => 34,  94 => 31,  88 => 28,  84 => 27,  81 => 26,  77 => 25,  60 => 10,  57 => 9,  51 => 6,  47 => 5,  42 => 4,  39 => 3,  11 => 1,);
+        return array (  136 => 51,  133 => 50,  130 => 49,  123 => 45,  120 => 44,  117 => 43,  108 => 36,  99 => 33,  95 => 32,  89 => 29,  85 => 28,  82 => 27,  78 => 26,  60 => 10,  57 => 9,  51 => 6,  47 => 5,  42 => 4,  39 => 3,  11 => 1,);
     }
 }

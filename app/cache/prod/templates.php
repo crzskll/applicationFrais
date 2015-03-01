@@ -112,6 +112,7 @@
   'GsbAppliFraisBundle:Visiteur:historique.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/historique.html.twig',
   'GsbAppliFraisBundle:Visiteur:ligneHistorique.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/ligneHistorique.html.twig',
   'GsbAppliFraisBundle:Visiteur:saisie.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/saisie.html.twig',
+  'GsbAppliFraisBundle:Visiteur:showHistorique.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/showHistorique.html.twig',
   'GsbAppliFraisBundle:Visiteur:update.html.twig' => 'C:\\wamp\\www\\GSB\\src\\Gsb\\AppliFraisBundle/Resources/views/Visiteur/update.html.twig',
   '::base.html.twig' => 'C:\\wamp\\www\\GSB\\app/Resources\\views/base.html.twig',
 );

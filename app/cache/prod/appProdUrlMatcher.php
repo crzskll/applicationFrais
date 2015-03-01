@@ -553,6 +553,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
             not_historique_find_dateStatut:
 
+            // historique_show
+            if (0 === strpos($pathinfo, '/historique/show') && preg_match('#^/historique/show/(?P<idVisit>[^/]++)/(?P<idFiche>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::showAction',));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

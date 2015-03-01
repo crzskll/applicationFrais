@@ -163,6 +163,24 @@ class HistoriqueController extends Controller{
         
     }
 
+    public function showAction($idVisit, $idFiche)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
+        $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
+        $formFiche = $this->createFindFicheForm($visiteur);
+        $formLigne = $this->createFindLigneForm($visiteur);
+
+
+        return $this->render('GsbAppliFraisBundle:Visiteur:showHistorique.html.twig', array(
+                'visiteur' => $visiteur,
+                'fiche' => $fiche,
+                'formFiche' => $formFiche->createView(),
+                'formLigne' => $formLigne->createView(),
+            ));
+    }
+
     /**
      * Creates a form to find fiche by date.
      *

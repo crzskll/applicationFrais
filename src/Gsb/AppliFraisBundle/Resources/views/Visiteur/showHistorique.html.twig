@@ -1,0 +1,208 @@
+{% extends 'GsbAppliFraisBundle:visiteur:historique.html.twig' %}
+
+{% block corps %}
+	
+	<div>
+		<div>
+			<div class="infosFiche">
+				Fiche de {{fiche.date.format('F Y')}}
+			</div>
+			<div class="infosFiche right">
+				Visiteur N°{{visiteur.id}}
+			</div>
+		</div>
+		<div>
+			<div class="infosFiche">
+				Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
+			</div>
+			<div class="infosFiche right">
+				{{visiteur.nom}} {{visiteur.prenom}}
+			</div>
+		</div>
+	</div>
+
+	{% block ligneforfait %}
+	    <table id="ligneForfait">
+	      <caption>ligne forait</caption>
+	      <tr>
+	      	<th class="legende">
+	      		Forfait
+	      	</th>
+	        {% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.forfait.libelle}}
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
+	      </tr>
+	      <tr>
+
+	
+
+	        <td class="legende">
+	      		Quantite
+	      	</td>
+	      	{% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.quantite}}
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende">
+	      		Cout unitaire
+	      	</td>
+	      	
+	        {% for forfaitLigne in fiche.forfaitLignes %}
+
+	      		{% for frais in forfaitLigne.fraisForfaits %}
+
+	      			<td class="quantiteForfait">
+	        			{{frais.forfait.montant}} €
+	        		</td>
+
+	      		{% endfor %}
+
+	      	{% endfor %}
+	        
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende noBorder">
+	      		
+	      	</td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+
+	      </tr>
+
+	      <tr >
+
+	        <td class="legende noBorder">
+	      
+	      	</td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait noBorder">
+	        	
+	        </td>
+	        <td class="quantiteForfait">
+	        	Total
+	        </td>
+	        <td class="quantiteForfait">
+	        	€
+	        </td>
+
+	      </tr>
+	    </table>
+	  {% endblock %}
+
+
+	  {% block lignehorsforfait %}
+	    <table id="ligneHorsForfait">
+	      <caption>ligne hors forfait</caption>
+	      <tr id="libelleHorsForfait">
+	        <th class="quantiteHorsForfait">
+	          Date
+	        </th>
+	        <th class="descriptionHorsForfait">
+	          Description
+	        </th>
+	        <th class="quantiteHorsForfait">
+	          Montant
+	        </th>
+	        <th class="delHorsForfait">
+	            
+	        </th>
+	      </tr>
+	      <tr id="quantiteHorsForfait">
+
+	        {% for ligneHorsForfait in fiche.horsForfaitLignes %}
+	          <td class="quantiteHorsForfait">
+	            {{ ligneHorsForfait.date.format('d-m-Y')}}
+	          </td>
+	          <td class="descriptionHorsForfait">
+	            {{ ligneHorsForfait.libelle}}
+	          </td>
+	          <td class="quantiteHorsForfait">
+	            {{ ligneHorsForfait.montant}}€
+	          </td>
+	          <td class="delHorsForfait">
+	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'idVisit': visiteur.id, 'idLigne': ligneHorsForfait.id }) }}">edit</a>
+	          </td>
+	        {% endfor %}
+
+	        <tr >
+
+		        <td class="legende noBorder">
+		      		
+		      	</td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+
+		      </tr>
+
+		      <tr >
+
+		        <td class="legende noBorder">
+		      
+		      	</td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait noBorder">
+		        	
+		        </td>
+		        <td class="quantiteForfait">
+		        	Total
+		        </td>
+		        <td class="quantiteForfait">
+		        	€
+		        </td>
+
+		      </tr>
+
+	      </tr>
+	    </table>  
+	  {% endblock %}
+	
+
+
+{% endblock %}

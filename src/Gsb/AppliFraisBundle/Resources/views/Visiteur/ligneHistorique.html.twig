@@ -16,6 +16,7 @@
 			       <th>Etape</th>
 			       <th>Statut</th>
 			       <th>Motif</th>
+			       <th></th>
 			   </tr>
 
 			   {% for ligne in lignesForfait %}
@@ -26,6 +27,7 @@
 						{% endfor %}
 						<td>{{ligne.statut}}</td>
 				       <td>{{ligne.motif}}</td>
+				       <td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': ligne.fiche.id }) }}">show</a></td>
 				   </tr>
 				{% endfor %}
 			</table>
@@ -41,6 +43,7 @@
 			       <th>Montant</th>
 			       <th>Statut</th>
 			       <th>Motif</th>
+			       <th></th>
 			   </tr>
 
 			   {% for ligne in lignesHorsForfait %}
@@ -50,6 +53,7 @@
 					<td>{{ligne.montant}}</td>
 					<td>{{ligne.statut.libelle}}</td>
 					<td>{{ligne.motif}}</td>
+					<td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': ligne.fiche.id }) }}">show</a></td>
 					</tr>
 				{% endfor %}
 			</table>

@@ -12,3 +12,7 @@ historique_find_dateStatut:
     path:     /find/{id}
     defaults: { _controller: "GsbAppliFraisBundle:Historique:findLigne" }
     methods:  [POST, PUT]
+
+historique_show:
+    path:     /show/{idVisit}/{idFiche}
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:show" }

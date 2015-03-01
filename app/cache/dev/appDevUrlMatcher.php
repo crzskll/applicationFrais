@@ -648,6 +648,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_historique_find_dateStatut:
 
+            // historique_show
+            if (0 === strpos($pathinfo, '/historique/show') && preg_match('#^/historique/show/(?P<idVisit>[^/]++)/(?P<idFiche>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'historique_show')), array (  '_controller' => 'Gsb\\AppliFraisBundle\\Controller\\HistoriqueController::showAction',));
+            }
+
         }
 
         // _welcome
