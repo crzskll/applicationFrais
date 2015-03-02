@@ -42,3 +42,7 @@ gsb_appli_frais_visiteur:
 gsb_appli_frais_historique:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/historique.yml"
     prefix:    /historique
+
+gsb_appli_frais_comptable:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/comptable.yml"
+    prefix:    /comptable

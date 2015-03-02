@@ -1,0 +1,3 @@
+comptable:
+    path:     /
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:index" }
