@@ -324,12 +324,33 @@ class Fiche
         return $tot;
     }
 
+    public function getTotalHorsForfaitValide()
+    {
+        $tot = 0;
+        foreach($this->horsForfaitLignes as $ligne){
+            if ($ligne->getStatut()->getLibelle() == 'Validée'){
+                $tot += $ligne->getMontant();
+            }
+        }
+        return $tot;
+    }
+
     public function getTotalFiche()
     {
         $tot = $this->getTotalHorsForfait();
 
         foreach ($this->getForfaitLignes() as $ligne) {
             $tot += $ligne->getTotalLigneForfait();
+        }
+        return $tot;
+    }
+
+    public function getTotalFicheValide()
+    {
+        $tot = $this->getTotalHorsForfaitValide();
+
+        foreach ($this->getForfaitLignes() as $ligne) {
+            $tot += $ligne->getTotalLigneForfaitValide();
         }
         return $tot;
     }

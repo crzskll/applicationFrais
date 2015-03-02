@@ -168,4 +168,18 @@ class ForfaitLigne
         }
         return $tot;
     }
+
+    public function getTotalLigneForfaitValide()
+    {
+        $tot = 0;
+
+        foreach ($this->fraisForfaits as $frais){
+            if ($this->getStatut()->getLibelle() == 'Validée'){
+                $quantite = $frais->getQuantite();
+                $montant = $frais->getForfait()->getMontant();
+                $tot += $quantite*$montant;
+            }
+        }
+        return $tot;
+    }
 }

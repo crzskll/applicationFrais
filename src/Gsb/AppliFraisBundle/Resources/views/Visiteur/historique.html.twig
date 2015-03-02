@@ -28,7 +28,7 @@
 							<td>{{fiche.date.format('m-Y')}}</td>
 							<td>{{fiche.dateModification.format('d-m-Y')}}</td>
 							<td>{{fiche.totalFiche}} €</td>
-							<td>0</td>
+							<td>{{fiche.totalFicheValide}} €</td>
 							<td>{{fiche.etat.libelle}}</td>
 							<td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': fiche.id }) }}">show</a></td>
 						</tr>

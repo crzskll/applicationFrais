@@ -138,9 +138,6 @@
 	        <th class="quantiteHorsForfait">
 	          Montant
 	        </th>
-	        <th class="delHorsForfait">
-	            
-	        </th>
 	      </tr>
 	      <tr id="quantiteHorsForfait">
 
@@ -153,9 +150,6 @@
 	          </td>
 	          <td class="quantiteHorsForfait">
 	            {{ ligneHorsForfait.montant}}€
-	          </td>
-	          <td class="delHorsForfait">
-	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'idVisit': visiteur.id, 'idLigne': ligneHorsForfait.id }) }}">edit</a>
 	          </td>
 	        {% endfor %}
 
