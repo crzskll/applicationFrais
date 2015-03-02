@@ -177,7 +177,6 @@ class VisiteurController extends Controller{
 
         //Calcul des totaux
         $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
-        $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
 
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
                 'visiteur' => $visiteur,
@@ -185,7 +184,6 @@ class VisiteurController extends Controller{
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
                 'totFraisForfait' => $totFraisForfait,
-                'totFraisHorsForfait' => $totFraisHorsForfait, 
                 'formDelete' => $deleteForm->createView(),                
             ));
     }
@@ -264,15 +262,13 @@ class VisiteurController extends Controller{
 
         //Calcul des totaux
         $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
-        $totFraisHorsForfait = $this->calculateFraisHorsForfait($derniereFiche);
 
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $derniereFiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'totFraisForfait' => $totFraisForfait,
-                'totFraisHorsForfait' => $totFraisHorsForfait, 
+                'totFraisForfait' => $totFraisForfait, 
                 'formDelete' => $deleteForm->createView(),                
             ));
     }
@@ -500,28 +496,7 @@ class VisiteurController extends Controller{
         }
 
         return $tot;
-    }
-
-    /**
-     * Calculate the value of ligneHorsFraisForfait.
-     *
-     * @param Fiche $fiche The current fiche
-     *
-     * @return Number The sum of ligneHorsFraisForfait 
-     */
-    private function calculateFraisHorsForfait ($fiche){
-
-        $em = $this->getDoctrine()->getManager();
-
-        $lignesHorsForfait = $fiche->getHorsForfaitLignes();
-
-        $tot = 0;
-        foreach ($lignesHorsForfait as $ligne) {
-            $tot += $ligne->getMontant();
-        }
-
-        return $tot;
-    }  
+    } 
 
     /**
      * Generate the render of saisie visiteur.
@@ -537,15 +512,13 @@ class VisiteurController extends Controller{
     {   
 
         $totFraisForfait = $this->calculateFraisForfait($fiche);
-        $totFraisHorsForfait = $this->calculateFraisHorsForfait($fiche);
 
     	return $this->render('GsbAppliFraisBundle:Visiteur:saisie.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $fiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'totFraisForfait' => $totFraisForfait,
-                'totFraisHorsForfait' => $totFraisHorsForfait,                 
+                'totFraisForfait' => $totFraisForfait,                
             ));
     }
 

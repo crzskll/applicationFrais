@@ -314,4 +314,13 @@ class Fiche
     {
         return $this->refusLigne;
     }
+
+    public function getTotalHorsForfait()
+    {
+        $tot = 0;
+        foreach($this->horsForfaitLignes as $ligne){
+            $tot += $ligne->getMontant();
+        }
+        return $tot;
+    }
 }
