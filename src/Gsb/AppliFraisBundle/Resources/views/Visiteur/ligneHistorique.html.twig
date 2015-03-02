@@ -14,6 +14,7 @@
 			       <th>Repas</th>
 			       <th>Km</th>
 			       <th>Etape</th>
+			       <th>Total</th>
 			       <th>Statut</th>
 			       <th>Motif</th>
 			       <th></th>
@@ -25,6 +26,7 @@
 				       {% for frais in ligne.fraisForfaits %}
 							<td>{{frais.quantite}}</td>
 						{% endfor %}
+						<td>{{ligne.totalLigneForfait}} €</td>
 						<td>{{ligne.statut}}</td>
 				       <td>{{ligne.motif}}</td>
 				       <td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': ligne.fiche.id }) }}">show</a></td>

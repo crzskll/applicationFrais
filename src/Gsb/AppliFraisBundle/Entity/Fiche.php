@@ -323,4 +323,14 @@ class Fiche
         }
         return $tot;
     }
+
+    public function getTotalFiche()
+    {
+        $tot = $this->getTotalHorsForfait();
+
+        foreach ($this->getForfaitLignes() as $ligne) {
+            $tot += $ligne->getTotalLigneForfait();
+        }
+        return $tot;
+    }
 }
