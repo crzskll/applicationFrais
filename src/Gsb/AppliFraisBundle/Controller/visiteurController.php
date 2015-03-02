@@ -195,15 +195,11 @@ class VisiteurController extends Controller{
         //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
-        //Calcul des totaux
-        $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
-
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $derniereFiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'totFraisForfait' => $totFraisForfait,
                 'formDelete' => $deleteForm->createView(),                
             ));
     }
@@ -280,15 +276,11 @@ class VisiteurController extends Controller{
         //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
-        //Calcul des totaux
-        $totFraisForfait = $this->calculateFraisForfait($derniereFiche);
-
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $derniereFiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'totFraisForfait' => $totFraisForfait, 
                 'formDelete' => $deleteForm->createView(),                
             ));
     }
@@ -492,34 +484,6 @@ class VisiteurController extends Controller{
     }
 
     /**
-     * Calculate the value of ligneFraisForfait.
-     *
-     * @param Fiche $fiche The current fiche
-     *
-     * @return Number The sum of ligneFraisForfait 
-     */
-    private function calculateFraisForfait ($fiche)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $lignesForfait = $fiche->getForfaitLignes();
-
-        $tot = 0;
-
-        foreach ($lignesForfait as $ligne) {
-            $listeFrais = $ligne->getFraisForfaits();
-            foreach ($listeFrais as $frais) {
-                $montant = $frais->getForfait()->getMontant();
-                $quantite = $frais->getQuantite();
-
-                $tot += $montant * $quantite;
-            }
-        }
-
-        return $tot;
-    } 
-
-    /**
      * Generate the render of saisie visiteur.
      *
      * @param Visiteur $visiteur The current visiteur
@@ -532,14 +496,11 @@ class VisiteurController extends Controller{
     private function generateViewSaisie ($visiteur, $fiche, $formSaisieForfait, $formSaisieHorsForfait)
     {   
 
-        $totFraisForfait = $this->calculateFraisForfait($fiche);
-
     	return $this->render('GsbAppliFraisBundle:Visiteur:saisie.html.twig', array(
                 'visiteur' => $visiteur,
                 'fiche' => $fiche,
                 'formSaisieForfait' => $formSaisieForfait->createView(),
-                'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
-                'totFraisForfait' => $totFraisForfait,                
+                'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),             
             ));
     }
 

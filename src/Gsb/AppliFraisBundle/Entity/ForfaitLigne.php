@@ -156,4 +156,16 @@ class ForfaitLigne
     {
         return $this->motif;
     }
+
+    public function getTotalLigneForfait()
+    {
+        $tot = 0;
+
+        foreach ($this->fraisForfaits as $frais){
+            $quantite = $frais->getQuantite();
+            $montant = $frais->getForfait()->getMontant();
+            $tot += $quantite*$montant;
+        }
+        return $tot;
+    }
 }
