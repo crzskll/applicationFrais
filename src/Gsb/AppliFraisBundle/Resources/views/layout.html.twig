@@ -31,24 +31,11 @@
         {% endblock %}
         </div>
 
-        <div id="historiqueMenu">
-        {% block historique %}
-          
-            <a href="{{ path('historique', { 'id': visiteur.id }) }}">Historique</a>
-          
+        {% block liens %}
         {% endblock %}
-        </div>
-        <div id="saisieMenu">
-        {% block saisie %}
-          
-            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
-          
-        {% endblock %}
-        </div>
+        
         <div id="nomMenu">
         {% block nom %}
-          
-            {{visiteur.nom}} {{visiteur.prenom}}
           
         {% endblock %}
         </div>

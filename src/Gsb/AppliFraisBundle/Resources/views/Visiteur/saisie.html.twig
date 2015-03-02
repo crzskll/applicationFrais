@@ -5,6 +5,30 @@
 	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/saisie.css') }}" type="text/css" media="all" />
 {% endblock %}
 
+{% block liens %}
+	<div id="historiqueMenu">
+        {% block historique %}
+          
+            <a href="{{ path('historique', { 'id': visiteur.id }) }}">Historique</a>
+          
+        {% endblock %}
+    </div>
+    <div id="saisieMenu">
+        {% block saisie %}
+          
+            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
+          
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block nom %}
+          
+    {{visiteur.nom}} {{visiteur.prenom}}
+  
+{% endblock %}
+
+
 {% block corps %}
 
 		<div>
