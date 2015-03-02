@@ -193,8 +193,8 @@ class HistoriqueController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('historique_find_dateEtat', array('id' => $visiteur->getId())))
             ->setMethod('POST')
-            ->add('debut', 'date', array('data' => $date))
-            ->add('fin', 'date', array('data' => new DateTime() ))
+            ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
+            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
             ->add('etat', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Etat',
                 'property' => 'libelle',
@@ -218,8 +218,8 @@ class HistoriqueController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('historique_find_dateStatut', array('id' => $visiteur->getId())))
             ->setMethod('POST')
-            ->add('debut', 'date', array('data' => $date))
-            ->add('fin', 'date', array('data' => new DateTime() ))
+            ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
+            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
             ->add('statut', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Statut',
                 'property' => 'libelle',
@@ -234,6 +234,7 @@ class HistoriqueController extends Controller{
                 ),
                 'multiple'  => false,
                 'expanded' => true,
+                'data' => 'Toutes',
             ))
             ->add('submit', 'submit', array('label' => 'Find'))
             ->getForm()

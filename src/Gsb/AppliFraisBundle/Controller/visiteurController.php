@@ -84,21 +84,41 @@ class VisiteurController extends Controller{
         //Verrification du formulaire
         if ($formSaisieForfait->isValid()) {
             
-            $data = $formSaisieForfait->getData();
+            if ($formSaisieForfait->get('Ajouter')->isClicked()){
 
-            $ligneForfait = $derniereFiche->getForfaitLignes()[0];
-            $frais = $ligneForfait->getFraisForfaits();
+                $data = $formSaisieForfait->getData();
 
-            foreach ($frais as $aFrais) {
-                $forfait = $aFrais->getForfait();
-                $quantite = $aFrais->getQuantite();
-                $newQuantite =  $data[$forfait->getLibelle()];
+                $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+                $frais = $ligneForfait->getFraisForfaits();
 
-                $aFrais->setQuantite($quantite + $newQuantite);
+                foreach ($frais as $aFrais) {
+                    $forfait = $aFrais->getForfait();
+                    $quantite = $aFrais->getQuantite();
+                    $newQuantite =  $data[$forfait->getLibelle()];
+
+                    $aFrais->setQuantite($quantite + $newQuantite);
+                }
+
+                $em->flush();
+                $this->changeDateModif($derniereFiche);
+            }else{
+                $data = $formSaisieForfait->getData();
+
+                $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+                $frais = $ligneForfait->getFraisForfaits();
+
+                foreach ($frais as $aFrais) {
+                    $forfait = $aFrais->getForfait();
+                    $quantite = $aFrais->getQuantite();
+                    $newQuantite =  $data[$forfait->getLibelle()];
+
+                    $aFrais->setQuantite($quantite - $newQuantite);
+                }
+
+                $em->flush();
+                $this->changeDateModif($derniereFiche);
             }
 
-            $em->flush();
-            $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
         }
 
@@ -301,7 +321,8 @@ class VisiteurController extends Controller{
             }
         }
 
-        $form->add('submit', 'submit', array('label' => 'Ajouter'));
+        $form->add('Ajouter', 'submit');
+        $form->add('Enlever', 'submit');
 
         return $form;
     }
