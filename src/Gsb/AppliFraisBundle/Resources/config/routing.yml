@@ -31,10 +31,6 @@ gsb_appli_frais_gsb_employe:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/employe.yml"
     prefix:   /gsb_employe
 
-gsb_appli_frais_portal:
-    path:     /portal
-    defaults: { _controller: GsbAppliFraisBundle:Default:index }
-
 gsb_appli_frais_visiteur:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/visiteur.yml"
     prefix:    /visiteur

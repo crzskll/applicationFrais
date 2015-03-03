@@ -2,3 +2,13 @@ gsb_appli_frais:
     resource: "@GsbAppliFraisBundle/Resources/config/routing.yml"
     prefix:   /
 
+
+
+login:
+    pattern:   /portal
+    defaults:  { _controller: GsbAppliFraisBundle:Login:login }
+login_check:
+    pattern:   /portal_check
+
+logout:
+    pattern:   /logout
