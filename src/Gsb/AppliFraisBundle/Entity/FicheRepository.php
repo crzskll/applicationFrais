@@ -65,4 +65,26 @@ class FicheRepository extends EntityRepository
 	    	->getResult()
 	  	;
  	}
+
+ 	public function ficheComptable($visiteur, $dateDeb, $dateFin)
+  	{
+	  	$qb = $this->createQueryBuilder('f');
+
+	    $qb
+	  	  ->leftJoin('f.etat', 'e')
+	      ->addSelect('e')
+	      ->where('f.employe = :visiteur')
+	      	->setParameter('visiteur', $visiteur)
+	      ->andWhere('f.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+		  ->andWhere('e.libelle != :etat')
+		    ->setParameter('etat', 'En cours')
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+	}
 }

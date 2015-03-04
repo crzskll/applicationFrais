@@ -5,3 +5,8 @@ comptable:
 comptable_show:
     path:     /show/{idFiche}
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:show" }
+
+comptable_find_visit:
+    path:     /find
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:find" }
+    methods:  POST
