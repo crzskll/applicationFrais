@@ -50,4 +50,19 @@ class FicheRepository extends EntityRepository
 	    	->getResult()
 	  	;
  	}
+
+ 	public function ficheByEtat($etat)
+  	{
+  		$qb = $this->createQueryBuilder('f');
+
+	    $qb
+		  ->Where('f.etat = :etat')
+		  	->setParameter('etat', $etat)
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+ 	}
 }

@@ -1,3 +1,7 @@
 comptable:
     path:     /
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:index" }
+
+comptable_show:
+    path:     /show/{idFiche}
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:show" }
