@@ -51,6 +51,24 @@ class FicheRepository extends EntityRepository
 	  	;
  	}
 
+ 	public function ficheAllByDateEtat($dateDeb, $dateFin, $etat)
+  	{
+  		$qb = $this->createQueryBuilder('f');
+
+	    $qb
+	      ->where('f.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+		  ->andWhere('f.etat = :etat')
+		  	->setParameter('etat', $etat)
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+ 	}
+
  	public function ficheByEtat($etat)
   	{
   		$qb = $this->createQueryBuilder('f');
@@ -76,6 +94,26 @@ class FicheRepository extends EntityRepository
 	      ->where('f.employe = :visiteur')
 	      	->setParameter('visiteur', $visiteur)
 	      ->andWhere('f.date BETWEEN :start AND :end')
+		    ->setParameter('start', $dateDeb)
+		    ->setParameter('end',   $dateFin)
+		  ->andWhere('e.libelle != :etat')
+		    ->setParameter('etat', 'En cours')
+	    ;
+
+	    return $qb
+	    	->getQuery()
+	    	->getResult()
+	  	;
+	}
+
+	public function ficheAllComptable($dateDeb, $dateFin)
+  	{
+	  	$qb = $this->createQueryBuilder('f');
+
+	    $qb
+	  	  ->leftJoin('f.etat', 'e')
+	      ->addSelect('e')
+	      ->where('f.date BETWEEN :start AND :end')
 		    ->setParameter('start', $dateDeb)
 		    ->setParameter('end',   $dateFin)
 		  ->andWhere('e.libelle != :etat')

@@ -36,12 +36,14 @@ class ComptableController extends Controller{
               ;
 
         $fiches =  $repository->ficheByEtat($etat);
-        $formFindVisiteur = $this->createFindFicheForm();
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
+        $formFindFiche = $this->createFindFicheForm();
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
             'fiches' => $fiches,
-            'form' => $formFindVisiteur->createView(),
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
             ));
         
     }
@@ -51,22 +53,26 @@ class ComptableController extends Controller{
         $em = $this->getDoctrine()->getManager();
 
         $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
-        $formFindVisiteur = $this->createFindFicheForm();
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
+        $formFindFiche = $this->createFindFicheForm();
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptableShow.html.twig', array(
             'fiche' => $fiche,
-            'form' => $formFindVisiteur->createView(),
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
             ));
         
     }
 
-    public function findAction(Request $request)
+    public function findVisiteurAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
 
-        $formFindVisiteur = $this->createFindFicheForm();
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
         $formFindVisiteur->handleRequest($request);
+
+        $formFindFiche = $this->createFindFicheForm();
         $etat = $em->getRepository('GsbAppliFraisBundle:Etat')->findOneByLibelle('Cloturée');
 
         $repositoryFiche = $this
@@ -93,19 +99,64 @@ class ComptableController extends Controller{
 
             return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
             'fiches' => $fiches,
-            'form' => $formFindVisiteur->createView(),
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
             ));
         }
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
             'fiches' => $fiches,
-            'form' => $formFindVisiteur->createView(),
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
             ));
         
     }
 
-    private function createFindFicheForm()
+    public function findAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
+
+        $formFindFiche = $this->createFindFicheForm();
+        $formFindFiche->handleRequest($request);
+
+        $etat = $em->getRepository('GsbAppliFraisBundle:Etat')->findOneByLibelle('Cloturée');
+
+        $repositoryFiche = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:Fiche')
+              ;
+
+        if($formFindFiche->isValid()){
+
+            $data = $formFindFiche->getData();
+            $dateDeb = $data['debut'];
+            $dateFin = $data['fin'];
+            $etat= $data['etat'];
+
+            $fiches = $repositoryFiche->ficheAllByDateEtat($dateDeb, $dateFin, $etat);
+            
+
+            return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
+            'fiches' => $fiches,
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
+            ));
+        }
+
+        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
+        return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
+            'fiches' => $fiches,
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
+            ));
+        
+    }
+
+    private function createFindVisiteurFicheForm()
     {   
 
         return $this->createFormBuilder()
@@ -127,6 +178,28 @@ class ComptableController extends Controller{
                 'property' => 'libelle',
                 'required' => false,
                 'empty_value' => 'Tous',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('e')
+                        ->where('e.libelle != :enCours')
+                            ->setParameter('enCours', 'En cours');
+                    },
+            ))
+            ->add('submit', 'submit', array('label' => 'Find'))
+            ->getForm()
+        ;
+    }
+
+    private function createFindFicheForm()
+    {   
+
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('comptable_find', array()))
+            ->setMethod('POST')
+            ->add('debut', 'date', array('format' => 'dd MMM yyyy',))
+            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
+            ->add('etat', 'entity', array(
+                'class' => 'GsbAppliFraisBundle:Etat',
+                'property' => 'libelle',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                         ->where('e.libelle != :enCours')

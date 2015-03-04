@@ -7,6 +7,11 @@ comptable_show:
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:show" }
 
 comptable_find_visit:
+    path:     /find/visiteur
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:findVisiteur" }
+    methods:  POST
+
+comptable_find:
     path:     /find
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:find" }
     methods:  POST
