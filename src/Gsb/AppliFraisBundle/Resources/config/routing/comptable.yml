@@ -3,7 +3,11 @@ comptable:
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:index" }
 
 comptable_show:
-    path:     /show/{idFiche}
+    path:     /loadshow/{idFiche}
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:loadshow" }
+
+comptable_show_fiche:
+    path:     /show
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:show" }
 
 comptable_find_visit:

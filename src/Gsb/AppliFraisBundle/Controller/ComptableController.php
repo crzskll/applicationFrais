@@ -48,10 +48,11 @@ class ComptableController extends Controller{
         
     }
 
-    public function showAction($idFiche)
+    public function showAction()
     {   
         $em = $this->getDoctrine()->getManager();
-
+        $session = $this->getRequest()->getSession();
+        $idFiche = $session->get('idFiche');
         $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
         $formFindVisiteur = $this->createFindVisiteurFicheForm();
         $formFindFiche = $this->createFindFicheForm();
@@ -209,6 +210,14 @@ class ComptableController extends Controller{
             ->add('submit', 'submit', array('label' => 'Find'))
             ->getForm()
         ;
+    }
+
+    public function loadshowAction($idFiche)
+    {   
+        $session = $this->getRequest()->getSession();
+        $session->set('idFiche', $idFiche);
+        
+        return $this->redirect($this->generateUrl('comptable_show_fiche'));
     }
 }	
 
