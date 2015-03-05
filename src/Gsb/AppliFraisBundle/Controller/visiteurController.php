@@ -29,9 +29,11 @@ class VisiteurController extends Controller{
 	public function saisieAction()
     {   
     	$date = new DateTime();
-        $session = $this->getRequest()->getSession();
 
+        //recupération de l'id visiteur depuis la session
+        $session = $this->getRequest()->getSession();
         $id = $session->get('id');
+
     	//Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
 
@@ -60,40 +62,26 @@ class VisiteurController extends Controller{
     public function updateForfaitLigneAction(Request $request, $idLigne)
     {
         $em = $this->getDoctrine()->getManager();
-
         $session = $this->getRequest()->getSession();
-
         $idVisit = $session->get('id');
-
         $ligne = $em->getRepository('GsbAppliFraisBundle:ForfaitLigne')->find($idLigne);
 
         if (!$ligne) {
             throw $this->createNotFoundException('Unable to find ForfaitLigne entity.');
         }
 
-        //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
-
-        //Récupération de la fiche en cours ou création d'une nouvelle fiche
         $derniereFiche = $this->getDerniereFiche($visiteur);
-
-        //Création form forfait
         $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
-
-        //Création form horsForfait
         $ligneHorsForfait = new HorsForfaitLigne();
         $formSaisieHorsForfait = $this->createFraisHorsForfaitForm($derniereFiche, $ligneHorsForfait, $idVisit);
-
-        //Récupération de l'envoi du formulaire
         $formSaisieForfait->handleRequest($request);
 
-        //Verrification du formulaire
         if ($formSaisieForfait->isValid()) {
             
             if ($formSaisieForfait->get('Ajouter')->isClicked()){
 
                 $data = $formSaisieForfait->getData();
-
                 $ligneForfait = $derniereFiche->getForfaitLignes()[0];
                 $frais = $ligneForfait->getFraisForfaits();
 
@@ -101,15 +89,15 @@ class VisiteurController extends Controller{
                     $forfait = $aFrais->getForfait();
                     $quantite = $aFrais->getQuantite();
                     $newQuantite =  $data[$forfait->getLibelle()];
-
                     $aFrais->setQuantite($quantite + $newQuantite);
                 }
 
                 $em->flush();
                 $this->changeDateModif($derniereFiche);
-            }else{
-                $data = $formSaisieForfait->getData();
 
+            }else{
+
+                $data = $formSaisieForfait->getData();
                 $ligneForfait = $derniereFiche->getForfaitLignes()[0];
                 $frais = $ligneForfait->getFraisForfaits();
 
@@ -117,7 +105,6 @@ class VisiteurController extends Controller{
                     $forfait = $aFrais->getForfait();
                     $quantite = $aFrais->getQuantite();
                     $newQuantite =  $data[$forfait->getLibelle()];
-
                     $aFrais->setQuantite($quantite - $newQuantite);
                 }
 
@@ -128,7 +115,6 @@ class VisiteurController extends Controller{
             return $this->redirect($this->generateUrl('visiteur'));
         }
 
-        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);
     }
 
@@ -139,28 +125,15 @@ class VisiteurController extends Controller{
     public function createHorsForfaitLigneAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
-
         $session = $this->getRequest()->getSession();
-
         $idVisit = $session->get('id');
-
-        //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
-
-        //Récupération de la fiche en cours ou création d'une nouvelle fiche
         $derniereFiche = $this->getDerniereFiche($visiteur);
-
-        //Création form forfait
         $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
-
-        //Création form horsForfait
         $ligneHorsForfait = new HorsForfaitLigne();
         $formSaisieHorsForfait = $this->createFraisHorsForfaitForm($derniereFiche, $ligneHorsForfait, $idVisit);
-
-        //Récupération de l'envoi du formulaire
         $formSaisieHorsForfait->handleRequest($request);
 
-        //Verrification du formulaire
         if ($formSaisieHorsForfait->isValid()) {
             
             $em->persist($ligneHorsForfait);
@@ -169,7 +142,6 @@ class VisiteurController extends Controller{
             return $this->redirect($this->generateUrl('visiteur'));
         }
 
-        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->generateViewSaisie($visiteur, $derniereFiche, $formSaisieForfait, $formSaisieHorsForfait);
     }
 
@@ -178,35 +150,24 @@ class VisiteurController extends Controller{
      * The horsForfaitLigne form is charge whith the editing ligne. 
      *
      */
-    public function editLigneAction($idLigne)
+    public function editLigneAction()
     {   
 
-        //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
-
         $session = $this->getRequest()->getSession();
-
         $idVisit = $session->get('id');
-
-        //Récupération du visiteur connecté
+        $idLigne = $session->get('idLigne');
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
-
-        //Récupération de la fiche en cours ou création d'une nouvelle fiche
         $derniereFiche = $this->getDerniereFiche($visiteur);
-        
-        //Création form forfait
         $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
-
-        //Création form horsForfait
         $ligneHorsForfait = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($idLigne);
 
         if (!$ligneHorsForfait) {
+
             throw $this->createNotFoundException('Unable to find HorsForfaitLigne entity.');
         }
 
         $formSaisieHorsForfait = $this->createUpdateLigneForm($derniereFiche, $ligneHorsForfait, $idVisit);
-
-        //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
@@ -226,19 +187,11 @@ class VisiteurController extends Controller{
     {   
 
         $session = $this->getRequest()->getSession();
-
         $idVisit = $session->get('id');
-
         $form = $this->createDeleteLigneForm($id, $idVisit);
         $form->handleRequest($request);
-
-        //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
-
-        //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
-
-        //Récupération de la fiche en cours ou création d'une nouvelle fiche
         $derniereFiche = $this->getDerniereFiche($visiteur);
 
         if ($form->isValid()) {
@@ -263,23 +216,12 @@ class VisiteurController extends Controller{
      */
     public function updateLigneAction(Request $request, $id)
     {
-         //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
-
         $session = $this->getRequest()->getSession();
-
         $idVisit = $session->get('id');
-
-        //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
-
-        //Récupération de la fiche en cours ou création d'une nouvelle fiche
         $derniereFiche = $this->getDerniereFiche($visiteur);
-        
-        //Création form forfait
         $formSaisieForfait = $this->createFraisForfaitForm($derniereFiche, $idVisit);
-
-        //Création form horsForfait
         $ligneHorsForfait = $em->getRepository('GsbAppliFraisBundle:HorsForfaitLigne')->find($id);
 
         if (!$ligneHorsForfait) {
@@ -288,15 +230,12 @@ class VisiteurController extends Controller{
 
         $formSaisieHorsForfait = $this->createUpdateLigneForm($derniereFiche, $ligneHorsForfait, $idVisit);
         $formSaisieHorsForfait->handleRequest($request);
-
-        //Verrification form update
         if ($formSaisieHorsForfait->isValid()) {
             $em->flush();
             $this->changeDateModif($derniereFiche);
             return $this->redirect($this->generateUrl('visiteur'));
         }
 
-        //Création form delete
         $deleteForm = $this->createDeleteLigneForm($idLigne, $idVisit);
 
         return $this->render('GsbAppliFraisBundle:Visiteur:update.html.twig', array(
@@ -357,12 +296,10 @@ class VisiteurController extends Controller{
     	$statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
         $ligne->setFiche($fiche);
         $ligne->setStatut($statut);
-
         $form = $this->createForm(new SaisieHorsForfait(), $ligne, array(
             'action' => $this->generateUrl('visiteur_create_hors_forfait_ligne',  array('idVisit' => $id)),
             'method' => 'POST',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Créer'));
 
         return $form;
@@ -430,7 +367,6 @@ class VisiteurController extends Controller{
             if ($derniereFiche->getEtat()->getLibelle() != 'Cloturée'){
 
                 $etatClot = $em->getRepository('GsbAppliFraisBundle:Etat')->findOneByLibelle('Cloturée');
-
                 $derniereFiche->setEtat($etatClot);
                 $em->flush();
             }
@@ -536,9 +472,18 @@ class VisiteurController extends Controller{
     private function changeDateModif ($fiche){
 
         $em = $this->getDoctrine()->getManager();
-
         $fiche->setDateModification(new DateTime());
         $em->flush();
+    }
+
+
+    public function preeditLigneAction($idLigne)
+    {   
+
+        $session = $this->getRequest()->getSession();
+        $session->set('idLigne', $idLigne);
+
+        return $this->redirect($this->generateUrl('visiteur_edit'));
     }
 }	
 

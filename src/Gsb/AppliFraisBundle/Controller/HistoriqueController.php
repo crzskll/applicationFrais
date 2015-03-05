@@ -175,13 +175,14 @@ class HistoriqueController extends Controller{
         
     }
 
-    public function showAction($idFiche)
+    public function showAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $session = $this->getRequest()->getSession();
 
         $idVisit = $session->get('id');
+        $idFiche = $session->get('idFiche');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
         $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
@@ -255,5 +256,15 @@ class HistoriqueController extends Controller{
             ->add('submit', 'submit', array('label' => 'Find'))
             ->getForm()
         ;
+    }
+
+
+    public function loadShowAction($idFiche)
+    {   
+
+        $session = $this->getRequest()->getSession();
+        $session->set('idFiche', $idFiche);
+
+        return $this->redirect($this->generateUrl('historique_show_fiche'));
     }
 }	

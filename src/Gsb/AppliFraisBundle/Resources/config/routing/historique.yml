@@ -15,4 +15,8 @@ historique_find_dateStatut:
 
 historique_show:
     path:     /show/{idFiche}
+    defaults: { _controller: "GsbAppliFraisBundle:Historique:loadshow" }
+
+historique_show_fiche:
+    path:     /showFiche
     defaults: { _controller: "GsbAppliFraisBundle:Historique:show" }

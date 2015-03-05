@@ -16,8 +16,8 @@ visiteur_historique:
     path:     /{id}/historique
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:historique" }
 
-visiteur_ligneHorsForfait_edit:
-    path:     /{idLigne}/edit
+visiteur_edit:
+    path:     /edit
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:editLigne" }
 
 visiteur_ligneHorsForfait_delete:
@@ -29,3 +29,7 @@ visiteur_ligneHorsForfait_update:
     path:     /{id}/updateHf
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:updateLigne" }
     methods:  [POST, PUT]
+
+visiteur_ligneHorsForfait_edit:
+    path:     /{idLigne}/preedit
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:preeditLigne" }

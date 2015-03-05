@@ -29,7 +29,7 @@
 						<td>{{ligne.totalLigneForfait}} €</td>
 						<td>{{ligne.statut}}</td>
 				       <td>{{ligne.motif}}</td>
-				       <td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': ligne.fiche.id }) }}">show</a></td>
+				       <td><a href="{{ path('historique_show', {'idFiche': ligne.fiche.id }) }}">show</a></td>
 				   </tr>
 				{% endfor %}
 			</table>
@@ -55,7 +55,7 @@
 					<td>{{ligne.montant}}</td>
 					<td>{{ligne.statut.libelle}}</td>
 					<td>{{ligne.motif}}</td>
-					<td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': ligne.fiche.id }) }}">show</a></td>
+					<td><a href="{{ path('historique_show', { 'idFiche': ligne.fiche.id }) }}">show</a></td>
 					</tr>
 				{% endfor %}
 			</table>
