@@ -15,6 +15,7 @@ security:
 
     access_control:
         - { path: ^/visiteur, roles: ROLE_VISITEUR }
+        - { path: ^/comptable, roles: ROLE_COMPTABLE }
 
     providers:
         main:

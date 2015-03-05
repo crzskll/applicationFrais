@@ -22,9 +22,13 @@ class HistoriqueController extends Controller{
      * Lists all fiche of vurrent visiteur.
      *
      */
-	public function indexAction(Request $request, $id)
+	public function indexAction(Request $request)
     {   
     	$em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $id = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
@@ -41,9 +45,13 @@ class HistoriqueController extends Controller{
         
     }
 
-    public function findFicheAction(Request $request, $id)
+    public function findFicheAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $id = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
@@ -90,9 +98,13 @@ class HistoriqueController extends Controller{
         
     }
 
-    public function findLigneAction(Request $request, $id)
+    public function findLigneAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $id = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
         $fiches = $visiteur->getFiches();
@@ -163,9 +175,13 @@ class HistoriqueController extends Controller{
         
     }
 
-    public function showAction($idVisit, $idFiche)
+    public function showAction($idFiche)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
         $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
@@ -191,7 +207,7 @@ class HistoriqueController extends Controller{
         $date = $visiteur->getDateEmbauche();
 
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('historique_find_dateEtat', array('id' => $visiteur->getId())))
+            ->setAction($this->generateUrl('historique_find_dateEtat', array()))
             ->setMethod('POST')
             ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
             ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
@@ -216,7 +232,7 @@ class HistoriqueController extends Controller{
         $date = $visiteur->getDateEmbauche();
 
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('historique_find_dateStatut', array('id' => $visiteur->getId())))
+            ->setAction($this->generateUrl('historique_find_dateStatut', array()))
             ->setMethod('POST')
             ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
             ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))

@@ -1,18 +1,18 @@
 historique:
-    path:     /{id}
+    path:     /
     defaults: { _controller: "GsbAppliFraisBundle:Historique:index" }
 
 
 historique_find_dateEtat:
-    path:     /search/{id}
+    path:     /search/
     defaults: { _controller: "GsbAppliFraisBundle:Historique:findFiche" }
     methods:  [POST, PUT]
 
 historique_find_dateStatut:
-    path:     /find/{id}
+    path:     /find/
     defaults: { _controller: "GsbAppliFraisBundle:Historique:findLigne" }
     methods:  [POST, PUT]
 
 historique_show:
-    path:     /show/{idVisit}/{idFiche}
+    path:     /show/{idFiche}
     defaults: { _controller: "GsbAppliFraisBundle:Historique:show" }

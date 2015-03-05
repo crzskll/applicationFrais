@@ -57,9 +57,13 @@ class VisiteurController extends Controller{
      * Show laste fiche and forms to create and update lignes when update ligne forfait.
      *
      */
-    public function updateForfaitLigneAction(Request $request, $idLigne, $idVisit)
+    public function updateForfaitLigneAction(Request $request, $idLigne)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
 
         $ligne = $em->getRepository('GsbAppliFraisBundle:ForfaitLigne')->find($idLigne);
 
@@ -121,7 +125,7 @@ class VisiteurController extends Controller{
                 $this->changeDateModif($derniereFiche);
             }
 
-            return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+            return $this->redirect($this->generateUrl('visiteur'));
         }
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
@@ -132,9 +136,13 @@ class VisiteurController extends Controller{
      * Show laste fiche and forms to create and update lignes when a new ligne hors forfait is created.
      *
      */
-    public function createHorsForfaitLigneAction(Request $request, $idVisit)
+    public function createHorsForfaitLigneAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
 
         //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
@@ -158,7 +166,7 @@ class VisiteurController extends Controller{
             $em->persist($ligneHorsForfait);
             $em->flush();
             $this->changeDateModif($derniereFiche);
-            return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+            return $this->redirect($this->generateUrl('visiteur'));
         }
 
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
@@ -170,11 +178,15 @@ class VisiteurController extends Controller{
      * The horsForfaitLigne form is charge whith the editing ligne. 
      *
      */
-    public function editLigneAction($idVisit, $idLigne)
+    public function editLigneAction($idLigne)
     {   
 
         //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
 
         //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
@@ -210,8 +222,13 @@ class VisiteurController extends Controller{
      * Show laste fiche and forms to create and update lignes when a hor forfait ligne is deleted.
      *
      */
-    public function deleteLigneAction(Request $request, $idVisit, $id)
+    public function deleteLigneAction(Request $request, $id)
     {   
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
+
         $form = $this->createDeleteLigneForm($id, $idVisit);
         $form->handleRequest($request);
 
@@ -237,17 +254,21 @@ class VisiteurController extends Controller{
             $this->changeDateModif($derniereFiche);
         }
 
-        return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+        return $this->redirect($this->generateUrl('visiteur'));
     }
 
     /**
      * Show laste fiche and forms to create and update lignes when a hors forfait ligne is update.
      *
      */
-    public function updateLigneAction(Request $request, $idVisit, $id)
+    public function updateLigneAction(Request $request, $id)
     {
          //Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
+
+        $session = $this->getRequest()->getSession();
+
+        $idVisit = $session->get('id');
 
         //Récupération du visiteur connecté
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($idVisit);
@@ -272,7 +293,7 @@ class VisiteurController extends Controller{
         if ($formSaisieHorsForfait->isValid()) {
             $em->flush();
             $this->changeDateModif($derniereFiche);
-            return $this->redirect($this->generateUrl('visiteur', array('id' => $idVisit)));
+            return $this->redirect($this->generateUrl('visiteur'));
         }
 
         //Création form delete

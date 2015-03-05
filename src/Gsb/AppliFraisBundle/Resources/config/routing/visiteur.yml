@@ -3,12 +3,12 @@ visiteur:
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:saisie" }
 
 visiteur_update_forfait_ligne:
-    path:     /{idLigne}/{idVisit}/update
+    path:     /{idLigne}/update
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:updateForfaitLigne" }
     methods:  [POST, PUT]
 
 visiteur_create_hors_forfait_ligne:
-    path:     /{idVisit}/create
+    path:     /create
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:createHorsForfaitLigne" }
     methods:  POST
 
@@ -17,15 +17,15 @@ visiteur_historique:
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:historique" }
 
 visiteur_ligneHorsForfait_edit:
-    path:     /{idVisit}/{idLigne}/edit
+    path:     /{idLigne}/edit
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:editLigne" }
 
 visiteur_ligneHorsForfait_delete:
-    path:     /{idVisit}/{id}/delete
+    path:     /{id}/delete
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:deleteLigne" }
     methods:  [POST, DELETE]
 
 visiteur_ligneHorsForfait_update:
-    path:     /{idVisit}/{id}/updateHf
+    path:     /{id}/updateHf
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:updateLigne" }
     methods:  [POST, PUT]

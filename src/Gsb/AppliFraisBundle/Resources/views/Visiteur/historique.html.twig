@@ -30,7 +30,7 @@
 							<td>{{fiche.totalFiche}} €</td>
 							<td>{{fiche.totalFicheValide}} €</td>
 							<td>{{fiche.etat.libelle}}</td>
-							<td><a href="{{ path('historique_show', { 'idVisit': visiteur.id, 'idFiche': fiche.id }) }}">show</a></td>
+							<td><a href="{{ path('historique_show', { 'idFiche': fiche.id }) }}">show</a></td>
 						</tr>
 					{% endfor %}
 				</table>

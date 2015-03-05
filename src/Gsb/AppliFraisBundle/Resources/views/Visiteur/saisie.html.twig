@@ -9,14 +9,14 @@
 	<div id="historiqueMenu">
         {% block historique %}
           
-            <a href="{{ path('historique', { 'id': visiteur.id }) }}">Historique</a>
+            <a href="{{ path('historique') }}">Historique</a>
           
         {% endblock %}
     </div>
     <div id="saisieMenu">
         {% block saisie %}
           
-            <a href="{{ path('visiteur', { 'id': visiteur.id }) }}">Fiche en cours</a>
+            <a href="{{ path('visiteur') }}">Fiche en cours</a>
           
         {% endblock %}
     </div>
@@ -183,7 +183,7 @@
 	            {{ ligneHorsForfait.montant}}€
 	          </td>
 	          <td class="delHorsForfait">
-	            <a href="{{ path('visiteur_ligneHorsForfait_edit', { 'idVisit': visiteur.id, 'idLigne': ligneHorsForfait.id }) }}">edit</a>
+	            <a href="{{ path('visiteur_ligneHorsForfait_edit', {'idLigne': ligneHorsForfait.id }) }}">edit</a>
 	          </td>
 	        {% endfor %}
 
