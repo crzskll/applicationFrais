@@ -1,5 +1,5 @@
 visiteur:
-    path:     /{id}
+    path:     /
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:saisie" }
 
 visiteur_update_forfait_ligne:

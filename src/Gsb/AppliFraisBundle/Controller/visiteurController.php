@@ -26,10 +26,12 @@ class VisiteurController extends Controller{
      * Show laste fiche and forms to create and update lignes when init page.
      *
      */
-	public function saisieAction($id)
+	public function saisieAction()
     {   
     	$date = new DateTime();
+        $session = $this->getRequest()->getSession();
 
+        $id = $session->get('id');
     	//Récupération de la base de données
         $em = $this->getDoctrine()->getManager();
 

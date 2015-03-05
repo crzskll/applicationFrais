@@ -4,12 +4,13 @@ namespace Gsb\AppliFraisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Gsb\AppliFraisBundle\Entity\EmployeRepository")
  * @ORM\Table(name="employe")
  */
-class Employe
+class Employe implements UserInterface
 {
     /**
      * @ORM\Id
@@ -326,5 +327,38 @@ class Employe
     public function __toString()
     {
       return $this->getLogin();
+    }
+
+
+
+    public function getUsername()
+    {
+        return $this->login;
+    }
+ 
+    public function getPassword()
+    {
+        return $this->motDePasse;
+    }
+ 
+    public function getRoles()
+    {   
+        $role = 'ROLE_'.strtoupper($this->poste);
+        return array($role);
+    }
+ 
+    public function getSalt()
+    {
+        return null;
+    }
+ 
+    public function eraseCredentials()
+    {
+ 
+    }
+ 
+    public function equals(UserInterface $user)
+    {
+        return $user->getUsername() == $this->getUsername();
     }
 }
