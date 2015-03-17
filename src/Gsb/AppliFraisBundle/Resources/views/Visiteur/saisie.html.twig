@@ -23,15 +23,15 @@
 {% endblock %}
 
 {% block corps %}
-	<div>
+	<div class="titleFiche">
 		Fiche de frais de {{fiche.date.format('F Y')}}
 	</div>
 
-	<div>
-		<div>
+	<div class="infoFiche">
+		<div class="infoLeft">
 			Visiteur {{visiteur.id}} :<br>{{visiteur.nom}} {{visiteur.prenom}}
 		</div>
-		<div>
+		<div class="infoRight">
 			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
 		</div>
 	</div>
@@ -94,17 +94,8 @@
 						</tr>
 					</table>
 				</div>
-				<div>
-					<table>
-						<tr>
-							<td>
-								Total
-							</td>
-							<td>
-								{{fiche.forfaitLignes[0].totalLigneForfait}} €
-							</td>
-						</tr>
-					</table>
+				<div class="totsFiche">
+					Total : {{fiche.forfaitLignes[0].totalLigneForfait}} €		
 				</div>
 			{% endblock %}
 		</div>
@@ -148,23 +139,14 @@
 						{% endfor %}
 					</table>
 				</div>
-				<div>
-					<table>
-						<tr>
-							<td>
-								Total
-							</td>
-							<td>
-								{{fiche.totalHorsForfait}} €
-							</td>
-						</tr>
-					</table>
+				<div class="totsFiche">			
+					Total : {{fiche.totalHorsForfait}} €
 				</div>
 			{% endblock %}
 		</div>
 	</div>
 
-	<div>
+	<div class="totGlob">
 		total fiche : {{fiche.totalFiche}} €
 	</div>
 {% endblock %}
