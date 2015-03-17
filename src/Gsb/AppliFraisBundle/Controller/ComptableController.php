@@ -66,6 +66,24 @@ class ComptableController extends Controller{
         
     }
 
+    public function miseAJourAction()
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->getRequest()->getSession();
+        $idFiche = $session->get('idFiche');
+        $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
+        $formFindFiche = $this->createFindFicheForm();
+
+        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
+        return $this->render('GsbAppliFraisBundle:Comptable:comptableShow.html.twig', array(
+            'fiche' => $fiche,
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
+            ));
+        
+    }
+
     public function findVisiteurAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -156,6 +174,8 @@ class ComptableController extends Controller{
             ));
         
     }
+
+
 
     private function createFindVisiteurFicheForm()
     {   

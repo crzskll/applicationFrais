@@ -1,35 +1,6 @@
 
-#ligneForfait{
-	top: 17%;
-	width: 90%;
-	left: 4%;
-	text-align: center;
-    position: absolute;
-}
 
-#ligneHorsForfait{
-    margin-top: 23%;
-	margin-bottom: 7%;
-	width: 90%;
-	left: 4%;
-	text-align: center;
-	position: relative;
-}
 
-.quantiteForfait{
-	width:15%;
-	display: inline-block;
-}
-
-.quantiteHorsForfait{
-	width:20%;
-	display: inline-block;
-}
-
-.descriptionHorsForfait{
-	width:40%;
-	display: inline-block;
-}
 
 .contentForm{
 	margin-left: 16%;
@@ -37,36 +8,4 @@
 }
 
 
-.infosFiche{
-	margin-left: 5%;
-	width:30%;
-	height: 50%;
-	display: inline-block;
-}
 
-.right{
-	right:0;
-	position: absolute;
-}
-
-.delHorsForfait{
-	width:3%;
-	display: inline-block;
-}
-
-.legende{
-	width:15%;
-	display: inline-block;
-}
-
-.noBorder{
-	border :0px;
-}
-
-table
-{
-    border-collapse: collapse;
-}
-td, th{
-    border: 1px solid black;
-}

@@ -19,3 +19,7 @@ comptable_find:
     path:     /find
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:find" }
     methods:  POST
+
+comptable_maj:
+    path:     /maj
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:miseAJour" }

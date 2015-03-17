@@ -8,278 +8,204 @@
 {% block liens %}
 	<div id="historiqueMenu">
         {% block historique %}
-          
-            <a href="{{ path('historique') }}">Historique</a>
-          
+        	<a href="{{ path('historique') }}">Historique</a>
         {% endblock %}
     </div>
     <div id="saisieMenu">
         {% block saisie %}
-          
-            <a href="{{ path('visiteur') }}">Fiche en cours</a>
-          
+        	<a href="{{ path('visiteur') }}">Fiche en cours</a>
         {% endblock %}
     </div>
 {% endblock %}
 
 {% block nom %}
-          
     {{visiteur.nom}} {{visiteur.prenom}}
-  
 {% endblock %}
 
-
 {% block corps %}
+	<div>
+		Fiche de frais de {{fiche.date.format('F Y')}}
+	</div>
 
+	<div>
 		<div>
-			<div>
-				<div class="infosFiche">
-					Fiche de {{fiche.date.format('F Y')}}
-				</div>
-				<div class="infosFiche right">
-					Visiteur N°{{visiteur.id}}
-				</div>
-			</div>
-			<div>
-				<div class="infosFiche">
-					Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
-				</div>
-				<div class="infosFiche right">
-					{{visiteur.nom}} {{visiteur.prenom}}
-				</div>
-			</div>
+			Visiteur {{visiteur.id}} :<br>{{visiteur.nom}} {{visiteur.prenom}}
 		</div>
+		<div>
+			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
+		</div>
+	</div>
 
-	  {% block ligneforfait %}
-	    <table id="ligneForfait">
-	      <caption>ligne forait</caption>
-	      <tr>
-	      	<th class="legende">
-	      		Forfait
-	      	</th>
-	        {% for forfaitLigne in fiche.forfaitLignes %}
+	<div>
+		<div>
+			{% block ligneforfait %} 	
+				<div class="tableFiche">
+					<table class="ligneFiche">
+						<caption>
+							ligne forait
+						</caption>
+						<tr>
+							<td>
+								Forfait
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.libelle}}
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr>
+							<td>
+								Quantité
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.quantite}}
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr >
+							<td>
+								Cout unitaire
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.montant}} €
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr >
+							<td >
+								Sous total
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.montant*frais.quantite}} €
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+					</table>
+				</div>
+				<div>
+					<table>
+						<tr>
+							<td>
+								Total
+							</td>
+							<td>
+								{{fiche.forfaitLignes[0].totalLigneForfait}} €
+							</td>
+						</tr>
+					</table>
+				</div>
+			{% endblock %}
+		</div>
+		<div>
+			{% block lignehorsforfait %}
+				<div class="tableFiche">
+					<table class="ligneFiche">
+						<caption>
+							ligne hors forfait
+						</caption>
+						<tr>
+							<td>
+								Date
+							</td>
+							<td>
+								Description
+							</td>
+							<td>
+								Montant
+							</td>
+							<td>
+							</td>
+						</tr>
+						{% for ligneHorsForfait in fiche.horsForfaitLignes %}
+							<tr>
+								<td>
+									{{ ligneHorsForfait.date.format('d-m-Y')}}
+								</td>
+								<td>
+									{{ ligneHorsForfait.libelle}}
+								</td>
+								<td>
+									{{ ligneHorsForfait.montant}}€
+								</td>
+								<td>
+									<a href="{{ path('visiteur_ligneHorsForfait_edit', {'idLigne': ligneHorsForfait.id }) }}">
+										edit
+									</a>
+								</td>
+							</tr >
+						{% endfor %}
+					</table>
+				</div>
+				<div>
+					<table>
+						<tr>
+							<td>
+								Total
+							</td>
+							<td>
+								{{fiche.totalHorsForfait}} €
+							</td>
+						</tr>
+					</table>
+				</div>
+			{% endblock %}
+		</div>
+	</div>
 
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.forfait.libelle}}
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-	      </tr>
-	      <tr>
-
-	
-
-	        <td class="legende">
-	      		Quantite
-	      	</td>
-	      	{% for forfaitLigne in fiche.forfaitLignes %}
-
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.quantite}}
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende">
-	      		Cout unitaire
-	      	</td>
-	      	
-	        {% for forfaitLigne in fiche.forfaitLignes %}
-
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.forfait.montant}} €
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-	        
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende noBorder">
-	      		
-	      	</td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende noBorder">
-	      
-	      	</td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait">
-	        	Total
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{fiche.forfaitLignes[0].totalLigneForfait}} €
-	        </td>
-
-	      </tr>
-	    </table>
-	  {% endblock %}
-
-	  {% block lignehorsforfait %}
-	    <table id="ligneHorsForfait">
-	      <caption>ligne hors forfait</caption>
-	      <tr id="libelleHorsForfait">
-	        <th class="quantiteHorsForfait">
-	          Date
-	        </th>
-	        <th class="descriptionHorsForfait">
-	          Description
-	        </th>
-	        <th class="quantiteHorsForfait">
-	          Montant
-	        </th>
-	        <th class="delHorsForfait">
-	            
-	        </th>
-	      </tr>
-	      <tr id="quantiteHorsForfait">
-
-	        {% for ligneHorsForfait in fiche.horsForfaitLignes %}
-	          <td class="quantiteHorsForfait">
-	            {{ ligneHorsForfait.date.format('d-m-Y')}}
-	          </td>
-	          <td class="descriptionHorsForfait">
-	            {{ ligneHorsForfait.libelle}}
-	          </td>
-	          <td class="quantiteHorsForfait">
-	            {{ ligneHorsForfait.montant}}€
-	          </td>
-	          <td class="delHorsForfait">
-	            <a href="{{ path('visiteur_ligneHorsForfait_edit', {'idLigne': ligneHorsForfait.id }) }}">edit</a>
-	          </td>
-	        {% endfor %}
-
-	        <tr >
-
-		        <td class="legende noBorder">
-		      		
-		      	</td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-
-		      </tr>
-
-		      <tr >
-
-		        <td class="legende noBorder">
-		      
-		      	</td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait">
-		        	Total
-		        </td>
-		        <td class="quantiteForfait">
-		        	{{fiche.totalHorsForfait}} €
-		        </td>
-
-		      </tr>
-
-	      </tr>
-	    </table>  
-	  {% endblock %}
-
-	  total fiche : {{fiche.totalFiche}} €
-	
+	<div>
+		total fiche : {{fiche.totalFiche}} €
+	</div>
 {% endblock %}
 
 {% block rightUp %}
-		<div class="contentForm">
-			{{ form(formSaisieForfait) }}
-
-		</div>
+	<div class="contentForm">
+		{{ form(formSaisieForfait) }}
+	</div>
 {% endblock %}
 
 {% block rightDown %}
-		<div class="contentForm">
-			{{ form_start(formSaisieHorsForfait) }}
-			    {{ form_errors(formSaisieHorsForfait) }}
-
-			    <div>
-			        {{ form_label(formSaisieHorsForfait.date) }}
-			        {{ form_errors(formSaisieHorsForfait.date) }}
-			        {{ form_widget(formSaisieHorsForfait.date) }}
-			    </div>
-
-			    <div>
-			        {{ form_label(formSaisieHorsForfait.libelle) }}
-			        {{ form_errors(formSaisieHorsForfait.libelle) }}
-			        {{ form_widget(formSaisieHorsForfait.libelle) }}
-			    </div>
-
-			    <div>
-			        {{ form_label(formSaisieHorsForfait.montant) }}
-			        {{ form_errors(formSaisieHorsForfait.montant) }}
-			        {{ form_widget(formSaisieHorsForfait.montant) }}
-			    </div>
-
-			    <div class="hiden">
-			        {{ form_label(formSaisieHorsForfait.statut) }}
-			        {{ form_errors(formSaisieHorsForfait.statut) }}
-			        {{ form_widget(formSaisieHorsForfait.statut) }}
-			    </div>
-
-			    <div class="hiden">
-			        {{ form_label(formSaisieHorsForfait.fiche) }}
-			        {{ form_errors(formSaisieHorsForfait.fiche) }}
-			        {{ form_widget(formSaisieHorsForfait.fiche) }}
-			    </div>
-
-			{{ form_end(formSaisieHorsForfait) }}
-
-			{% block deleteForm%}
-			{% endblock %}
-		</div> 
+	<div class="contentForm">
+		{{ form_start(formSaisieHorsForfait) }}
+		{{ form_errors(formSaisieHorsForfait) }}
+			<div>
+			{{ form_label(formSaisieHorsForfait.date) }}
+			{{ form_errors(formSaisieHorsForfait.date) }}
+			{{ form_widget(formSaisieHorsForfait.date) }}
+		</div>
+		<div>
+			{{ form_label(formSaisieHorsForfait.libelle) }}
+			{{ form_errors(formSaisieHorsForfait.libelle) }}
+			{{ form_widget(formSaisieHorsForfait.libelle) }}
+		</div>
+		<div>
+			{{ form_label(formSaisieHorsForfait.montant) }}
+			{{ form_errors(formSaisieHorsForfait.montant) }}
+			{{ form_widget(formSaisieHorsForfait.montant) }}
+		</div>
+		<div class="hiden">
+			{{ form_label(formSaisieHorsForfait.statut) }}
+			{{ form_errors(formSaisieHorsForfait.statut) }}
+			{{ form_widget(formSaisieHorsForfait.statut) }}
+		</div>
+		<div class="hiden">
+			{{ form_label(formSaisieHorsForfait.fiche) }}
+			{{ form_errors(formSaisieHorsForfait.fiche) }}
+			{{ form_widget(formSaisieHorsForfait.fiche) }}
+		</div>
+		{{ form_end(formSaisieHorsForfait) }}
+		{% block deleteForm%}
+		{% endblock %}
+	</div> 
 {% endblock %}

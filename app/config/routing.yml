@@ -3,16 +3,3 @@ gsb_appli_frais:
     prefix:   /
 
 
-
-login:
-    pattern:   /portal
-    defaults:  { _controller: GsbAppliFraisBundle:Login:login }
-login_check:
-    pattern:   /portal_check
-
-logout:
-    pattern:   /logout
-
-connexion:
-    pattern:   /connexion
-    defaults:  { _controller: GsbAppliFraisBundle:Login:redirect }
