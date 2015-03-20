@@ -112,15 +112,23 @@ h1{
 
 
 .titleFiche{
-	font-size: 25px;
+	font-size: 30px;
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-decoration: underline;
+	text-decoration: underline;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#045FB4));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-style: italic;
 }
 .infoFiche{
 	font-size: 20px;
-	margin: 10px;
+	margin: 30px;
+	margin-bottom: 15px;
+	font-style: italic;
+	font-family: cursive;
 }
 .infoFiche .infoRight{
 	width: 40%;
@@ -212,7 +220,7 @@ h1{
 	text-align:center;
 	padding:7px;
 	font-size:15px;
-	font-family:Arial;
+	font-family:monospace;
 	font-weight:normal;
 	color:#000000;
 }
@@ -253,4 +261,20 @@ h1{
 }
 .tableFiche caption {
 	font-size: 23px;
+	font-family: fantasy;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2361a0), to(#063a6d));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
+
+button{
+	background: -webkit-gradient(linear, left top, left bottom, from(#2361a0), to(#063a6d));
+	color: white;
+	width: 80px;
+	height: 30px;
+	box-shadow: 4px 4px 5px #888888;
+	border-radius: 50px;
+}
+
+
+ 

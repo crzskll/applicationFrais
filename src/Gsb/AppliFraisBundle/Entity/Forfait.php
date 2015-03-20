@@ -58,7 +58,7 @@ class Forfait
      */
     public function getLibelle()
     {
-        return $this->libelle;
+        return ucfirst($this->libelle);
     }
 
     /**

@@ -42,7 +42,7 @@
 				<div class="tableFiche">
 					<table class="ligneFiche">
 						<caption>
-							ligne forait
+							Ligne de frais forfaitisés
 						</caption>
 						<tr>
 							<td>
@@ -104,7 +104,7 @@
 				<div class="tableFiche">
 					<table class="ligneFiche">
 						<caption>
-							ligne hors forfait
+							Lignes de frais hors forfait
 						</caption>
 						<tr>
 							<td>
@@ -117,6 +117,7 @@
 								Montant
 							</td>
 							<td>
+								Modification
 							</td>
 						</tr>
 						{% for ligneHorsForfait in fiche.horsForfaitLignes %}
@@ -132,7 +133,7 @@
 								</td>
 								<td>
 									<a href="{{ path('visiteur_ligneHorsForfait_edit', {'idLigne': ligneHorsForfait.id }) }}">
-										edit
+										mod/suppr
 									</a>
 								</td>
 							</tr >
@@ -152,7 +153,7 @@
 {% endblock %}
 
 {% block rightUp %}
-	<div class="contentForm">
+	<div class="contentForm formSaisieF">
 		{{ form(formSaisieForfait) }}
 	</div>
 {% endblock %}

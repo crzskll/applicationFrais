@@ -1,10 +1,19 @@
-
-
-
-
 .contentForm{
 	margin-left: 16%;
 	margin-top: 15%;
+	font-size: 25px;
+	font-family: serif;
+}
+input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+     margin: 0; 
+}
+.formSaisieF input[type=number]{
+	width: 30px;
+	border: #2361a0 2px inset;
+	border-radius: 5px;
+	margin-left: 10px;
 }
 
 
