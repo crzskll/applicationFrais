@@ -180,11 +180,13 @@ h1{
 }.tableFiche table{
 	border-radius: 13px;
     border-collapse: collapse;
-        border-spacing: 0;
+    border-spacing: 0;
 	width:100%;
 	height:100%;
-	margin:0px;padding:0px;
-
+	margin:0px;
+	padding:0px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	box-shadow: 10px 10px 5px #888888;
 }.tableFiche tr:last-child td:last-child {
 	-moz-border-radius-bottomright:13px;

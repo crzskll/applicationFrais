@@ -371,6 +371,7 @@ class VisiteurController extends Controller{
                 $em->flush();
             }
             $derniereFiche = $this->createNewFiche($visiteur);
+
         }
 
         return $derniereFiche;
@@ -402,15 +403,9 @@ class VisiteurController extends Controller{
     	$newFiche->setEmploye($visiteur);
     	$newFiche->setEtat($etat);
 
-    	$em->persist($newFiche);
-        $em->flush();
-
         $newLigneForfait = new ForfaitLigne();
         $newLigneForfait->setStatut($statut);
         $newLigneForfait->setFiche($newFiche);
-
-        $em->persist($newLigneForfait);
-        $em->flush();
 
         $newFraisNuit = new FraisForfait();
         $newFraisNuit->setQuantite(0);
@@ -432,11 +427,18 @@ class VisiteurController extends Controller{
         $newFraisRepas->setForfait($forfaitRepas);
         $newFraisRepas->setForfaitLigne($newLigneForfait);
 
-        $em->persist($newFraisNuit);
-        $em->persist($newFraisKm);
-        $em->persist($newFraisEtape);
-        $em->persist($newFraisRepas);       
+        $newLigneForfait->addFraisForfait($newFraisKm);
+        $newLigneForfait->addFraisForfait($newFraisNuit);
+        $newLigneForfait->addFraisForfait($newFraisEtape);
+        $newLigneForfait->addFraisForfait($newFraisRepas);
 
+        $newFiche->addForfaitLigne($newLigneForfait);
+        //$em->persist($newFraisNuit);
+        //$em->persist($newFraisKm);
+        //$em->persist($newFraisEtape);
+        //$em->persist($newFraisRepas);       
+        //$em->persist($newLigneForfait);
+        $em->persist($newFiche);
         $em->flush();
 
         return $newFiche;

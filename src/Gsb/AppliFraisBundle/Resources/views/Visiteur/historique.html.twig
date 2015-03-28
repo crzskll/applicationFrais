@@ -7,20 +7,19 @@
 {% endblock %}
 
 {% block corps %}
-	<div class="listeHistorique">
+	<div>
 		
-			<div>
-
-				<table>
+			<div class="tableFiche">
+				<table class="ligneFiche">
 				   <caption>Fiches</caption>
 
 				   <tr>
-				       <th>Date</th>
-				       <th>Derniere modif</th>
-				       <th>Montant tot</th>
-				       <th>Montant validé</th>
-				       <th>Etat</th>
-				       <th></th>
+				       <td>Date</td>
+				       <td>Derniere modif</td>
+				       <td>Montant tot</td>
+				       <td>Montant validé</td>
+				       <td>Etat</td>
+				       <td></td>
 				   </tr>
 
 				   {% for fiche in fiches %}

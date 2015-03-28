@@ -2,200 +2,127 @@
 
 {% block corps %}
 	
-	<div>
-		<div>
-			<div class="infosFiche">
-				Fiche de {{fiche.date.format('F Y')}}
-			</div>
-			<div class="infosFiche right">
-				Visiteur N°{{visiteur.id}}
-			</div>
+	<div class="titleFiche">
+		Fiche de frais de {{fiche.date.format('F Y')}}
+	</div>
+
+	<div class="infoFiche">
+		<div class="infoLeft">
+			Visiteur {{visiteur.id}} :<br>{{visiteur.nom}} {{visiteur.prenom}}
 		</div>
-		<div>
-			<div class="infosFiche">
-				Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
-			</div>
-			<div class="infosFiche right">
-				{{visiteur.nom}} {{visiteur.prenom}}
-			</div>
+		<div class="infoRight">
+			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
 		</div>
 	</div>
 
-	{% block ligneforfait %}
-	    <table id="ligneForfait">
-	      <caption>ligne forait</caption>
-	      <tr>
-	      	<th class="legende">
-	      		Forfait
-	      	</th>
-	        {% for forfaitLigne in fiche.forfaitLignes %}
+	<div>
+		<div>
+			{% block ligneforfait %} 	
+				<div class="tableFiche">
+					<table class="ligneFiche">
+						<caption>
+							Ligne de frais forfaitisés
+						</caption>
+						<tr>
+							<td>
+								Forfait
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.libelle}}
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr>
+							<td>
+								Quantité
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.quantite}}
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr >
+							<td>
+								Cout unitaire
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.montant}} €
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+						<tr >
+							<td >
+								Sous total
+							</td>
+							{% for forfaitLigne in fiche.forfaitLignes %}
+								{% for frais in forfaitLigne.fraisForfaits %}
+									<td>
+										{{frais.forfait.montant*frais.quantite}} €
+									</td>
+								{% endfor %}
+							{% endfor %}
+						</tr>
+					</table>
+				</div>
+				<div class="totsFiche">
+					Total : {{fiche.forfaitLignes[0].totalLigneForfait}} €		
+				</div>
+			{% endblock %}
+		</div>
+		<div>
+			{% block lignehorsforfait %}
+			{% if fiche.horsForfaitLignes | length > 0 %}
+				<div class="tableFiche">
+					<table class="ligneFiche">
+						<caption>
+							Lignes de frais hors forfait
+						</caption>
+						<tr>
+							<td>
+								Date
+							</td>
+							<td>
+								Description
+							</td>
+							<td>
+								Montant
+							</td>
+						</tr>
+						{% for ligneHorsForfait in fiche.horsForfaitLignes %}
+							<tr>
+								<td>
+									{{ ligneHorsForfait.date.format('d-m-Y')}}
+								</td>
+								<td>
+									{{ ligneHorsForfait.libelle}}
+								</td>
+								<td>
+									{{ ligneHorsForfait.montant}}€
+								</td>
+							</tr >
+						{% endfor %}
+					</table>
+				</div>
+				<div class="totsFiche">			
+					Total : {{fiche.totalHorsForfait}} €
+				</div>
+			{% endif %}
+			{% endblock %}
+		</div>
+	</div>
 
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.forfait.libelle}}
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-	      </tr>
-	      <tr>
-
-	
-
-	        <td class="legende">
-	      		Quantite
-	      	</td>
-	      	{% for forfaitLigne in fiche.forfaitLignes %}
-
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.quantite}}
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende">
-	      		Cout unitaire
-	      	</td>
-	      	
-	        {% for forfaitLigne in fiche.forfaitLignes %}
-
-	      		{% for frais in forfaitLigne.fraisForfaits %}
-
-	      			<td class="quantiteForfait">
-	        			{{frais.forfait.montant}} €
-	        		</td>
-
-	      		{% endfor %}
-
-	      	{% endfor %}
-	        
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende noBorder">
-	      		
-	      	</td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-
-	      </tr>
-
-	      <tr >
-
-	        <td class="legende noBorder">
-	      
-	      	</td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait noBorder">
-	        	
-	        </td>
-	        <td class="quantiteForfait">
-	        	Total
-	        </td>
-	        <td class="quantiteForfait">
-	        	{{fiche.forfaitLignes[0].totalLigneForfait}}€
-	        </td>
-
-	      </tr>
-	    </table>
-	  {% endblock %}
-
-
-	  {% block lignehorsforfait %}
-	    <table id="ligneHorsForfait">
-	      <caption>ligne hors forfait</caption>
-	      <tr id="libelleHorsForfait">
-	        <th class="quantiteHorsForfait">
-	          Date
-	        </th>
-	        <th class="descriptionHorsForfait">
-	          Description
-	        </th>
-	        <th class="quantiteHorsForfait">
-	          Montant
-	        </th>
-	      </tr>
-	      <tr id="quantiteHorsForfait">
-
-	        {% for ligneHorsForfait in fiche.horsForfaitLignes %}
-	          <td class="quantiteHorsForfait">
-	            {{ ligneHorsForfait.date.format('d-m-Y')}}
-	          </td>
-	          <td class="descriptionHorsForfait">
-	            {{ ligneHorsForfait.libelle}}
-	          </td>
-	          <td class="quantiteHorsForfait">
-	            {{ ligneHorsForfait.montant}}€
-	          </td>
-	        {% endfor %}
-
-	        <tr >
-
-		        <td class="legende noBorder">
-		      		
-		      	</td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-
-		      </tr>
-
-		      <tr >
-
-		        <td class="legende noBorder">
-		      
-		      	</td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait noBorder">
-		        	
-		        </td>
-		        <td class="quantiteForfait">
-		        	Total
-		        </td>
-		        <td class="quantiteForfait">
-		        	{{fiche.totalHorsForfait}} €
-		        </td>
-
-		      </tr>
-
-	      </tr>
-	    </table>  
-	  {% endblock %}
+	<div class="totGlob">
+		total fiche : {{fiche.totalFiche}} €
+	</div>
 	
 
 

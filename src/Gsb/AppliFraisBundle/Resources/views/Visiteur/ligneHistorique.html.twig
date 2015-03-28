@@ -1,23 +1,23 @@
 {% extends 'GsbAppliFraisBundle:visiteur:historique.html.twig' %}
 
 {% block corps %}
-	<div class="listeHistorique">
+	<div class="tableFiche">
 
 
 		{% if type != 'horsForfait' %}
-			<table>
+			<table class="ligneFiche">
 			   <caption>Lignes forfaitisées</caption>
 
 			   <tr>
-			       <th>Date</th>
-			       <th>Nuit</th>
-			       <th>Repas</th>
-			       <th>Km</th>
-			       <th>Etape</th>
-			       <th>Total</th>
-			       <th>Statut</th>
-			       <th>Motif</th>
-			       <th></th>
+			       <td>Date</td>
+			       <td>Nuit</td>
+			       <td>Repas</td>
+			       <td>Km</td>
+			       <td>Etape</td>
+			       <td>Total</td>
+			       <td>Statut</td>
+			       <td>Motif</td>
+			       <td></td>
 			   </tr>
 
 			   {% for ligne in lignesForfait %}
@@ -40,12 +40,12 @@
 			   <caption>Lignes non forfaitisées</caption>
 
 			   <tr>
-			       <th>Date</th>
-			       <th>Description</th>
-			       <th>Montant</th>
-			       <th>Statut</th>
-			       <th>Motif</th>
-			       <th></th>
+			       <td>Date</td>
+			       <td>Description</td>
+			       <td>Montant</td>
+			       <td>Statut</td>
+			       <td>Motif</td>
+			       <td></td>
 			   </tr>
 
 			   {% for ligne in lignesHorsForfait %}

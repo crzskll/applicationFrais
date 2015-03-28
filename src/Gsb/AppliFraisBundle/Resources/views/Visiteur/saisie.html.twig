@@ -101,6 +101,7 @@
 		</div>
 		<div>
 			{% block lignehorsforfait %}
+			{% if fiche.horsForfaitLignes | length > 0 %}
 				<div class="tableFiche">
 					<table class="ligneFiche">
 						<caption>
@@ -143,6 +144,7 @@
 				<div class="totsFiche">			
 					Total : {{fiche.totalHorsForfait}} €
 				</div>
+			{% endif %}
 			{% endblock %}
 		</div>
 	</div>

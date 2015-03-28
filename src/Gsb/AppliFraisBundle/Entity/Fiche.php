@@ -60,7 +60,7 @@ class Fiche
     protected $horsForfaitLignes;
     
     /**
-     * @ORM\OneToMany(targetEntity="ForfaitLigne", mappedBy="fiche")
+     * @ORM\OneToMany(targetEntity="ForfaitLigne", mappedBy="fiche", cascade={"persist"})
      */
     protected $forfaitLignes;
     

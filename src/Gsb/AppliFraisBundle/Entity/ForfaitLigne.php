@@ -29,13 +29,15 @@ class ForfaitLigne
     protected $statut;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Fiche", inversedBy="forfaitLignes")
+     * @ORM\ManyToOne(targetEntity="Fiche", inversedBy="forfaitLignes", cascade={"persist"})
      * @ORM\JoinColumn(name="fiche_id", referencedColumnName="id")
+     *
      */
     protected $fiche;
 
     /**
-     * @ORM\OneToMany(targetEntity="FraisForfait", mappedBy="forfaitLigne")
+     *
+     * @ORM\OneToMany(targetEntity="FraisForfait", mappedBy="forfaitLigne", cascade={"persist"})
      */
     protected $fraisForfaits;
 
