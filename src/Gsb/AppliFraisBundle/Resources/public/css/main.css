@@ -277,6 +277,9 @@ button{
 	box-shadow: 4px 4px 5px #888888;
 	border-radius: 50px;
 }
-
+select{
+	border: #2361a0 2px inset;
+	border-radius: 5px;
+}
 
  

@@ -318,7 +318,7 @@ class VisiteurController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('visiteur_ligneHorsForfait_delete', array('id' => $idLigne, 'idVisit' => $idVisit)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer'))
             ->getForm()
         ;
     }

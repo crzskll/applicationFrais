@@ -14,8 +14,9 @@ class SaisieHorsForfait extends AbstractType
         $builder
             ->add('date', 'date', 
                 array('data' => new DateTime(),
-                'format' => 'dd MMM yyyy', ))
-            ->add('libelle')
+                'format' => 'dd MMM yyyy',
+                'years' => range(date('Y') -3, date('Y')), ))
+            ->add('libelle', 'textarea')
             ->add('montant')
             ->add('statut')
             ->add('fiche')

@@ -7,7 +7,7 @@
 input[type=number]::-webkit-inner-spin-button, 
     input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
-     margin: 0; 
+    margin: 0;
 }
 .formSaisieF input[type=number]{
 	width: 30px;
@@ -15,11 +15,23 @@ input[type=number]::-webkit-inner-spin-button,
 	border-radius: 5px;
 	margin-left: 10px;
 	float: right;
-	margin-right: 10px; 
+	margin-right: 10px;
+	text-align: right;  
 }
 
 .formSaisieF #form div{
 	float: left;
 	width: 40%;
 	margin-bottom: 30px;
+}
+#gsb_saisie_hors_forfait_date{
+	display: inline;
+}
+#gsb_saisie_hors_forfait_libelle{
+	border: #2361a0 2px inset;
+	border-radius: 5px;
+	height: 55px;
+	margin-top: 10px;
+	resize: none;
+	width: 80%;
 }
