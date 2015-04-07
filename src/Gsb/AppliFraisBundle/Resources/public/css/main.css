@@ -281,5 +281,8 @@ select{
 	border: #2361a0 2px inset;
 	border-radius: 5px;
 }
+.message{
+	margin: 40px;
+}
 
  

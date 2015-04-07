@@ -19,12 +19,16 @@ class HorsForfaitLigneRepository extends EntityRepository
 	    $qb
 	      ->leftJoin('l.fiche', 'f')
 	      ->addSelect('f')
+	      ->leftJoin('f.etat', 'et')
+	      ->addSelect('et')
 	      ->leftJoin('f.employe', 'e')
 	      ->where('e = :visiteur')
 	      	->setParameter('visiteur', $visiteur)
 	      ->andWhere('l.date BETWEEN :start AND :end')
 		    ->setParameter('start', $dateDeb)
 		    ->setParameter('end',   $dateFin)
+		  ->andWhere('et.libelle != :etat')
+		    ->setParameter('etat', 'En cours')
 	    ;
 
 	    return $qb
@@ -40,6 +44,8 @@ class HorsForfaitLigneRepository extends EntityRepository
 	    $qb
 	   	  ->leftJoin('l.fiche', 'f')
 	      ->addSelect('f')
+	      ->leftJoin('f.etat', 'et')
+	      ->addSelect('et')
 	      ->leftJoin('f.employe', 'e')
 	      ->where('e = :visiteur')
 	      	->setParameter('visiteur', $visiteur)
@@ -48,6 +54,8 @@ class HorsForfaitLigneRepository extends EntityRepository
 		    ->setParameter('end',   $dateFin)
 	      ->andWhere('l.statut = :statut')
 		  	->setParameter('statut', $statut)
+		  ->andWhere('et.libelle != :etat')
+		    ->setParameter('etat', 'En cours')
 		  
 	    ;
 

@@ -8,7 +8,7 @@
 
 {% block corps %}
 	<div>
-		
+		{% if fiches | length > 0 %}
 			<div class="tableFiche">
 				<table class="ligneFiche">
 				   <caption>Fiches</caption>
@@ -22,7 +22,8 @@
 				       <td></td>
 				   </tr>
 
-				   {% for fiche in fiches %}
+				    {% for fiche in fiches %}
+
 					    <tr>
 							<td>{{fiche.date.format('m-Y')}}</td>
 							<td>{{fiche.dateModification.format('d-m-Y')}}</td>
@@ -35,7 +36,11 @@
 				</table>
 			
 			</div>
-		
+		{% else %}
+			<div class="message titleFiche">
+				Aucune fiche trouvée pour ces critères de recherche
+			</div>
+		{% endif %}
 	</div>
 {% endblock %}
 

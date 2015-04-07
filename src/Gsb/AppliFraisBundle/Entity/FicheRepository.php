@@ -4,6 +4,7 @@ namespace Gsb\AppliFraisBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use \DateTime;
 
 /**
  * FicheRepository
@@ -14,15 +15,20 @@ use Doctrine\ORM\QueryBuilder;
 class FicheRepository extends EntityRepository
 {
 	public function ficheByDate($visiteur, $dateDeb, $dateFin)
-  	{
+  	{	
+
 	  	$qb = $this->createQueryBuilder('f');
 
 	    $qb
+	      ->leftJoin('f.etat', 'e')
+	      ->addSelect('e')
 	      ->where('f.employe = :visiteur')
 	      	->setParameter('visiteur', $visiteur)
 	      ->andWhere('f.date BETWEEN :start AND :end')
 		    ->setParameter('start', $dateDeb)
 		    ->setParameter('end',   $dateFin)
+		  ->andWhere('e.libelle != :etat')
+		    ->setParameter('etat', 'En cours')
 	    ;
 
 	    return $qb

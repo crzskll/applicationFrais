@@ -5,60 +5,72 @@
 
 
 		{% if type != 'horsForfait' %}
-			<table class="ligneFiche">
-			   <caption>Lignes forfaitisées</caption>
+			{% if lignesForfait | length > 0 %}
+				<table class="ligneFiche">
+				   <caption>Lignes forfaitisées</caption>
 
-			   <tr>
-			       <td>Date</td>
-			       <td>Nuit</td>
-			       <td>Repas</td>
-			       <td>Km</td>
-			       <td>Etape</td>
-			       <td>Total</td>
-			       <td>Statut</td>
-			       <td>Motif</td>
-			       <td></td>
-			   </tr>
-
-			   {% for ligne in lignesForfait %}
 				   <tr>
-				       <td>{{ligne.fiche.date.format('F Y')}}</td>
-				       {% for frais in ligne.fraisForfaits %}
-							<td>{{frais.quantite}}</td>
-						{% endfor %}
-						<td>{{ligne.totalLigneForfait}} €</td>
-						<td>{{ligne.statut}}</td>
-				       <td>{{ligne.motif}}</td>
-				       <td><a href="{{ path('historique_show', {'idFiche': ligne.fiche.id }) }}">show</a></td>
+				       <td>Date</td>
+				       <td>Nuit</td>
+				       <td>Repas</td>
+				       <td>Km</td>
+				       <td>Etape</td>
+				       <td>Total</td>
+				       <td>Statut</td>
+				       <td>Motif</td>
+				       <td></td>
 				   </tr>
-				{% endfor %}
-			</table>
+
+				   {% for ligne in lignesForfait %}
+					   <tr>
+					       <td>{{ligne.fiche.date.format('F Y')}}</td>
+					       {% for frais in ligne.fraisForfaits %}
+								<td>{{frais.quantite}}</td>
+							{% endfor %}
+							<td>{{ligne.totalLigneForfait}} €</td>
+							<td>{{ligne.statut}}</td>
+					       <td>{{ligne.motif}}</td>
+					       <td><a href="{{ path('historique_show', {'idFiche': ligne.fiche.id }) }}">show</a></td>
+					   </tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<div class="message titleFiche">
+					Aucune ligne de frais forfaitisés trouvée pour ces critères de recherche
+				</div>
+			{% endif %}
 		{% endif %}
 
 		{% if type != 'Forfait' %}
-			<table>
-			   <caption>Lignes non forfaitisées</caption>
+			{% if lignesHorsForfait | length > 0 %}
+				<table>
+				   <caption>Lignes non forfaitisées</caption>
 
-			   <tr>
-			       <td>Date</td>
-			       <td>Description</td>
-			       <td>Montant</td>
-			       <td>Statut</td>
-			       <td>Motif</td>
-			       <td></td>
-			   </tr>
-
-			   {% for ligne in lignesHorsForfait %}
 				   <tr>
-					<td>{{ligne.date.format('d-m-Y')}}</td>
-					<td>{{ligne.libelle}}</td>
-					<td>{{ligne.montant}}</td>
-					<td>{{ligne.statut.libelle}}</td>
-					<td>{{ligne.motif}}</td>
-					<td><a href="{{ path('historique_show', { 'idFiche': ligne.fiche.id }) }}">show</a></td>
-					</tr>
-				{% endfor %}
-			</table>
+				       <td>Date</td>
+				       <td>Description</td>
+				       <td>Montant</td>
+				       <td>Statut</td>
+				       <td>Motif</td>
+				       <td></td>
+				   </tr>
+
+				   {% for ligne in lignesHorsForfait %}
+					   <tr>
+						<td>{{ligne.date.format('d-m-Y')}}</td>
+						<td>{{ligne.libelle}}</td>
+						<td>{{ligne.montant}}</td>
+						<td>{{ligne.statut.libelle}}</td>
+						<td>{{ligne.motif}}</td>
+						<td><a href="{{ path('historique_show', { 'idFiche': ligne.fiche.id }) }}">show</a></td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<div class="message titleFiche">
+					Aucune ligne de frais non forfaitisés trouvée pour ces critères de recherche
+				</div>
+			{% endif %}
 		{% endif %}
 
 	</div>

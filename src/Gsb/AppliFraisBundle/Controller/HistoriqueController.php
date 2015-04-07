@@ -31,7 +31,17 @@ class HistoriqueController extends Controller{
         $id = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
-        $fiches = $visiteur->getFiches();
+        $dateDeb = $visiteur->getDateEmbauche();
+        $dateFin = new DateTime();
+
+        $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:Fiche')
+            ;
+            
+        $fiches = $repository->ficheByDate($visiteur, $dateDeb, $dateFin);    
+            
         $formFiche = $this->createFindFicheForm($visiteur);
         $formLigne = $this->createFindLigneForm($visiteur);
 
@@ -54,7 +64,16 @@ class HistoriqueController extends Controller{
         $id = $session->get('id');
 
         $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
-        $fiches = $visiteur->getFiches();
+        $dateDeb = $visiteur->getDateEmbauche();
+        $dateFin = new DateTime();
+
+        $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('GsbAppliFraisBundle:Fiche')
+            ;
+            
+        $fiches = $repository->ficheByDate($visiteur, $dateDeb, $dateFin); 
         $formFiche = $this->createFindFicheForm($visiteur);
         $formLigne = $this->createFindLigneForm($visiteur);
 

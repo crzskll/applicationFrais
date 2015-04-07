@@ -26,7 +26,7 @@
         <div id="dateMenu">
         {% block date %}
           
-            date
+            {{ "now"|date("m/d/Y") }}
           
         {% endblock %}
         </div>
