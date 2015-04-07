@@ -155,13 +155,19 @@
 {% endblock %}
 
 {% block rightUp %}
+	<div class="titleForm">
+		Frais forfaitisés
+	</div>
 	<div class="contentForm formSaisieF">
 		{{ form(formSaisieForfait) }}
 	</div>
 {% endblock %}
 
 {% block rightDown %}
-	<div class="contentForm">
+	<div class="titleForm">
+		Frais non forfaitisés
+	</div>
+	<div class="contentForm formSaisieHf">
 		{{ form_start(formSaisieHorsForfait) }}
 		{{ form_errors(formSaisieHorsForfait) }}
 			<div>
@@ -189,7 +195,9 @@
 			{{ form_errors(formSaisieHorsForfait.fiche) }}
 			{{ form_widget(formSaisieHorsForfait.fiche) }}
 		</div>
-		{{ form_end(formSaisieHorsForfait) }}
+		<div class="submitButton">
+			{{ form_end(formSaisieHorsForfait) }}
+		</div>
 		{% block deleteForm%}
 		{% endblock %}
 	</div> 
