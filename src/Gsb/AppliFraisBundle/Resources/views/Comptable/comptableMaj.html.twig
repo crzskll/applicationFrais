@@ -1,0 +1,165 @@
+{% extends 'GsbAppliFraisBundle:Comptable:comptable.html.twig' %}
+
+{% block corps %}
+	
+	<div class="titleFiche">
+		Fiche de frais de {{fiche.date.format('F Y')}}
+	</div>
+
+	<div class="infoFiche">
+		<div class="infoLeft">
+			Visiteur {{fiche.employe.id}} :<br>{{fiche.employe.nom}} {{fiche.employe.prenom}}
+		</div>
+		<div class="infoRight">
+			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
+		</div>
+	</div>
+
+	<div>
+		<form action="{{ path('comptable_maj_fiche') }}" method="POST" {{ form_enctype(formMaj) }}>
+			<div>
+				{% block ligneforfait %} 	
+					<div class="tableFiche">
+						<table class="ligneFiche">
+							<caption>
+								Ligne de frais forfaitisés
+							</caption>
+							<tr>
+								<td>
+									Forfait
+								</td>
+								{% for forfaitLigne in fiche.forfaitLignes %}
+									{% for frais in forfaitLigne.fraisForfaits %}
+										<td>
+											{{frais.forfait.libelle}}
+										</td>
+									{% endfor %}
+								{% endfor %}
+								<td>
+									Statut
+								</td>
+								<td>
+									Commentaire
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Quantité
+								</td>
+								{% for forfaitLigne in fiche.forfaitLignes %}
+									{% for frais in forfaitLigne.fraisForfaits %}
+										<td>
+											{{frais.quantite}}
+										</td>
+									{% endfor %}
+									<td>
+										{{ form_errors(formMaj.forfaitLignes[loop.index-1].statut) }}
+										{{ form_widget(formMaj.forfaitLignes[loop.index-1].statut) }}
+									</td>
+									<td>
+										{{ form_errors(formMaj.forfaitLignes[loop.index-1].motif) }}
+										{{ form_widget(formMaj.forfaitLignes[loop.index-1].motif) }}
+									</td>
+								{% endfor %}
+							</tr>
+							<tr >
+								<td>
+									Cout unitaire
+								</td>
+								{% for forfaitLigne in fiche.forfaitLignes %}
+									{% for frais in forfaitLigne.fraisForfaits %}
+										<td>
+											{{frais.forfait.montant}} €
+										</td>
+									{% endfor %}
+									<td>
+									</td>
+									<td>
+									</td>
+								{% endfor %}
+							</tr>
+							<tr >
+								<td >
+									Sous total
+								</td>
+								{% for forfaitLigne in fiche.forfaitLignes %}
+									{% for frais in forfaitLigne.fraisForfaits %}
+										<td>
+											{{frais.forfait.montant*frais.quantite}} €
+										</td>
+									{% endfor %}
+									<td>
+									</td>
+									<td>
+									</td>
+								{% endfor %}
+							</tr>
+						</table>
+					</div>
+					<div class="totsFiche">
+						Total : {{fiche.forfaitLignes[0].totalLigneForfait}} €		
+					</div>
+				{% endblock %}
+			</div>
+			<div>
+				{% block lignehorsforfait %}
+				{% if fiche.horsForfaitLignes | length > 0 %}
+					<div class="tableFiche">
+						<table class="ligneFiche">
+							<caption>
+								Lignes de frais hors forfait
+							</caption>
+							<tr>
+								<td>
+									Date
+								</td>
+								<td>
+									Description
+								</td>
+								<td>
+									Montant
+								</td>
+								<td>
+									Statut
+								</td>
+								<td>
+									Commentaire
+								</td>
+							</tr>
+							{% for ligneHorsForfait in fiche.horsForfaitLignes %}
+								<tr>
+									<td>
+										{{ ligneHorsForfait.date.format('d-m-Y')}}
+									</td>
+									<td>
+										{{ ligneHorsForfait.libelle}}
+									</td>
+									<td>
+										{{ ligneHorsForfait.montant}}€
+									</td>
+									<td>
+										{{ form_row(formMaj.horsForfaitLignes[loop.index-1].statut) }}
+									</td>
+									<td>
+										{{ form_row(formMaj.horsForfaitLignes[loop.index-1].motif) }}
+									</td>
+								</tr >
+							{% endfor %}
+						</table>
+					</div>
+					<div class="totsFiche">			
+						Total : {{fiche.totalHorsForfait}} €
+					</div>
+				{% endif %}
+				{% endblock %}
+			</div>
+		<input type="submit" value="Sauvegarder">
+		{{ form_rest(formMaj) }}
+		</form>
+	</div>
+
+	<div class="totGlob">
+		total fiche : {{fiche.totalFiche}} €
+	</div>
+
+{% endblock %}

@@ -22,14 +22,14 @@ class FraisForfait
     protected $quantite;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Forfait", inversedBy="fraisForfaits")
-     * @ORM\JoinColumn(name="forfait_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Forfait", inversedBy="fraisForfaits", cascade={"persist"})
+     * @ORM\JoinColumn(name="forfait_id", referencedColumnName="id", nullable=false)
      */
     protected $forfait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ForfaitLigne", inversedBy="fraisForfaits")
-     * @ORM\JoinColumn(name="forfaitLigne_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ForfaitLigne", inversedBy="fraisForfaits", cascade={"persist"})
+     * @ORM\JoinColumn(name="forfaitLigne_id", referencedColumnName="id", nullable=false)
      */
     protected $forfaitLigne;
 

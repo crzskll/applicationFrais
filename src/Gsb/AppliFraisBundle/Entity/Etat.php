@@ -23,7 +23,7 @@ class Etat
     protected $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity="Fiche", mappedBy="etat")
+     * @ORM\OneToMany(targetEntity="Fiche", mappedBy="etat", cascade={"persist"})
      */
     protected $fiches;
 

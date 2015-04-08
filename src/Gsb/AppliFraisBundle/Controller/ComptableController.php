@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Gsb\AppliFraisBundle\Form\SaisieForfait;
 use Gsb\AppliFraisBundle\Form\SaisieHorsForfait;
+use Gsb\AppliFraisBundle\Form\majFiche;
 
 use Gsb\AppliFraisBundle\Entity\ForfaitLigne;
 use Gsb\AppliFraisBundle\Entity\HorsForfaitLigne;
@@ -75,11 +76,42 @@ class ComptableController extends Controller{
         $formFindVisiteur = $this->createFindVisiteurFicheForm();
         $formFindFiche = $this->createFindFicheForm();
 
+        $formMaj = $this->createForm(new majFiche(), $fiche);
+
         //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
-        return $this->render('GsbAppliFraisBundle:Comptable:comptableShow.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:Comptable:comptableMaj.html.twig', array(
             'fiche' => $fiche,
             'formVisit' => $formFindVisiteur->createView(),
             'formFiche' => $formFindFiche->createView(),
+            'formMaj' => $formMaj->createView(),
+            ));
+        
+    }
+
+    public function saveMajAction(Request $request)
+    {   
+        $em = $this->getDoctrine()->getManager();
+        $session = $this->getRequest()->getSession();
+        $idFiche = $session->get('idFiche');
+        $fiche = $em->getRepository('GsbAppliFraisBundle:Fiche')->find($idFiche);
+        $formFindVisiteur = $this->createFindVisiteurFicheForm();
+        $formFindFiche = $this->createFindFicheForm();
+
+        $formMaj = $this->createForm(new majFiche(), $fiche);
+        $formMaj->handleRequest($request);
+
+        if($formMaj->isValid()){
+
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('comptable_show_fiche'));
+        }
+
+        return $this->render('GsbAppliFraisBundle:Comptable:comptableMaj.html.twig', array(
+            'fiche' => $fiche,
+            'formVisit' => $formFindVisiteur->createView(),
+            'formFiche' => $formFindFiche->createView(),
+            'formMaj' => $formMaj->createView(),
             ));
         
     }
@@ -228,6 +260,22 @@ class ComptableController extends Controller{
                     },
             ))
             ->add('submit', 'submit', array('label' => 'Find'))
+            ->getForm()
+        ;
+    }
+
+    private function createMajForm()
+    {   
+
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('comptable_maj_fiche', array()))
+            ->setMethod('POST')
+            ->add('statut', 'entity', array(
+                'class' => 'GsbAppliFraisBundle:Statut',
+                'property' => 'libelle',
+            ))
+            ->add('commentaire', 'textarea')
+            ->add('id', 'integer')
             ->getForm()
         ;
     }

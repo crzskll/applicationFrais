@@ -23,14 +23,14 @@ class ForfaitLigne
     protected $motif;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="forfaitLignes")
-     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="forfaitLignes", cascade={"persist"})
+     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id", nullable=false)
      */
     protected $statut;
     
     /**
      * @ORM\ManyToOne(targetEntity="Fiche", inversedBy="forfaitLignes", cascade={"persist"})
-     * @ORM\JoinColumn(name="fiche_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="fiche_id", referencedColumnName="id", nullable=false)
      *
      */
     protected $fiche;

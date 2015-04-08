@@ -1,43 +1,44 @@
 {% extends 'GsbAppliFraisBundle::layout.html.twig' %}
 
 {% block corps %}
+	<div class="tableFiche">
+		<table class="ligneFiche">
+		   <caption>Fiches</caption>
 
-	<table>
-	   <caption>Fiches</caption>
+		   <tr>
+		       <td>Visiteur</td>
+		       <td>Date</td>
+		       <td>Derniere modif</td>
+		       <td>Montant tot</td>
+		       <td>Montant validé</td>
+		       <td>Etat</td>
+		       <td></td>
+		   </tr>
 
-	   <tr>
-	       <th>Visiteur</th>
-	       <th>Date</th>
-	       <th>Derniere modif</th>
-	       <th>Montant tot</th>
-	       <th>Montant validé</th>
-	       <th>Etat</th>
-	       <th></th>
-	   </tr>
-
-	   {% for fiche in fiches %}
-		    <tr>
-				<td>{{fiche.employe.nom}} {{fiche.employe.prenom}}</td>
-				<td>{{fiche.date.format('m-Y')}}</td>
-				<td>{{fiche.dateModification.format('d-m-Y')}}</td>
-				<td>{{fiche.totalFiche}} €</td>
-				<td>{{fiche.totalFicheValide}} €</td>
-				<td>{{fiche.etat.libelle}}</td>
-				<td><a href="{{ path('comptable_show', { 'idFiche': fiche.id }) }}">show</a></td>
-			</tr>
-		{% endfor %}
-	</table>
+		   {% for fiche in fiches %}
+			    <tr>
+					<td>{{fiche.employe.nom}} {{fiche.employe.prenom}}</td>
+					<td>{{fiche.date.format('m-Y')}}</td>
+					<td>{{fiche.dateModification.format('d-m-Y')}}</td>
+					<td>{{fiche.totalFiche}} €</td>
+					<td>{{fiche.totalFicheValide}} €</td>
+					<td>{{fiche.etat.libelle}}</td>
+					<td><a href="{{ path('comptable_show', { 'idFiche': fiche.id }) }}">show</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
 
 {% endblock %}
 
 {% block rightUp %}
-	
-	{{form(formVisit)}}
-
+	<div class="contentForm">
+		{{form(formVisit)}}
+	</div>
 {% endblock %}
 
 {% block rightDown %}
-	
-	{{form(formFiche)}}
-
+	<div class="contentForm">
+		{{form(formFiche)}}
+	</div>
 {% endblock %}

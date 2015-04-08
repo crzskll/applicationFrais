@@ -23,3 +23,8 @@ comptable_find:
 comptable_maj:
     path:     /maj
     defaults: { _controller: "GsbAppliFraisBundle:Comptable:miseAJour" }
+
+comptable_maj_fiche:
+    path:     /savemaj
+    defaults: { _controller: "GsbAppliFraisBundle:Comptable:saveMaj" }
+    methods:  POST

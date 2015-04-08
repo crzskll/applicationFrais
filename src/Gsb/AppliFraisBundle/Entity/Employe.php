@@ -65,7 +65,7 @@ class Employe implements UserInterface
     protected $poste;
     
     /**
-     * @ORM\OneToMany(targetEntity="Fiche", mappedBy="employe")
+     * @ORM\OneToMany(targetEntity="Fiche", mappedBy="employe", cascade={"persist"})
      */
     protected $fiches;
 

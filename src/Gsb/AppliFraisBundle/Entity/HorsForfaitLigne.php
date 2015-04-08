@@ -37,14 +37,14 @@ class HorsForfaitLigne
     protected $motif;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="horsForfaitLignes")
-     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="horsForfaitLignes", cascade={"persist"})
+     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id", nullable=false)
      */
     protected $statut;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Fiche", inversedBy="horsForfaitLignes")
-     * @ORM\JoinColumn(name="fiche_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Fiche", inversedBy="horsForfaitLignes", cascade={"persist"})
+     * @ORM\JoinColumn(name="fiche_id", referencedColumnName="id", nullable=false)
      */
     protected $fiche;
 

@@ -12,6 +12,12 @@ h1{
 	right: 0;
 	top: -20px;
 }
+.contentForm{
+	margin-left: 16%;
+	margin-top: 8%;
+	font-size: 25px;
+	font-family: serif;
+}
 #logo{
 	width: 11%;
 	height: 14%;

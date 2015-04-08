@@ -43,19 +43,19 @@ class Fiche
     protected $refusLigne;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Employe", inversedBy="fiches")
-     * @ORM\JoinColumn(name="employe_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Employe", inversedBy="fiches", cascade={"persist"})
+     * @ORM\JoinColumn(name="employe_id", referencedColumnName="id", nullable=false)
      */
     protected $employe;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Etat", inversedBy="fiches")
-     * @ORM\JoinColumn(name="etat_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Etat", inversedBy="fiches", cascade={"persist"})
+     * @ORM\JoinColumn(name="etat_id", referencedColumnName="id", nullable=false)
      */
     protected $etat;
     
     /**
-     * @ORM\OneToMany(targetEntity="HorsForfaitLigne", mappedBy="fiche")
+     * @ORM\OneToMany(targetEntity="HorsForfaitLigne", mappedBy="fiche", cascade={"persist"})
      */
     protected $horsForfaitLignes;
     

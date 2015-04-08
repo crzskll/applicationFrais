@@ -23,12 +23,12 @@ class Statut
     protected $libelle;
     
     /**
-     * @ORM\OneToMany(targetEntity="HorsForfaitLigne", mappedBy="statut")
+     * @ORM\OneToMany(targetEntity="HorsForfaitLigne", mappedBy="statut", cascade={"persist"})
      */
     protected $horsForfaitLignes;
 
     /**
-     * @ORM\OneToMany(targetEntity="ForfaitLigne", mappedBy="statut")
+     * @ORM\OneToMany(targetEntity="ForfaitLigne", mappedBy="statut", cascade={"persist"})
      */
     protected $forfaitLignes;
 
