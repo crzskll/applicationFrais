@@ -3,3 +3,6 @@
 	top: 10%;
 	left: 5%;
 }
+#formFindFiche #form_debut_day{
+	display: none;
+}

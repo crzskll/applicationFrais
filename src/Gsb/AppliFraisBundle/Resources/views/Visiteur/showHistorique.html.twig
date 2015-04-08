@@ -33,6 +33,12 @@
 										{{frais.forfait.libelle}}
 									</td>
 								{% endfor %}
+								<td>
+								Statut
+							</td>
+							<td>
+								Commentaire
+							</td>
 							{% endfor %}
 						</tr>
 						<tr>
@@ -45,6 +51,12 @@
 										{{frais.quantite}}
 									</td>
 								{% endfor %}
+								<td>
+				        			{{forfaitLigne.statut}}
+				        		</td>
+					        	<td>
+				        			{{forfaitLigne.motif}}
+				        		</td>
 							{% endfor %}
 						</tr>
 						<tr >
@@ -57,6 +69,10 @@
 										{{frais.forfait.montant}} €
 									</td>
 								{% endfor %}
+								<td>
+								</td>
+								<td>
+								</td>
 							{% endfor %}
 						</tr>
 						<tr >
@@ -69,6 +85,10 @@
 										{{frais.forfait.montant*frais.quantite}} €
 									</td>
 								{% endfor %}
+								<td>
+								</td>
+								<td>
+								</td>
 							{% endfor %}
 						</tr>
 					</table>
@@ -96,6 +116,12 @@
 							<td>
 								Montant
 							</td>
+							<td>
+								Statut
+							</td>
+							<td>
+								Commentaire
+							</td>
 						</tr>
 						{% for ligneHorsForfait in fiche.horsForfaitLignes %}
 							<tr>
@@ -107,6 +133,12 @@
 								</td>
 								<td>
 									{{ ligneHorsForfait.montant}}€
+								</td>
+								<td>
+									{{ ligneHorsForfait.statut}}
+								</td>
+								<td>
+									{{ ligneHorsForfait.motif}}
 								</td>
 							</tr >
 						{% endfor %}
@@ -122,6 +154,9 @@
 
 	<div class="totGlob">
 		total fiche : {{fiche.totalFiche}} €
+	</div>
+	<div class="totGlob">
+		total validé : {{fiche.totalFicheValide}} €
 	</div>
 	
 

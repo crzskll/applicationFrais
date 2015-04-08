@@ -229,8 +229,14 @@ class HistoriqueController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('historique_find_dateEtat', array()))
             ->setMethod('POST')
-            ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
-            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
+            ->add('debut', 'date', 
+                array('data' => $date, 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(1, 1)))
+            ->add('fin', 'date', 
+                array('data' => new DateTime(), 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(28, 28) ))
             ->add('etat', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Etat',
                 'property' => 'libelle',
