@@ -158,7 +158,7 @@
 	<div class="totGlob">
 		total validé : {{fiche.totalFicheValide}} €
 	</div>
-	
+	<a href="{{ path('pdf', { 'idFiche': fiche.id }) }}">pdf</a>
 
 
 {% endblock %}

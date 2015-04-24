@@ -57,3 +57,7 @@ logout:
 connexion:
     pattern:   /connexion
     defaults:  { _controller: GsbAppliFraisBundle:Login:redirect }
+
+pdf:
+    pattern:   /pdf/{idFiche}
+    defaults:  { _controller: GsbAppliFraisBundle:Pdf:index }

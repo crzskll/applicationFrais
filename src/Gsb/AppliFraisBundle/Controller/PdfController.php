@@ -4,12 +4,12 @@ namespace Gsb\AppliFraisBundle\Controller;
  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  
-class DefaultController extends Controller
+class PdfController extends Controller
 {
-    public function indexAction()
+    public function indexAction($idFiche)
     {
         //on stocke la vue à convertir en PDF, en n'oubliant pas les paramètres twig si la vue comporte des données dynamiques
-        $html = $this->renderView('AppliFraisBundle:Default:pdf.html.twig', array());
+        $html = $this->renderView('GsbAppliFraisBundle:Default:pdf.html.twig', array());
          
         //on instancie la classe Html2Pdf_Html2Pdf en lui passant en paramètre
         //le sens de la page "portrait" => p ou "paysage" => l
