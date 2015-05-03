@@ -3,6 +3,16 @@
 	top: 10%;
 	left: 5%;
 }
-#formFindFiche #form_debut_day{
+#form_debut_day,#form_fin_day{
 	display: none;
+}
+
+.formFindFiche label{
+	float: left;
+	width:32%;
+}
+#inputFindFiche {
+	text-align: center;
+	width: 80%;
+	margin-top: 8%;
 }

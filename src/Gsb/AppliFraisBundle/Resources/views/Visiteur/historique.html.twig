@@ -7,6 +7,9 @@
 {% endblock %}
 
 {% block corps %}
+	<div class="titleFiche">
+		Résultat de la recherche
+	</div>
 	<div>
 		{% if fiches | length > 0 %}
 			<div class="tableFiche">
@@ -30,7 +33,7 @@
 							<td>{{fiche.totalFiche}} €</td>
 							<td>{{fiche.totalFicheValide}} €</td>
 							<td>{{fiche.etat.libelle}}</td>
-							<td><a href="{{ path('historique_show', { 'idFiche': fiche.id }) }}">show</a></td>
+							<td><a href="{{ path('historique_show', { 'idFiche': fiche.id }) }}">Voir</a></td>
 						</tr>
 					{% endfor %}
 				</table>
@@ -49,12 +52,34 @@
 		Recherche de fiches
 	</div>	
 	<div class="contentForm formFindFiche">
-		{{ form(formFiche) }}
+
+		{{ form_start(formFiche) }}
+		    {{ form_errors(formFiche) }}
+
+		    {{ form_row(formFiche.debut) }}
+		    {{ form_row(formFiche.fin) }}
+		    {{ form_row(formFiche.etat) }}
+		<div id="inputFindFiche">
+			{{ form_end(formFiche) }}
+		</div>
+
 	</div>
 {% endblock %}
 
 {% block rightDown %}
-		<div class="contentForm">
-			{{ form(formLigne) }}
-		</div> 
+	<div class="titleForm">
+		Recherche de frais
+	</div>
+	<div class="contentForm formFindFiche">
+		{{ form_start(formLigne) }}
+		    {{ form_errors(formLigne) }}
+
+		    {{ form_row(formLigne.debut) }}
+		    {{ form_row(formLigne.fin) }}
+		    {{ form_row(formLigne.statut) }}
+		    {{ form_row(formLigne.type) }}
+		<div id="inputFindFiche">
+			{{ form_end(formLigne) }}
+		</div>
+	</div> 
 {% endblock %}

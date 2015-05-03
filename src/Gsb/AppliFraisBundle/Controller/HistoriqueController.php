@@ -243,7 +243,7 @@ class HistoriqueController extends Controller{
                 'required' => false,
                 'empty_value' => 'Tous',
             ))
-            ->add('submit', 'submit', array('label' => 'Find'))
+            ->add('submit', 'submit', array('label' => 'Chercher'))
             ->getForm()
         ;
     }
@@ -260,8 +260,14 @@ class HistoriqueController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('historique_find_dateStatut', array()))
             ->setMethod('POST')
-            ->add('debut', 'date', array('data' => $date, 'format' => 'dd MMM yyyy',))
-            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
+            ->add('debut', 'date', 
+                array('data' => $date, 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(1, 1)))
+            ->add('fin', 'date', 
+                array('data' => new DateTime(), 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(28, 28) ))
             ->add('statut', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Statut',
                 'property' => 'libelle',
@@ -275,10 +281,10 @@ class HistoriqueController extends Controller{
                     'horsForfait'   => 'Non forfaitisées',
                 ),
                 'multiple'  => false,
-                'expanded' => true,
+                'expanded' => false,
                 'data' => 'Toutes',
             ))
-            ->add('submit', 'submit', array('label' => 'Find'))
+            ->add('submit', 'submit', array('label' => 'Chercher'))
             ->getForm()
         ;
     }

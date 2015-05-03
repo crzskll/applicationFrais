@@ -1,9 +1,17 @@
 {% extends 'GsbAppliFraisBundle:Visiteur:saisie.html.twig' %}
 
-{% block deleteForm %}
-	{{ form(formDelete) }}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/update.css') }}" type="text/css" media="all" />
+{% endblock %}
 
-	<a href="{{ path('visiteur', { 'id': visiteur.id }) }}">
-	    <button>Annuler la modification</button>
-	</a>
+{% block deleteForm %}
+	<div class="containButton">
+		{{ form(formDelete) }}
+	</div>
+	<div class="containButton">
+		<a href="{{ path('visiteur', { 'id': visiteur.id }) }}">
+		    <button>Annuler</button>
+		</a>
+	</div>
 {% endblock %}

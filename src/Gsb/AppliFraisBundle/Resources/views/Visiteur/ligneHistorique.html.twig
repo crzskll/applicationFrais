@@ -1,6 +1,9 @@
 {% extends 'GsbAppliFraisBundle:visiteur:historique.html.twig' %}
 
 {% block corps %}
+	<div class="titleFiche">
+		Résultat de la recherche
+	</div>
 	<div class="tableFiche">
 
 
@@ -30,7 +33,7 @@
 							<td>{{ligne.totalLigneForfait}} €</td>
 							<td>{{ligne.statut}}</td>
 					       <td>{{ligne.motif}}</td>
-					       <td><a href="{{ path('historique_show', {'idFiche': ligne.fiche.id }) }}">show</a></td>
+					       <td><a href="{{ path('historique_show', {'idFiche': ligne.fiche.id }) }}">Voir</a></td>
 					   </tr>
 					{% endfor %}
 				</table>
@@ -62,7 +65,7 @@
 						<td>{{ligne.montant}}</td>
 						<td>{{ligne.statut.libelle}}</td>
 						<td>{{ligne.motif}}</td>
-						<td><a href="{{ path('historique_show', { 'idFiche': ligne.fiche.id }) }}">show</a></td>
+						<td><a href="{{ path('historique_show', { 'idFiche': ligne.fiche.id }) }}">Voir</a></td>
 						</tr>
 					{% endfor %}
 				</table>
