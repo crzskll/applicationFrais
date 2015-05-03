@@ -3,7 +3,7 @@
 {% block corps %}
 	
 	<div class="titleFiche">
-		Fiche de frais de {{fiche.date.format('F Y')}}
+		Fiche de frais de {{fiche.date.format('F')|trans}} {{fiche.date.format('Y')}}
 	</div>
 
 	<div class="infoFiche">

@@ -1,6 +1,24 @@
 {% extends 'GsbAppliFraisBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/comptable.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block liens %}
+	<div id="historiqueMenu">
+        {% block historique %}
+        	<a href="{{ path('comptable') }}">Fiches non traitées</a>
+        {% endblock %}
+    </div>
+    
+{% endblock %}
+
+
 {% block corps %}
+	<div class="titleFiche">
+		Résultat de la recherche
+	</div>
 	<div class="tableFiche">
 		<table class="ligneFiche">
 		   <caption>Fiches</caption>
@@ -23,7 +41,7 @@
 					<td>{{fiche.totalFiche}} €</td>
 					<td>{{fiche.totalFicheValide}} €</td>
 					<td>{{fiche.etat.libelle}}</td>
-					<td><a href="{{ path('comptable_show', { 'idFiche': fiche.id }) }}">show</a></td>
+					<td><a href="{{ path('comptable_show', { 'idFiche': fiche.id }) }}">Voir</a></td>
 				</tr>
 			{% endfor %}
 		</table>
@@ -32,13 +50,37 @@
 {% endblock %}
 
 {% block rightUp %}
-	<div class="contentForm">
-		{{form(formVisit)}}
+	<div class="titleForm">
+		Recherche par visiteur
+	</div>
+	<div class="contentForm formComptable">
+
+		{{ form_start(formVisit) }}
+		    {{ form_errors(formVisit) }}
+
+		    {{ form_row(formVisit.debut) }}
+		    {{ form_row(formVisit.fin) }}
+		    {{ form_row(formVisit.visiteur) }}
+		    {{ form_row(formVisit.etat) }}
+		<div id="inputFindFiche">
+			{{ form_end(formVisit) }}
+		</div>
 	</div>
 {% endblock %}
 
 {% block rightDown %}
-	<div class="contentForm">
-		{{form(formFiche)}}
+	<div class="titleForm">
+		Recherche par état
+	</div>
+	<div class="contentForm formComptable">
+		{{ form_start(formFiche) }}
+		    {{ form_errors(formFiche) }}
+
+		    {{ form_row(formFiche.debut) }}
+		    {{ form_row(formFiche.fin) }}
+		    {{ form_row(formFiche.etat) }}
+		<div id="inputFicheEtat">
+			{{ form_end(formFiche) }}
+		</div>
 	</div>
 {% endblock %}

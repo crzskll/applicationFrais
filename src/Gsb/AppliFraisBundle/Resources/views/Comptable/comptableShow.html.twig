@@ -3,7 +3,7 @@
 {% block corps %}
 	
 	<div class="titleFiche">
-		Fiche de frais de {{fiche.date.format('F Y')}}
+		Fiche de frais de {{fiche.date.format('F')|trans}} {{fiche.date.format('Y')}}
 	</div>
 
 	<div class="infoFiche">
@@ -155,8 +155,10 @@
 	<div class="totGlob">
 		total fiche : {{fiche.totalFiche}} €
 	</div>
-	<a href="{{ path('comptable_maj') }}">
-	    <button>Mettre à jour</button>
-	</a>
+	<div id="majButton">
+		<a href="{{ path('comptable_maj') }}">
+		    <button>Mettre à jour</button>
+		</a>
+	</div>
 
 {% endblock %}

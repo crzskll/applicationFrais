@@ -215,8 +215,13 @@ class ComptableController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find_visit', array()))
             ->setMethod('POST')
-            ->add('debut', 'date', array('format' => 'dd MMM yyyy',))
-            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
+            ->add('debut', 'date', 
+                array('format' => 'dd MMM yyyy',
+                    'days' => range(1, 1)))
+            ->add('fin', 'date', 
+                array('data' => new DateTime(), 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(28, 28) ))
             ->add('visiteur', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Employe',
                 'property' => 'nom',
@@ -237,7 +242,7 @@ class ComptableController extends Controller{
                             ->setParameter('enCours', 'En cours');
                     },
             ))
-            ->add('submit', 'submit', array('label' => 'Find'))
+            ->add('submit', 'submit', array('label' => 'Chercher'))
             ->getForm()
         ;
     }
@@ -248,8 +253,13 @@ class ComptableController extends Controller{
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find', array()))
             ->setMethod('POST')
-            ->add('debut', 'date', array('format' => 'dd MMM yyyy',))
-            ->add('fin', 'date', array('data' => new DateTime(), 'format' => 'dd MMM yyyy', ))
+            ->add('debut', 'date', 
+                array('format' => 'dd MMM yyyy',
+                    'days' => range(1, 1)))
+            ->add('fin', 'date', 
+                array('data' => new DateTime(), 
+                    'format' => 'dd MMM yyyy',
+                    'days' => range(28, 28) ))
             ->add('etat', 'entity', array(
                 'class' => 'GsbAppliFraisBundle:Etat',
                 'property' => 'libelle',
@@ -259,7 +269,7 @@ class ComptableController extends Controller{
                             ->setParameter('enCours', 'En cours');
                     },
             ))
-            ->add('submit', 'submit', array('label' => 'Find'))
+            ->add('submit', 'submit', array('label' => 'Chercher'))
             ->getForm()
         ;
     }
