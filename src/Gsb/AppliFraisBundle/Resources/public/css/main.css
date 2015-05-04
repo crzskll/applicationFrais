@@ -62,7 +62,7 @@ h1{
 #deconnexionMenu{
 	display: inline-block;
 	top: 18%;
-	right: 2%;
+	right: 3%;
 	text-align: right;
 	position: absolute;
 }
@@ -296,5 +296,14 @@ select{
 .message{
 	margin: 40px;
 }
+#infoMenu button{
+	width:25px;
+	height: 25px;
+	border-radius: 15px;
 
+}
+#infoMenu{
+	width: 30px;
+	margin-left: 97%;
+}
  
