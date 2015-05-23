@@ -2,10 +2,6 @@ gsb_appli_frais_gsb_forfaitligne:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfaitligne.yml"
     prefix:   /gsb_forfaitligne
 
-gsb_todo_list:
-    path:     /todo
-    defaults: { _controller: GsbAppliFraisBundle:Default:todo }
-
 
 gsb_appli_frais_gsb_forfait:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfait.yml"
