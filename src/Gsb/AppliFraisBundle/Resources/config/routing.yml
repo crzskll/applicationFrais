@@ -2,11 +2,6 @@ gsb_appli_frais_gsb_forfaitligne:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfaitligne.yml"
     prefix:   /gsb_forfaitligne
 
-gsb_todo_list:
-    path:     /todo
-    defaults: { _controller: GsbAppliFraisBundle:Default:todo }
-
-
 gsb_appli_frais_gsb_forfait:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/forfait.yml"
     prefix:   /gsb_forfait
@@ -31,6 +26,9 @@ gsb_appli_frais_gsb_employe:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/employe.yml"
     prefix:   /gsb_employe
 
+
+
+
 gsb_appli_frais_visiteur:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/visiteur.yml"
     prefix:    /visiteur
@@ -42,8 +40,6 @@ gsb_appli_frais_historique:
 gsb_appli_frais_comptable:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/comptable.yml"
     prefix:    /comptable
-
-
 
 login:
     pattern:   /portal
@@ -58,6 +54,6 @@ connexion:
     pattern:   /connexion
     defaults:  { _controller: GsbAppliFraisBundle:Login:redirect }
 
-pdf:
-    pattern:   /pdf/{idFiche}
-    defaults:  { _controller: GsbAppliFraisBundle:Pdf:index }
+gsb_appli_frais_jury:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/jury.yml"
+    prefix:    /jury

@@ -1,0 +1,3 @@
+jury:
+    path:     /
+    defaults: { _controller: "GsbAppliFraisBundle:Jury:index" }
