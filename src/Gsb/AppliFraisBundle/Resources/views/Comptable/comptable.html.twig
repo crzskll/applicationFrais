@@ -11,13 +11,19 @@
         	<a href="{{ path('comptable') }}">Fiches non traitées</a>
         {% endblock %}
     </div>
+
+    <div id="infoMenu">
+    	<a href="{{ asset('bundles/gsbapplifrais/pdf/DocCompt.pdf') }}" target="_blank">
+    		<button class="buttonInfo">?</button>
+    	</a>
+	</div>
     
 {% endblock %}
 
 
 {% block corps %}
 	<div class="titleFiche">
-		Résultat de la recherche fgfhrthr
+		Résultat de la recherche
 	</div>
 	<div class="tableFiche">
 		<table class="ligneFiche">
