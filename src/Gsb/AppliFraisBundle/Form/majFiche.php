@@ -2,6 +2,7 @@
 
 namespace Gsb\AppliFraisBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,6 +13,14 @@ class majFiche extends AbstractType
     {
         $builder->add('horsForfaitLignes', 'collection', array('type' => new majLigneHf()));
         $builder->add('forfaitLignes', 'collection', array('type' => new majLigneForfait()));
+        $builder->add('etat', 'entity', array(
+            'class' => 'GsbAppliFraisBundle:Etat',
+                'property' => 'libelle',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('e')
+                        ->where('e.libelle != :enCours')
+                            ->setParameter('enCours', 'En cours');
+                    }));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
