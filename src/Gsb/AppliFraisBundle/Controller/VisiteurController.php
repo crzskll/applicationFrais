@@ -427,10 +427,10 @@ class VisiteurController extends Controller{
         $newFraisRepas->setForfait($forfaitRepas);
         $newFraisRepas->setForfaitLigne($newLigneForfait);
 
-        $newLigneForfait->addFraisForfait($newFraisKm);
         $newLigneForfait->addFraisForfait($newFraisNuit);
-        $newLigneForfait->addFraisForfait($newFraisEtape);
         $newLigneForfait->addFraisForfait($newFraisRepas);
+        $newLigneForfait->addFraisForfait($newFraisKm);
+        $newLigneForfait->addFraisForfait($newFraisEtape);
 
         $newFiche->addForfaitLigne($newLigneForfait);
         //$em->persist($newFraisNuit);
