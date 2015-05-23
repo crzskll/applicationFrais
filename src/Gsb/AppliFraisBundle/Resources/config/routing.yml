@@ -57,3 +57,4 @@ connexion:
 gsb_appli_frais_jury:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/jury.yml"
     prefix:    /jury
+
