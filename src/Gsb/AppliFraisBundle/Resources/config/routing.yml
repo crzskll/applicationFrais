@@ -43,6 +43,10 @@ gsb_appli_frais_comptable:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/comptable.yml"
     prefix:    /comptable
 
+gsb_appli_frais_admin:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
 
 
 login:
@@ -61,3 +65,4 @@ connexion:
 pdf:
     pattern:   /pdf/{idFiche}
     defaults:  { _controller: GsbAppliFraisBundle:Pdf:index }
+
