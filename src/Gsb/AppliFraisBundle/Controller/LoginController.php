@@ -43,6 +43,9 @@ class LoginController extends Controller
                 case 'Comptable': 
                     return $this->redirect($this->generateUrl('comptable'));
                 break;
+               case 'Admin': 
+                    return $this->redirect($this->generateUrl('admin'));
+                break;
             }
         
     }

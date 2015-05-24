@@ -41,6 +41,11 @@ gsb_appli_frais_comptable:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/comptable.yml"
     prefix:    /comptable
 
+
+gsb_appli_frais_admin:
+    resource: "@GsbAppliFraisBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
+
 login:
     pattern:   /portal
     defaults:  { _controller: GsbAppliFraisBundle:Login:login }
@@ -57,3 +62,4 @@ connexion:
 gsb_appli_frais_jury:
     path:     /jury
     defaults: { _controller: "GsbAppliFraisBundle:Jury:index" }
+
