@@ -55,6 +55,5 @@ connexion:
     defaults:  { _controller: GsbAppliFraisBundle:Login:redirect }
 
 gsb_appli_frais_jury:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/jury.yml"
-    prefix:    /jury
-
+    path:     /jury
+    defaults: { _controller: "GsbAppliFraisBundle:Jury:index" }
