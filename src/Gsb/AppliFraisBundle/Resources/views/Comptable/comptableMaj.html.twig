@@ -14,9 +14,15 @@
 			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
 		</div>
 	</div>
-
 	<div>
 		<form action="{{ path('comptable_maj_fiche') }}" method="POST" {{ form_enctype(formMaj) }}>
+			<div class='infoFiche' >
+				<div class= 'infoLeft' id='divEtat' >
+					{{ form_label(formMaj.etat, 'Etat de la fiche : ') }}
+			    	{{ form_errors(formMaj.etat) }}
+			        {{ form_widget(formMaj.etat) }}
+    			</div>
+			</div>
 			<div>
 				{% block ligneforfait %} 	
 					<div class="tableFiche">
@@ -153,13 +159,16 @@
 				{% endif %}
 				{% endblock %}
 			</div>
-		<input type="submit" value="Sauvegarder">
+			<div class="totGlob">
+				total fiche : {{fiche.totalFiche}} €
+			</div>
+		<div class ="saveMaj">
+			<button type="submit" value="Sauvegarder"> Sauvegarder </button>
+		</div>
 		{{ form_rest(formMaj) }}
 		</form>
 	</div>
-
-	<div class="totGlob">
-		total fiche : {{fiche.totalFiche}} €
-	</div>
+	
+	
 
 {% endblock %}
