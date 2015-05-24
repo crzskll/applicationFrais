@@ -44,7 +44,7 @@ class ForfaitController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_forfait_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_forfait_show', array('id' => $entity->getId())));
         }
 
         return $this->render('GsbAppliFraisBundle:Forfait:new.html.twig', array(
@@ -63,7 +63,7 @@ class ForfaitController extends Controller
     private function createCreateForm(Forfait $entity)
     {
         $form = $this->createForm(new ForfaitType(), $entity, array(
-            'action' => $this->generateUrl('gsb_forfait_create'),
+            'action' => $this->generateUrl('admin_forfait_create'),
             'method' => 'POST',
         ));
 
@@ -143,7 +143,7 @@ class ForfaitController extends Controller
     private function createEditForm(Forfait $entity)
     {
         $form = $this->createForm(new ForfaitType(), $entity, array(
-            'action' => $this->generateUrl('gsb_forfait_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('admin_forfait_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +172,7 @@ class ForfaitController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_forfait_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_forfait_edit', array('id' => $id)));
         }
 
         return $this->render('GsbAppliFraisBundle:Forfait:edit.html.twig', array(
@@ -202,7 +202,7 @@ class ForfaitController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('gsb_forfait'));
+        return $this->redirect($this->generateUrl('admin_forfait'));
     }
 
     /**
@@ -215,7 +215,7 @@ class ForfaitController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('gsb_forfait_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_forfait_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

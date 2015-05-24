@@ -44,7 +44,7 @@ class ForfaitLigneController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_forfaitligne_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_forfait_ligne_show', array('id' => $entity->getId())));
         }
 
         return $this->render('GsbAppliFraisBundle:ForfaitLigne:new.html.twig', array(
@@ -63,7 +63,7 @@ class ForfaitLigneController extends Controller
     private function createCreateForm(ForfaitLigne $entity)
     {
         $form = $this->createForm(new ForfaitLigneType(), $entity, array(
-            'action' => $this->generateUrl('gsb_forfaitligne_create'),
+            'action' => $this->generateUrl('admin_forfait_ligne_create'),
             'method' => 'POST',
         ));
 
@@ -143,7 +143,7 @@ class ForfaitLigneController extends Controller
     private function createEditForm(ForfaitLigne $entity)
     {
         $form = $this->createForm(new ForfaitLigneType(), $entity, array(
-            'action' => $this->generateUrl('gsb_forfaitligne_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('admin_forfait_ligne_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +172,7 @@ class ForfaitLigneController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_forfaitligne_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_forfait_ligne_edit', array('id' => $id)));
         }
 
         return $this->render('GsbAppliFraisBundle:ForfaitLigne:edit.html.twig', array(
@@ -202,7 +202,7 @@ class ForfaitLigneController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('gsb_forfaitligne'));
+        return $this->redirect($this->generateUrl('admin_forfait_ligne'));
     }
 
     /**
@@ -215,7 +215,7 @@ class ForfaitLigneController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('gsb_forfaitligne_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_forfait_ligne_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

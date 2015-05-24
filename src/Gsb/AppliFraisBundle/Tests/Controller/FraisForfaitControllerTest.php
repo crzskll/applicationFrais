@@ -4,7 +4,7 @@ namespace Gsb\AppliFraisBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ForfaitLigneControllerTest extends WebTestCase
+class FraisForfaitControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class ForfaitLigneControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/gsb_forfait_ligne/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /gsb_forfait_ligne/");
+        $crawler = $client->request('GET', '/gsb_frais_forfait/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /gsb_frais_forfait/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'gsb_applifraisbundle_forfaitligne[field_name]'  => 'Test',
+            'gsb_applifraisbundle_fraisforfait[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class ForfaitLigneControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'gsb_applifraisbundle_forfaitligne[field_name]'  => 'Foo',
+            'gsb_applifraisbundle_fraisforfait[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

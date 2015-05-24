@@ -1,34 +1,3 @@
-gsb_appli_frais_gsb_forfaitligne:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/forfaitligne.yml"
-    prefix:   /gsb_forfaitligne
-
-gsb_appli_frais_gsb_forfait:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/forfait.yml"
-    prefix:   /gsb_forfait
-
-gsb_appli_frais_gsb_horsforfaitligne:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/horsforfaitligne.yml"
-    prefix:   /gsb_horsforfaitligne
-
-gsb_appli_frais_gsb_statut:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/statut.yml"
-    prefix:   /gsb_statut
-
-gsb_appli_frais_gsb_fiche:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/fiche.yml"
-    prefix:   /gsb_fiche
-
-gsb_appli_frais_gsb_etat:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/etat.yml"
-    prefix:   /gsb_etat
-
-gsb_appli_frais_gsb_employe:
-    resource: "@GsbAppliFraisBundle/Resources/config/routing/employe.yml"
-    prefix:   /gsb_employe
-
-
-
-
 gsb_appli_frais_visiteur:
     resource: "@GsbAppliFraisBundle/Resources/config/routing/visiteur.yml"
     prefix:    /visiteur
@@ -62,4 +31,3 @@ connexion:
 gsb_appli_frais_jury:
     path:     /jury
     defaults: { _controller: "GsbAppliFraisBundle:Jury:index" }
-

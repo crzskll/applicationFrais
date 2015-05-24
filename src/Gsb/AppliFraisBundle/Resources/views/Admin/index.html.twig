@@ -1,1 +1,22 @@
-{% extends 'GsbAppliFraisBundle::layout.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link href = "{{ asset('bundles/gsbapplifrais/css/portal.css') }}" 
+          rel = "stylesheet" type = "text/css"/>
+        <title>Portal</title>
+    </head>
+    <body>
+        <h1>Laboratoire Galaxy Swiss Bourdin</h1>
+        <div class="connexion">
+            <a href="{{ path('admin_forfait_ligne') }}"><button>Ligne forfait</button></a>
+			<a href="{{ path('admin_employe') }}"><button>Employés</button></a>
+			<a href="{{ path('admin_etat') }}"><button>Etats</button></a>
+			<a href="{{ path('admin_fiche') }}"><button>Fiches</button></a>
+			<a href="{{ path('admin_forfait') }}"><button>Forfaits</button></a>
+			<a href="{{ path('admin_frais_forfait') }}"><button>Frais forfaitisés</button></a>
+			<a href="{{ path('admin_hors_forfait_ligne') }}"><button>Ligne hors forfait</button></a>
+			<a href="{{ path('admin_statut') }}"><button>Statut</button></a>
+        </div>
+    </body>
+</html>

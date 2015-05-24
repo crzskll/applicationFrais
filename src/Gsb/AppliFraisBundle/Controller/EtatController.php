@@ -44,7 +44,7 @@ class EtatController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_etat_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_etat_show', array('id' => $entity->getId())));
         }
 
         return $this->render('GsbAppliFraisBundle:Etat:new.html.twig', array(
@@ -63,7 +63,7 @@ class EtatController extends Controller
     private function createCreateForm(Etat $entity)
     {
         $form = $this->createForm(new EtatType(), $entity, array(
-            'action' => $this->generateUrl('gsb_etat_create'),
+            'action' => $this->generateUrl('admin_etat_create'),
             'method' => 'POST',
         ));
 
@@ -143,7 +143,7 @@ class EtatController extends Controller
     private function createEditForm(Etat $entity)
     {
         $form = $this->createForm(new EtatType(), $entity, array(
-            'action' => $this->generateUrl('gsb_etat_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('admin_etat_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +172,7 @@ class EtatController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_etat_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_etat_edit', array('id' => $id)));
         }
 
         return $this->render('GsbAppliFraisBundle:Etat:edit.html.twig', array(
@@ -202,7 +202,7 @@ class EtatController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('gsb_etat'));
+        return $this->redirect($this->generateUrl('admin_etat'));
     }
 
     /**
@@ -215,7 +215,7 @@ class EtatController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('gsb_etat_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_etat_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

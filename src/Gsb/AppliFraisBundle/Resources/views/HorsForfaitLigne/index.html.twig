@@ -10,23 +10,25 @@
                 <th>Date</th>
                 <th>Libelle</th>
                 <th>Montant</th>
+                <th>Motif</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('gsb_horsforfaitligne_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('admin_hors_forfait_ligne_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.libelle }}</td>
                 <td>{{ entity.montant }}</td>
+                <td>{{ entity.motif }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('gsb_horsforfaitligne_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_hors_forfait_ligne_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('gsb_horsforfaitligne_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_hors_forfait_ligne_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -37,7 +39,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('gsb_horsforfaitligne_new') }}">
+            <a href="{{ path('admin_hors_forfait_ligne_new') }}">
                 Create a new entry
             </a>
         </li>

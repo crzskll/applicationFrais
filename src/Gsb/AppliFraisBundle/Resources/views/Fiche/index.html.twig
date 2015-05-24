@@ -18,7 +18,7 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('gsb_fiche_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('admin_fiche_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.nbJustificatifs }}</td>
                 <td>{% if entity.dateModification %}{{ entity.dateModification|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -27,10 +27,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('gsb_fiche_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('admin_fiche_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('gsb_fiche_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('admin_fiche_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -41,7 +41,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('gsb_fiche_new') }}">
+            <a href="{{ path('admin_fiche_new') }}">
                 Create a new entry
             </a>
         </li>

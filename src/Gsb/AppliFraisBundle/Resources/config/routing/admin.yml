@@ -1,3 +1,251 @@
 admin:
     path:     /
     defaults: { _controller: "GsbAppliFraisBundle:Admin:index" }
+
+admin_forfait_ligne:
+    path:     /ligneForfait
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:index" }
+
+admin_forfait_ligne_show:
+    path:     /ligneForfait/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:show" }
+
+admin_forfait_ligne_new:
+    path:     /ligneForfait/new
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:new" }
+
+admin_forfait_ligne_create:
+    path:     /ligneForfait/create
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:create" }
+    methods:  POST
+
+admin_forfait_ligne_edit:
+    path:     /ligneForfait/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:edit" }
+
+admin_forfait_ligne_update:
+    path:     /ligneForfait/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:update" }
+    methods:  [POST, PUT]
+
+admin_forfait_ligne_delete:
+    path:     /ligneForfait/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:ForfaitLigne:delete" }
+    methods:  [POST, DELETE]
+
+admin_employe:
+    path:     /employe
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:index" }
+
+admin_employe_show:
+    path:     /employe/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:show" }
+
+admin_employe_new:
+    path:     /employe/new
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:new" }
+
+admin_employe_create:
+    path:     /employe/create
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:create" }
+    methods:  POST
+
+admin_employe_edit:
+    path:     /employe/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:edit" }
+
+admin_employe_update:
+    path:     /employe/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:update" }
+    methods:  [POST, PUT]
+
+admin_employe_delete:
+    path:     /employe/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Employe:delete" }
+    methods:  [POST, DELETE]
+
+admin_etat:
+    path:     /etat
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:index" }
+
+admin_etat_show:
+    path:     /etat/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:show" }
+
+admin_etat_new:
+    path:     /etat/new
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:new" }
+
+admin_etat_create:
+    path:     /etat/create
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:create" }
+    methods:  POST
+
+admin_etat_edit:
+    path:     /etat/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:edit" }
+
+admin_etat_update:
+    path:     /etat/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:update" }
+    methods:  [POST, PUT]
+
+admin_etat_delete:
+    path:     /etat/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Etat:delete" }
+    methods:  [POST, DELETE]
+
+admin_fiche:
+    path:     /fiche
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:index" }
+
+admin_fiche_show:
+    path:     /fiche/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:show" }
+
+admin_fiche_new:
+    path:     /fiche/new
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:new" }
+
+admin_fiche_create:
+    path:     /fiche/create
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:create" }
+    methods:  POST
+
+admin_fiche_edit:
+    path:     /fiche/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:edit" }
+
+admin_fiche_update:
+    path:     /fiche/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:update" }
+    methods:  [POST, PUT]
+
+admin_fiche_delete:
+    path:     /fiche/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Fiche:delete" }
+    methods:  [POST, DELETE]
+
+admin_forfait:
+    path:     /forfait
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:index" }
+
+admin_forfait_show:
+    path:     /forfait/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:show" }
+
+admin_forfait_new:
+    path:     /forfait/new
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:new" }
+
+admin_forfait_create:
+    path:     /forfait/create
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:create" }
+    methods:  POST
+
+admin_forfait_edit:
+    path:     /forfait/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:edit" }
+
+admin_forfait_update:
+    path:     /forfait/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:update" }
+    methods:  [POST, PUT]
+
+admin_forfait_delete:
+    path:     /forfait/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Forfait:delete" }
+    methods:  [POST, DELETE]
+
+admin_frais_forfait:
+    path:     /fraisForfait
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:index" }
+
+admin_frais_forfait_show:
+    path:     /fraisForfait/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:show" }
+
+admin_frais_forfait_new:
+    path:     /fraisForfait/new
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:new" }
+
+admin_frais_forfait_create:
+    path:     /fraisForfait/create
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:create" }
+    methods:  POST
+
+admin_frais_forfait_edit:
+    path:     /fraisForfait/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:edit" }
+
+admin_frais_forfait_update:
+    path:     /fraisForfait/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:update" }
+    methods:  [POST, PUT]
+
+admin_frais_forfait_delete:
+    path:     /fraisForfait/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:FraisForfait:delete" }
+    methods:  [POST, DELETE]
+
+admin_hors_forfait_ligne:
+    path:     /ligneHorsForfait
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:index" }
+
+admin_hors_forfait_ligne_show:
+    path:     /ligneHorsForfait/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:show" }
+
+admin_hors_forfait_ligne_new:
+    path:     /ligneHorsForfait/new
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:new" }
+
+admin_hors_forfait_ligne_create:
+    path:     /ligneHorsForfait/create
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:create" }
+    methods:  POST
+
+admin_hors_forfait_ligne_edit:
+    path:     /ligneHorsForfait/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:edit" }
+
+admin_hors_forfait_ligne_update:
+    path:     /ligneHorsForfait/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:update" }
+    methods:  [POST, PUT]
+
+admin_hors_forfait_ligne_delete:
+    path:     /ligneHorsForfait/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:HorsForfaitLigne:delete" }
+    methods:  [POST, DELETE]
+
+admin_statut:
+    path:     /statut
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:index" }
+
+admin_statut_show:
+    path:     /statut/{id}/show
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:show" }
+
+admin_statut_new:
+    path:     /statut/new
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:new" }
+
+admin_statut_create:
+    path:     /statut/create
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:create" }
+    methods:  POST
+
+admin_statut_edit:
+    path:     /statut/{id}/edit
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:edit" }
+
+admin_statut_update:
+    path:     /statut/{id}/update
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:update" }
+    methods:  [POST, PUT]
+
+admin_statut_delete:
+    path:     /statut/{id}/delete
+    defaults: { _controller: "GsbAppliFraisBundle:Statut:delete" }
+    methods:  [POST, DELETE]

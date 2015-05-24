@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>ForfaitLigne</h1>
+    <h1>FraisForfait</h1>
 
     <table class="record_properties">
         <tbody>
@@ -10,20 +10,20 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Motif</th>
-                <td>{{ entity.motif }}</td>
+                <th>Quantite</th>
+                <td>{{ entity.quantite }}</td>
             </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('admin_forfait_ligne') }}">
+        <a href="{{ path('admin_frais_forfait') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('admin_forfait_ligne_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('admin_frais_forfait_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

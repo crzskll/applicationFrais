@@ -21,17 +21,21 @@
                 <th>Montant</th>
                 <td>{{ entity.montant }}</td>
             </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ entity.motif }}</td>
+            </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('gsb_horsforfaitligne') }}">
+        <a href="{{ path('admin_hors_forfait_ligne') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('gsb_horsforfaitligne_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('admin_hors_forfait_ligne_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

@@ -5,37 +5,37 @@ namespace Gsb\AppliFraisBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Gsb\AppliFraisBundle\Entity\Statut;
-use Gsb\AppliFraisBundle\Form\StatutType;
+use Gsb\AppliFraisBundle\Entity\FraisForfait;
+use Gsb\AppliFraisBundle\Form\FraisForfaitType;
 
 /**
- * Statut controller.
+ * FraisForfait controller.
  *
  */
-class StatutController extends Controller
+class FraisForfaitController extends Controller
 {
 
     /**
-     * Lists all Statut entities.
+     * Lists all FraisForfait entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('GsbAppliFraisBundle:Statut')->findAll();
+        $entities = $em->getRepository('GsbAppliFraisBundle:FraisForfait')->findAll();
 
-        return $this->render('GsbAppliFraisBundle:Statut:index.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Statut entity.
+     * Creates a new FraisForfait entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Statut();
+        $entity = new FraisForfait();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class StatutController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_statut_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_frais_forfait_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('GsbAppliFraisBundle:Statut:new.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Statut entity.
+     * Creates a form to create a FraisForfait entity.
      *
-     * @param Statut $entity The entity
+     * @param FraisForfait $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Statut $entity)
+    private function createCreateForm(FraisForfait $entity)
     {
-        $form = $this->createForm(new StatutType(), $entity, array(
-            'action' => $this->generateUrl('admin_statut_create'),
+        $form = $this->createForm(new FraisForfaitType(), $entity, array(
+            'action' => $this->generateUrl('admin_frais_forfait_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class StatutController extends Controller
     }
 
     /**
-     * Displays a form to create a new Statut entity.
+     * Displays a form to create a new FraisForfait entity.
      *
      */
     public function newAction()
     {
-        $entity = new Statut();
+        $entity = new FraisForfait();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('GsbAppliFraisBundle:Statut:new.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Statut entity.
+     * Finds and displays a FraisForfait entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GsbAppliFraisBundle:Statut')->find($id);
+        $entity = $em->getRepository('GsbAppliFraisBundle:FraisForfait')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Statut entity.');
+            throw $this->createNotFoundException('Unable to find FraisForfait entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('GsbAppliFraisBundle:Statut:show.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Statut entity.
+     * Displays a form to edit an existing FraisForfait entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GsbAppliFraisBundle:Statut')->find($id);
+        $entity = $em->getRepository('GsbAppliFraisBundle:FraisForfait')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Statut entity.');
+            throw $this->createNotFoundException('Unable to find FraisForfait entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('GsbAppliFraisBundle:Statut:edit.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class StatutController extends Controller
     }
 
     /**
-    * Creates a form to edit a Statut entity.
+    * Creates a form to edit a FraisForfait entity.
     *
-    * @param Statut $entity The entity
+    * @param FraisForfait $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Statut $entity)
+    private function createEditForm(FraisForfait $entity)
     {
-        $form = $this->createForm(new StatutType(), $entity, array(
-            'action' => $this->generateUrl('admin_statut_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new FraisForfaitType(), $entity, array(
+            'action' => $this->generateUrl('admin_frais_forfait_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -152,17 +152,17 @@ class StatutController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Statut entity.
+     * Edits an existing FraisForfait entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('GsbAppliFraisBundle:Statut')->find($id);
+        $entity = $em->getRepository('GsbAppliFraisBundle:FraisForfait')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Statut entity.');
+            throw $this->createNotFoundException('Unable to find FraisForfait entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -172,17 +172,17 @@ class StatutController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_statut_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_frais_forfait_edit', array('id' => $id)));
         }
 
-        return $this->render('GsbAppliFraisBundle:Statut:edit.html.twig', array(
+        return $this->render('GsbAppliFraisBundle:FraisForfait:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Statut entity.
+     * Deletes a FraisForfait entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -192,21 +192,21 @@ class StatutController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('GsbAppliFraisBundle:Statut')->find($id);
+            $entity = $em->getRepository('GsbAppliFraisBundle:FraisForfait')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Statut entity.');
+                throw $this->createNotFoundException('Unable to find FraisForfait entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_statut'));
+        return $this->redirect($this->generateUrl('admin_frais_forfait'));
     }
 
     /**
-     * Creates a form to delete a Statut entity by id.
+     * Creates a form to delete a FraisForfait entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -215,7 +215,7 @@ class StatutController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_statut_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_frais_forfait_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

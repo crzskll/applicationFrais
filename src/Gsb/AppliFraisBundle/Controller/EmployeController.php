@@ -44,7 +44,7 @@ class EmployeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_employe_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_employe_show', array('id' => $entity->getId())));
         }
 
         return $this->render('GsbAppliFraisBundle:Employe:new.html.twig', array(
@@ -63,7 +63,7 @@ class EmployeController extends Controller
     private function createCreateForm(Employe $entity)
     {
         $form = $this->createForm(new EmployeType(), $entity, array(
-            'action' => $this->generateUrl('gsb_employe_create'),
+            'action' => $this->generateUrl('admin_employe_create'),
             'method' => 'POST',
         ));
 
@@ -143,7 +143,7 @@ class EmployeController extends Controller
     private function createEditForm(Employe $entity)
     {
         $form = $this->createForm(new EmployeType(), $entity, array(
-            'action' => $this->generateUrl('gsb_employe_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('admin_employe_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -172,7 +172,7 @@ class EmployeController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('gsb_employe_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_employe_edit', array('id' => $id)));
         }
 
         return $this->render('GsbAppliFraisBundle:Employe:edit.html.twig', array(
@@ -202,7 +202,7 @@ class EmployeController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('gsb_employe'));
+        return $this->redirect($this->generateUrl('admin_employe'));
     }
 
     /**
@@ -215,7 +215,7 @@ class EmployeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('gsb_employe_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_employe_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
