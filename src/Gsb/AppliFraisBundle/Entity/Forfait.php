@@ -83,4 +83,10 @@ class Forfait
     {
         return $this->montant;
     }
+
+    public function __toString()
+    {
+
+      return strval($this->getLibelle());
+    }
 }

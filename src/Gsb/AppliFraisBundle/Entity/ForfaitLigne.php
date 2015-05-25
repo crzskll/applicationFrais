@@ -184,4 +184,10 @@ class ForfaitLigne
         }
         return $tot;
     }
+
+    public function __toString()
+    {
+
+      return strval($this->getId());
+    }
 }
