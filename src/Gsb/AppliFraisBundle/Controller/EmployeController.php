@@ -40,7 +40,11 @@ class EmployeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $factory = $this->get('security.encoder_factory');
             $em = $this->getDoctrine()->getManager();
+            $encoder = $factory->getEncoder($entity);
+            $password = $encoder->encodePassword($entity->getMotDePasse(), $entity->getSalt());
+            $entity->setMotDePasse($password);
             $em->persist($entity);
             $em->flush();
 

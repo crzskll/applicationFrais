@@ -23,4 +23,4 @@ security:
             entity: { class: Gsb\AppliFraisBundle\Entity\Employe, property: login }
 
     encoders:
-        Gsb\AppliFraisBundle\Entity\Employe: plaintext
+        Gsb\AppliFraisBundle\Entity\Employe: sha512
