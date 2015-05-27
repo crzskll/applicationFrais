@@ -4,19 +4,28 @@
         <meta charset="UTF-8" />
         <link href = "{{ asset('bundles/gsbapplifrais/css/portal.css') }}" 
           rel = "stylesheet" type = "text/css"/>
+        <link href = "{{ asset('bundles/gsbapplifrais/css/admin.css') }}" 
+          rel = "stylesheet" type = "text/css"/>
         <title>Portal</title>
     </head>
     <body>
         <h1>Laboratoire Galaxy Swiss Bourdin</h1>
-        <div class="connexion">
-            <a href="{{ path('admin_forfait_ligne') }}"><button>Ligne forfait</button></a>
-			<a href="{{ path('admin_employe') }}"><button>Employés</button></a>
-			<a href="{{ path('admin_etat') }}"><button>Etats</button></a>
-			<a href="{{ path('admin_fiche') }}"><button>Fiches</button></a>
-			<a href="{{ path('admin_forfait') }}"><button>Forfaits</button></a>
-			<a href="{{ path('admin_frais_forfait') }}"><button>Frais forfaitisés</button></a>
-			<a href="{{ path('admin_hors_forfait_ligne') }}"><button>Ligne hors forfait</button></a>
-			<a href="{{ path('admin_statut') }}"><button>Statut</button></a>
+        <div class="connexion ">
+            <div class='admin'>
+                <a href="{{ path('admin_forfait_ligne') }}"><button>Ligne forfait</button></a>
+    			<a href="{{ path('admin_employe') }}"><button>Employés</button></a>
+    			<a href="{{ path('admin_etat') }}"><button>Etats</button></a>
+            </div>
+            <div class='admin'>
+    			<a href="{{ path('admin_fiche') }}"><button>Fiches</button></a>
+    			<a href="{{ path('admin_forfait') }}"><button>Forfaits</button></a>
+    			<a href="{{ path('admin_frais_forfait') }}"><button>Frais forfaitisés</button></a>
+            </div>
+            <div class='admin'>
+    			<a href="{{ path('admin_hors_forfait_ligne') }}"><button>Ligne hors forfait</button></a>
+    			<a href="{{ path('admin_statut') }}"><button>Statut</button></a>
+            </div>
+            </div>
         </div>
     </body>
 </html>

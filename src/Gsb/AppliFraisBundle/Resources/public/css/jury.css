@@ -1,0 +1,9 @@
+.tablejury {
+    border: solid 2px black;
+    border-radius: 7px;
+    margin-top: 190px;
+   	margin-left: 270px ;
+}
+.tablejury td{
+	border: solid 1px black;
+}

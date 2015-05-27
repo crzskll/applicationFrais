@@ -15,7 +15,7 @@ body{
     background-color:#FFFFFF;
     color:black;
     height:500px;
-}
+    }
 h1{
     text-align: center;
     color:white;
@@ -34,7 +34,6 @@ button{
     border-radius: 50px;
 }
 
-
 .plop{
     width: 40%;
     float: left;
@@ -49,4 +48,14 @@ button{
 }
 #BtnConnect{
     margin-top: 5%;
+}
+.tableJury{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+.titreTableJury{
+    border: 2px solid black;
+}
+.appliCodeSrc{
+    border: 2px solid black;
 }
