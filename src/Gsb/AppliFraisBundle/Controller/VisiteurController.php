@@ -487,5 +487,46 @@ class VisiteurController extends Controller{
 
         return $this->redirect($this->generateUrl('visiteur_edit'));
     }
+
+
+
+    public function syncAction()
+    {   
+        $json = '{"Fiche" : { "ForfaitLigne" : {"Nuit" : 1, "Etape" : 2, "Repas" : 3, "Km" : 4} , "HorsForfaitLigne" : [{"date" : "28-5-2015", "libelle" : "test 1", "montant" : 10},{"date" : "1-5-2015", "libelle" : "test 2", "montant" : 20}] }}';
+        $majFiche = json_decode($json);
+        $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
+        $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
+
+        $session = $this->getRequest()->getSession();
+        $id = $session->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
+        $derniereFiche = $this->getDerniereFiche($visiteur);
+
+        $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+        $frais = $ligneForfait->getFraisForfaits();
+
+        foreach ($frais as $aFrais) {
+            $forfait = $aFrais->getForfait();
+            $quantite = $aFrais->getQuantite();
+            $newQuantite =  $fraisForfait->{$forfait};
+            $aFrais->setQuantite($quantite + $newQuantite);
+        }
+
+        $statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
+        foreach ($fraisHorsForfait as $nvHf) {
+            $nvFraisHorsForfait = new HorsForfaitLigne();
+            $nvFraisHorsForfait->setFiche($derniereFiche);
+            $nvFraisHorsForfait->setDate(new DateTime($nvHf->{'date'}));
+            $nvFraisHorsForfait->setLibelle($nvHf->{'libelle'});
+            $nvFraisHorsForfait->setMontant($nvHf->{'montant'});
+            $nvFraisHorsForfait->setStatut($statut);
+            $em->persist($nvFraisHorsForfait);
+            $derniereFiche->addHorsForfaitLigne($nvFraisHorsForfait);
+        }
+
+        $em->flush();
+        return $this->redirect($this->generateUrl('visiteur'));    
+    }
 }	
 

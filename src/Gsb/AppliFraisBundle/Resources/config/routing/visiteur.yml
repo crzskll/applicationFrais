@@ -33,3 +33,7 @@ visiteur_ligneHorsForfait_update:
 visiteur_ligneHorsForfait_edit:
     path:     /{idLigne}/preedit
     defaults: { _controller: "GsbAppliFraisBundle:Visiteur:preeditLigne" }
+
+visiteur_sync:
+    path:     /sync
+    defaults: { _controller: "GsbAppliFraisBundle:Visiteur:sync" }
