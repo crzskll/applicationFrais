@@ -490,9 +490,12 @@ class VisiteurController extends Controller{
 
 
 
-    public function syncAction()
+    public function syncAction(Request $request)
     {   
-        $json = '{"Fiche" : { "ForfaitLigne" : {"Nuit" : 1, "Etape" : 2, "Repas" : 3, "Km" : 4} , "HorsForfaitLigne" : [{"date" : "28-5-2015", "libelle" : "test 1", "montant" : 10},{"date" : "1-5-2015", "libelle" : "test 2", "montant" : 20}] }}';
+        $file=$request->get('fileJson');
+
+        $json=file_get_contents($_FILES['fileJson']['tmp_name']);
+        //$json = '{"Fiche" : { "ForfaitLigne" : {"Nuit" : 2, "Etape" : 3, "Repas" : 4, "Km" : 1} , "HorsForfaitLigne" : [{"date" : "8-12-2015", "libelle" : "test 4", "montant" : 30},{"date" : "21-2-2015", "libelle" : "test 5", "montant" : 50}] }}';
         $majFiche = json_decode($json);
         $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
         $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
