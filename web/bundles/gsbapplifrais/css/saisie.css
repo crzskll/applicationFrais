@@ -53,3 +53,16 @@ input[type=number]::-webkit-inner-spin-button,
 .formSaisieHf{
 	margin-top: 0%;
 }
+#fileJson{
+	display: none;
+}
+#submitFile{
+	display: none;
+}
+#linkToFile{
+	display: inline-block;
+	top: 18%;
+	text-align: left;
+	position: absolute;
+	left: 46%;
+}

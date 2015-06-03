@@ -22,10 +22,10 @@
     </div>
     <div id="syncMenu">
         {% block sync %}
-        	<a href="#" onclick="plop();return false;">Link</a>
+        	<a href="#" onclick="linkToFile();return false;" id="linkToFile">Synchroniser</a>
         	<form  action="{{ path('visiteur_sync') }}" method="POST" enctype="multipart/form-data">
-				<input type="file" name="fileJson">
-			  	<button type="submit" value="Synchroniser">Synchroniser</button>
+				<input type="file" name="fileJson" id="fileJson" onchange="selectFile()">
+			  	<button id="submitFile" type="submit" value="Synchroniser">Synchroniser</button>
 			</form>
         {% endblock %}
     </div>
