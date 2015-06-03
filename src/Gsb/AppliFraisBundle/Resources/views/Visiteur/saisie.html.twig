@@ -5,6 +5,10 @@
 	<link rel="stylesheet" href="{{ asset('bundles/gsbapplifrais/css/saisie.css') }}" type="text/css" media="all" />
 {% endblock %}
 
+{% block javascripts %}
+	<script src="{{ asset('bundles/gsbapplifrais/js/sync.js') }}"></script>
+{% endblock %}
+
 {% block liens %}
 	<div id="historiqueMenu">
         {% block historique %}
@@ -18,6 +22,7 @@
     </div>
     <div id="syncMenu">
         {% block sync %}
+        	<a href="#" onclick="plop();return false;">Link</a>
         	<form  action="{{ path('visiteur_sync') }}" method="POST" enctype="multipart/form-data">
 				<input type="file" name="fileJson">
 			  	<button type="submit" value="Synchroniser">Synchroniser</button>

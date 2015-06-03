@@ -1,3 +1,15 @@
+'Jan': Janvier
+'Feb': Février
+'Mar': Mars
+'Apr': Avril
+'May': Mai
+'Jun': Juin
+'Jul': Juillet
+'Aug': Août
+'Sep': Septembre
+'Oct': Octobre
+'Nov': Novembre
+'Dec': Décembre
 'January': Janvier
 'February': Février
 'March': Mars
@@ -12,7 +24,7 @@
 'December': Décembre
 'Monday' : Lundi
 'Tuesday' : Mardi
-'Wednesday' : Mércredi
+'Wednesday' : Mercredi
 'Thursday' : Jeudi
 'Friday' : Vendredi
 'Saturday' : Samedi
