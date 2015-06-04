@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class LoginController extends Controller
 {
+    /**
+    *  
+    */
     public function loginAction()
     {
         $request = $this->getRequest();
@@ -26,6 +29,9 @@ class LoginController extends Controller
         ));
     }
 
+    /**
+    * redirect User after login according his Role. 
+    */
     public function redirectAction()
     {   
         $session = $this->getRequest()->getSession();

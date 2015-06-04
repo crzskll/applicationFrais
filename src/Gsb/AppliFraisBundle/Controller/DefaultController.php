@@ -11,7 +11,9 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        
+        /**
+        * After connexion display saisie Fiche. 
+        */
         $connectUser = new Employe();
 
         $form = $this->createForm(new ConnexionPortal(), $connectUser);
