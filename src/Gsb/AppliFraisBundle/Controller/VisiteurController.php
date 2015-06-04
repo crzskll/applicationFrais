@@ -523,11 +523,8 @@ class VisiteurController extends Controller{
     }
 
     /**
-     * Keep the ligne's id for update.
+     * Keep the ligne's id to update.
      *
-     * @param Integer $idLigne The Ligne id
-     *
-     * @return redirection
      */
     public function preeditLigneAction($idLigne)
     {   
