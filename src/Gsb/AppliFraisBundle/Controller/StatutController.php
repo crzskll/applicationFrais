@@ -32,6 +32,8 @@ class StatutController extends Controller
     /**
      * Creates a new Statut entity.
      *
+     * @param Request $request
+     *
      */
     public function createAction(Request $request)
     {

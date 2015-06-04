@@ -50,7 +50,7 @@ class Employe implements UserInterface
     protected $login;
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     protected $motDePasse;
     

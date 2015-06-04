@@ -32,6 +32,7 @@ class EmployeController extends Controller
     /**
      * Creates a new Employe entity.
      *
+     * @param Request $request
      */
     public function createAction(Request $request)
     {

@@ -24,6 +24,9 @@ use \DateTime;
  */
 class ComptableController extends Controller{
 
+    /**
+    * After connexion display Fiche when "Etat" = "cloturé"
+    */
 	public function indexAction()
     {   
         $em = $this->getDoctrine()->getManager();
@@ -48,6 +51,9 @@ class ComptableController extends Controller{
             ));
         
     }
+    /**
+    * Display details from selected Fiche 
+    */
 
     public function showAction()
     {   
@@ -66,6 +72,10 @@ class ComptableController extends Controller{
             ));
         
     }
+
+    /**
+    * Display details of the selected Fiche to allows Comptable to Modify it. 
+    */
 
     public function miseAJourAction()
     {   
@@ -88,6 +98,13 @@ class ComptableController extends Controller{
         
     }
 
+    /**
+    * Save modification done by Comptable in the database. 
+    *
+    * @param Request $request
+    *
+    *
+    */
     public function saveMajAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -116,6 +133,11 @@ class ComptableController extends Controller{
         
     }
 
+    /**
+    * Find visiteur by Id, Etat, Debut and Fin.
+    *
+    * @param Request $request
+    */
     public function findVisiteurAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -164,6 +186,10 @@ class ComptableController extends Controller{
         
     }
 
+    /**
+    * find Fiche by Etat, Debut and Fin.
+    */
+
     public function findAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -207,10 +233,12 @@ class ComptableController extends Controller{
         
     }
 
-
+    /**
+    * create formulaire to find a Fiche according to a visitor 
+    */
 
     private function createFindVisiteurFicheForm()
-    {   
+    {    
 
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find_visit', array()))
@@ -250,6 +278,10 @@ class ComptableController extends Controller{
     private function createFindFicheForm()
     {   
 
+        /**
+        * Create formulaire to find Fiche according to date and Etat
+        */
+        
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find', array()))
             ->setMethod('POST')
@@ -274,8 +306,12 @@ class ComptableController extends Controller{
         ;
     }
 
+
     private function createMajForm()
     {   
+        /**
+        * create form with data changed by Comptable compared to Fiche Vissiteur. 
+        */
 
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_maj_fiche', array()))
@@ -290,6 +326,9 @@ class ComptableController extends Controller{
         ;
     }
 
+    /**
+    * redirect to the page : comptable show fiche.  
+    */
     public function loadshowAction($idFiche)
     {   
         $session = $this->getRequest()->getSession();

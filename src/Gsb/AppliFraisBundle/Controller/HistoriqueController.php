@@ -55,6 +55,13 @@ class HistoriqueController extends Controller{
         
     }
 
+    /**
+    *
+    * Allows visiteur to find fiche by Etat, Debut and Fin
+    *
+    * @param Request $requuest
+    */
+
     public function findFicheAction(Request $request)
     {   
         $em = $this->getDoctrine()->getManager();
@@ -116,6 +123,12 @@ class HistoriqueController extends Controller{
             ));
         
     }
+    /**
+    *
+    * allows Visiteur to find Ligne Fiche according to the Debut, Fin, Statut and Type.
+    *
+    * @param request $request
+    */
 
     public function findLigneAction(Request $request)
     {   
@@ -193,6 +206,12 @@ class HistoriqueController extends Controller{
             ));
         
     }
+
+    /**
+    *
+    * Display details from a selected Fiche. 
+    *
+    */
 
     public function showAction()
     {
@@ -289,7 +308,12 @@ class HistoriqueController extends Controller{
         ;
     }
 
-
+    /**
+    * redirect Visiteur to his historique Fiche List
+    *
+    * @param idFiche $idFiche
+    *
+    */
     public function loadShowAction($idFiche)
     {   
 
