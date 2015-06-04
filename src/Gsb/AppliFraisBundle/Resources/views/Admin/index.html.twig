@@ -11,24 +11,22 @@
     <body>
         <h1>Laboratoire Galaxy Swiss Bourdin</h1>
         <div class="connexion ">
-            
             <div class='admin'>
-                <a href="{{ path('admin_forfait_ligne') }}"><button>Ligne forfait</button></a>
-    			<a href="{{ path('admin_employe') }}"><button>Employés</button></a>
-    			<a href="{{ path('admin_etat') }}"><button>Etats</button></a>
+                <a href="{{ path('admin_forfait') }}"><button>Forfaits</button></a>
+                <a href="{{ path('admin_etat') }}"><button>Etats</button></a>
+                <a href="{{ path('admin_statut') }}"><button>Statuts</button></a>
             </div>
             <div class='admin'>
-    			<a href="{{ path('admin_fiche') }}"><button>Fiches</button></a>
-    			<a href="{{ path('admin_forfait') }}"><button>Forfaits</button></a>
+                <a href="{{ path('admin_forfait_ligne') }}"><button>Lignes forfait</button></a>
     			<a href="{{ path('admin_frais_forfait') }}"><button>Frais forfaitisés</button></a>
+                <a href="{{ path('admin_hors_forfait_ligne') }}"><button>Lignes hors forfait</button></a>
             </div>
             <div class='admin'>
-    			<a href="{{ path('admin_hors_forfait_ligne') }}"><button>Ligne hors forfait</button></a>
-    			<a href="{{ path('admin_statut') }}"><button>Statut</button></a>
+                <a href="{{ path('admin_employe') }}"><button>Employés</button></a>
+                <a href="{{ path('admin_fiche') }}"><button>Fiches</button></a>
             </div>
             <div id="deconnexionMenu">          
                 <a href="{{ path('logout') }}">Deconnexion</a>
-          
             </div>
         </div>
     </body>
