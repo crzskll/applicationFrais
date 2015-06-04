@@ -59,10 +59,3 @@ input[type=number]::-webkit-inner-spin-button,
 #submitFile{
 	display: none;
 }
-#linkToFile{
-	display: inline-block;
-	top: 18%;
-	text-align: left;
-	position: absolute;
-	left: 46%;
-}

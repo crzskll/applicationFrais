@@ -55,14 +55,14 @@ h1{
 #nomMenu{
 	display: inline-block;
 	top: 18%;
-	right: 12%;
+	right: 20%;
 	text-align: right;
 	position: absolute;
 }
 #deconnexionMenu{
 	display: inline-block;
 	top: 18%;
-	right: 3%;
+	right: 5%;
 	text-align: right;
 	position: absolute;
 }
@@ -303,8 +303,16 @@ select{
 
 }
 #infoMenu{
-	width: 30px;
-	margin-left: 97%;
+	display: inline-block;
+	top: 5%;
+	text-align: left;
+	position: absolute;
+	right: 2%;
 }
-
- 
+#syncMenu{
+	display: inline-block;
+	top: 18%;
+	text-align: left;
+	position: absolute;
+	left: 46%;
+}
