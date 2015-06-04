@@ -1,9 +1,29 @@
-.tablejury {
-    border: solid 2px black;
-    border-radius: 7px;
-    margin-top: 190px;
-   	margin-left: 270px ;
+.divTableJury {
+	margin:0px;padding:0px;
+	width:80%;
+	border:1px solid #000000;
+
+	margin-left: 10%;
+	margin-top: 15%;
+}.divTableJury table{
+    border-collapse: collapse;
+	width:100%;
+	height:100%;
 }
-.tablejury td{
-	border: solid 1px black;
+.divTableJury tr{
+	border: solid 1px; 
+}
+.divTableJury td{
+	border: solid 1px; 
+}
+.divTableJury th{
+	color: white;
+	background-color: #005fbf;
+	border: solid 1px black; 
+}
+.divTableJury tr:nth-child(odd){
+	background-color: #56aaff;
+}
+#returnPortal{
+	margin-top: 10px;
 }
