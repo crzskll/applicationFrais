@@ -493,9 +493,7 @@ class VisiteurController extends Controller{
     public function syncAction(Request $request)
     {   
         $file=$request->get('fileJson');
-
         $json=file_get_contents($_FILES['fileJson']['tmp_name']);
-        //$json = '{"Fiche" : { "ForfaitLigne" : {"Nuit" : 2, "Etape" : 3, "Repas" : 4, "Km" : 1} , "HorsForfaitLigne" : [{"date" : "8-12-2015", "libelle" : "test 4", "montant" : 30},{"date" : "21-2-2015", "libelle" : "test 5", "montant" : 50}] }}';
         $regexJson = "#^\{\"Fiche\"\ :\ \{\ \"ForfaitLigne\"\ :\ \{\"Nuit\"\ :\ [0-9]+,\ \"Etape\"\ :\ [0-9]+,\ \"Repas\"\ :\ [0-9]+,\ \"Km\"\ :\ [0-9]+\},\ \"HorsForfaitLigne\"\ :\ \[(\{\"date\"\ :\ \"[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}\",\ \"libelle\"\ :\ \".*\",\ \"montant\"\ :\ [0-9]{1,}\.?[0-9]*\},?)*\]\ \}\}$#";
         if (preg_match($regexJson, $json)){
             $majFiche = json_decode($json);
