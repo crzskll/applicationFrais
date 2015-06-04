@@ -1,3 +1,6 @@
-function plop(){
-    alert("plop");
+function linkToFile(){
+    document.getElementById("fileJson").click();
+}
+function selectFile(){
+	document.getElementById("submitFile").click();
 }
