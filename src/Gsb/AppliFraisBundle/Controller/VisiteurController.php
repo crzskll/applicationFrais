@@ -496,39 +496,42 @@ class VisiteurController extends Controller{
 
         $json=file_get_contents($_FILES['fileJson']['tmp_name']);
         //$json = '{"Fiche" : { "ForfaitLigne" : {"Nuit" : 2, "Etape" : 3, "Repas" : 4, "Km" : 1} , "HorsForfaitLigne" : [{"date" : "8-12-2015", "libelle" : "test 4", "montant" : 30},{"date" : "21-2-2015", "libelle" : "test 5", "montant" : 50}] }}';
-        $majFiche = json_decode($json);
-        $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
-        $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
+        $regexJson = "#^\{\"Fiche\"\ :\ \{\ \"ForfaitLigne\"\ :\ \{\"Nuit\"\ :\ [0-9]+,\ \"Etape\"\ :\ [0-9]+,\ \"Repas\"\ :\ [0-9]+,\ \"Km\"\ :\ [0-9]+\},\ \"HorsForfaitLigne\"\ :\ \[(\{\"date\"\ :\ \"[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}\",\ \"libelle\"\ :\ \".*\",\ \"montant\"\ :\ [0-9]{1,}\.?[0-9]*\},?)*\]\ \}\}$#";
+        if (preg_match($regexJson, $json)){
+            $majFiche = json_decode($json);
+            $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
+            $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
 
-        $session = $this->getRequest()->getSession();
-        $id = $session->get('id');
-        $em = $this->getDoctrine()->getManager();
-        $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
-        $derniereFiche = $this->getDerniereFiche($visiteur);
+            $session = $this->getRequest()->getSession();
+            $id = $session->get('id');
+            $em = $this->getDoctrine()->getManager();
+            $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
+            $derniereFiche = $this->getDerniereFiche($visiteur);
 
-        $ligneForfait = $derniereFiche->getForfaitLignes()[0];
-        $frais = $ligneForfait->getFraisForfaits();
+            $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+            $frais = $ligneForfait->getFraisForfaits();
 
-        foreach ($frais as $aFrais) {
-            $forfait = $aFrais->getForfait();
-            $quantite = $aFrais->getQuantite();
-            $newQuantite =  $fraisForfait->{$forfait};
-            $aFrais->setQuantite($quantite + $newQuantite);
+            foreach ($frais as $aFrais) {
+                $forfait = $aFrais->getForfait();
+                $quantite = $aFrais->getQuantite();
+                $newQuantite =  $fraisForfait->{$forfait};
+                $aFrais->setQuantite($quantite + $newQuantite);
+            }
+
+            $statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
+            foreach ($fraisHorsForfait as $nvHf) {
+                $nvFraisHorsForfait = new HorsForfaitLigne();
+                $nvFraisHorsForfait->setFiche($derniereFiche);
+                $nvFraisHorsForfait->setDate(new DateTime($nvHf->{'date'}));
+                $nvFraisHorsForfait->setLibelle($nvHf->{'libelle'});
+                $nvFraisHorsForfait->setMontant($nvHf->{'montant'});
+                $nvFraisHorsForfait->setStatut($statut);
+                $em->persist($nvFraisHorsForfait);
+                $derniereFiche->addHorsForfaitLigne($nvFraisHorsForfait);
+            }
+
+            $em->flush();
         }
-
-        $statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
-        foreach ($fraisHorsForfait as $nvHf) {
-            $nvFraisHorsForfait = new HorsForfaitLigne();
-            $nvFraisHorsForfait->setFiche($derniereFiche);
-            $nvFraisHorsForfait->setDate(new DateTime($nvHf->{'date'}));
-            $nvFraisHorsForfait->setLibelle($nvHf->{'libelle'});
-            $nvFraisHorsForfait->setMontant($nvHf->{'montant'});
-            $nvFraisHorsForfait->setStatut($statut);
-            $em->persist($nvFraisHorsForfait);
-            $derniereFiche->addHorsForfaitLigne($nvFraisHorsForfait);
-        }
-
-        $em->flush();
         return $this->redirect($this->generateUrl('visiteur'));    
     }
 }	
