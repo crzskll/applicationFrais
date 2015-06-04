@@ -495,6 +495,7 @@ class VisiteurController extends Controller{
         $file=$request->get('fileJson');
         $json=file_get_contents($_FILES['fileJson']['tmp_name']);
         $regexJson = "#^\{\"Fiche\"\ :\ \{\ \"ForfaitLigne\"\ :\ \{\"Nuit\"\ :\ [0-9]+,\ \"Etape\"\ :\ [0-9]+,\ \"Repas\"\ :\ [0-9]+,\ \"Km\"\ :\ [0-9]+\},\ \"HorsForfaitLigne\"\ :\ \[(\{\"date\"\ :\ \"[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}\",\ \"libelle\"\ :\ \".*\",\ \"montant\"\ :\ [0-9]{1,}\.?[0-9]*\},?)*\]\ \}\}$#";
+        $recapSync =false;
         if (preg_match($regexJson, $json)){
             $majFiche = json_decode($json);
             $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
@@ -529,8 +530,12 @@ class VisiteurController extends Controller{
             }
 
             $em->flush();
+            $recapSync = true;
         }
-        return $this->redirect($this->generateUrl('visiteur'));    
+        return $this->render('GsbAppliFraisBundle:Visiteur:recapSynchro.html.twig', array(
+            'recapSync' => $recapSync,
+            
+            ));    
     }
 }	
 

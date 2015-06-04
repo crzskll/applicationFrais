@@ -11,6 +11,7 @@
     <body>
         <h1>Laboratoire Galaxy Swiss Bourdin</h1>
         <div class="connexion ">
+            
             <div class='admin'>
                 <a href="{{ path('admin_forfait_ligne') }}"><button>Ligne forfait</button></a>
     			<a href="{{ path('admin_employe') }}"><button>Employés</button></a>
@@ -25,6 +26,9 @@
     			<a href="{{ path('admin_hors_forfait_ligne') }}"><button>Ligne hors forfait</button></a>
     			<a href="{{ path('admin_statut') }}"><button>Statut</button></a>
             </div>
+            <div id="deconnexionMenu">          
+                <a href="{{ path('logout') }}">Deconnexion</a>
+          
             </div>
         </div>
     </body>
