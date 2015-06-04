@@ -147,7 +147,7 @@ class VisiteurController extends Controller{
 
     /**
      * Show laste fiche and forms to create and update lignes when a hors forfait ligne is edit.
-     * The horsForfaitLigne form is charge whith the editing ligne. 
+     * The horsForfaitLigne form is charged whith the editing ligne. 
      *
      */
     public function editLigneAction()
@@ -245,6 +245,55 @@ class VisiteurController extends Controller{
                 'formSaisieHorsForfait' => $formSaisieHorsForfait->createView(),
                 'formDelete' => $deleteForm->createView(),                
             ));
+    }
+
+    /**
+     * Use a Json created with mobileApp to add new frais.
+     *
+     */
+    public function syncAction(Request $request)
+    {   
+        $file=$request->get('fileJson');
+        $json=file_get_contents($_FILES['fileJson']['tmp_name']);
+        $regexJson = "#^\{\"Fiche\"\ :\ \{\ \"ForfaitLigne\"\ :\ \{\"Nuit\"\ :\ [0-9]+,\ \"Etape\"\ :\ [0-9]+,\ \"Repas\"\ :\ [0-9]+,\ \"Km\"\ :\ [0-9]+\},\ \"HorsForfaitLigne\"\ :\ \[(\{\"date\"\ :\ \"[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}\",\ \"libelle\"\ :\ \".*\",\ \"montant\"\ :\ [0-9]{1,}\.?[0-9]*\},?)*\]\ \}\}$#";
+        $recapSync =false;
+        if (preg_match($regexJson, $json)){
+            $majFiche = json_decode($json);
+            $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
+            $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
+
+            $session = $this->getRequest()->getSession();
+            $id = $session->get('id');
+            $em = $this->getDoctrine()->getManager();
+            $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
+            $derniereFiche = $this->getDerniereFiche($visiteur);
+
+            $ligneForfait = $derniereFiche->getForfaitLignes()[0];
+            $frais = $ligneForfait->getFraisForfaits();
+
+            foreach ($frais as $aFrais) {
+                $forfait = $aFrais->getForfait();
+                $quantite = $aFrais->getQuantite();
+                $newQuantite =  $fraisForfait->{$forfait};
+                $aFrais->setQuantite($quantite + $newQuantite);
+            }
+
+            $statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
+            foreach ($fraisHorsForfait as $nvHf) {
+                $nvFraisHorsForfait = new HorsForfaitLigne();
+                $nvFraisHorsForfait->setFiche($derniereFiche);
+                $nvFraisHorsForfait->setDate(new DateTime($nvHf->{'date'}));
+                $nvFraisHorsForfait->setLibelle($nvHf->{'libelle'});
+                $nvFraisHorsForfait->setMontant($nvHf->{'montant'});
+                $nvFraisHorsForfait->setStatut($statut);
+                $em->persist($nvFraisHorsForfait);
+                $derniereFiche->addHorsForfaitLigne($nvFraisHorsForfait);
+            }
+
+            $em->flush();
+            $recapSync = true;
+        }
+        return $this->render('GsbAppliFraisBundle:Visiteur:recapSynchro.html.twig', array('recapSync' => $recapSync));    
     }
 
     /**
@@ -433,11 +482,6 @@ class VisiteurController extends Controller{
         $newLigneForfait->addFraisForfait($newFraisEtape);
 
         $newFiche->addForfaitLigne($newLigneForfait);
-        //$em->persist($newFraisNuit);
-        //$em->persist($newFraisKm);
-        //$em->persist($newFraisEtape);
-        //$em->persist($newFraisRepas);       
-        //$em->persist($newLigneForfait);
         $em->persist($newFiche);
         $em->flush();
 
@@ -478,7 +522,13 @@ class VisiteurController extends Controller{
         $em->flush();
     }
 
-
+    /**
+     * Keep the ligne's id for update.
+     *
+     * @param Integer $idLigne The Ligne id
+     *
+     * @return redirection
+     */
     public function preeditLigneAction($idLigne)
     {   
 
@@ -486,56 +536,6 @@ class VisiteurController extends Controller{
         $session->set('idLigne', $idLigne);
 
         return $this->redirect($this->generateUrl('visiteur_edit'));
-    }
-
-
-
-    public function syncAction(Request $request)
-    {   
-        $file=$request->get('fileJson');
-        $json=file_get_contents($_FILES['fileJson']['tmp_name']);
-        $regexJson = "#^\{\"Fiche\"\ :\ \{\ \"ForfaitLigne\"\ :\ \{\"Nuit\"\ :\ [0-9]+,\ \"Etape\"\ :\ [0-9]+,\ \"Repas\"\ :\ [0-9]+,\ \"Km\"\ :\ [0-9]+\},\ \"HorsForfaitLigne\"\ :\ \[(\{\"date\"\ :\ \"[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}\",\ \"libelle\"\ :\ \".*\",\ \"montant\"\ :\ [0-9]{1,}\.?[0-9]*\},?)*\]\ \}\}$#";
-        $recapSync =false;
-        if (preg_match($regexJson, $json)){
-            $majFiche = json_decode($json);
-            $fraisForfait = $majFiche->{'Fiche'}->{'ForfaitLigne'};
-            $fraisHorsForfait = $majFiche->{'Fiche'}->{'HorsForfaitLigne'};
-
-            $session = $this->getRequest()->getSession();
-            $id = $session->get('id');
-            $em = $this->getDoctrine()->getManager();
-            $visiteur = $em->getRepository('GsbAppliFraisBundle:Employe')->find($id);
-            $derniereFiche = $this->getDerniereFiche($visiteur);
-
-            $ligneForfait = $derniereFiche->getForfaitLignes()[0];
-            $frais = $ligneForfait->getFraisForfaits();
-
-            foreach ($frais as $aFrais) {
-                $forfait = $aFrais->getForfait();
-                $quantite = $aFrais->getQuantite();
-                $newQuantite =  $fraisForfait->{$forfait};
-                $aFrais->setQuantite($quantite + $newQuantite);
-            }
-
-            $statut = $em->getRepository('GsbAppliFraisBundle:Statut')->findOneByLibelle('En attente');
-            foreach ($fraisHorsForfait as $nvHf) {
-                $nvFraisHorsForfait = new HorsForfaitLigne();
-                $nvFraisHorsForfait->setFiche($derniereFiche);
-                $nvFraisHorsForfait->setDate(new DateTime($nvHf->{'date'}));
-                $nvFraisHorsForfait->setLibelle($nvHf->{'libelle'});
-                $nvFraisHorsForfait->setMontant($nvHf->{'montant'});
-                $nvFraisHorsForfait->setStatut($statut);
-                $em->persist($nvFraisHorsForfait);
-                $derniereFiche->addHorsForfaitLigne($nvFraisHorsForfait);
-            }
-
-            $em->flush();
-            $recapSync = true;
-        }
-        return $this->render('GsbAppliFraisBundle:Visiteur:recapSynchro.html.twig', array(
-            'recapSync' => $recapSync,
-            
-            ));    
     }
 }	
 
