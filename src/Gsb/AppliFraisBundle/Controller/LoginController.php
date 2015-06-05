@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class LoginController extends Controller
 {
     /**
-    *  
+    * 
+    *Show the portal with the last user 
+    * 
     */
     public function loginAction()
     {

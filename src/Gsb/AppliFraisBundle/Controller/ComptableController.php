@@ -25,8 +25,9 @@ use \DateTime;
 class ComptableController extends Controller{
 
     /**
-    * After connexion display Fiche when "Etat" = "cloturé"
-    */
+     * Show all fiche not yet processed when init page.
+     *
+     */
 	public function indexAction()
     {   
         $em = $this->getDoctrine()->getManager();
@@ -43,7 +44,6 @@ class ComptableController extends Controller{
         $formFindVisiteur = $this->createFindVisiteurFicheForm();
         $formFindFiche = $this->createFindFicheForm();
 
-        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptable.html.twig', array(
             'fiches' => $fiches,
             'formVisit' => $formFindVisiteur->createView(),
@@ -64,7 +64,6 @@ class ComptableController extends Controller{
         $formFindVisiteur = $this->createFindVisiteurFicheForm();
         $formFindFiche = $this->createFindFicheForm();
 
-        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptableShow.html.twig', array(
             'fiche' => $fiche,
             'formVisit' => $formFindVisiteur->createView(),
@@ -88,7 +87,6 @@ class ComptableController extends Controller{
 
         $formMaj = $this->createForm(new majFiche(), $fiche);
 
-        //Retourne la vue avec le visiteur, la fiche en cours et les formulaires de saisie
         return $this->render('GsbAppliFraisBundle:Comptable:comptableMaj.html.twig', array(
             'fiche' => $fiche,
             'formVisit' => $formFindVisiteur->createView(),
@@ -99,10 +97,8 @@ class ComptableController extends Controller{
     }
 
     /**
+    *
     * Save modification done by Comptable in the database. 
-    *
-    * @param Request $request
-    *
     *
     */
     public function saveMajAction(Request $request)
@@ -134,9 +130,9 @@ class ComptableController extends Controller{
     }
 
     /**
+    * 
     * Find visiteur by Id, Etat, Debut and Fin.
-    *
-    * @param Request $request
+    * 
     */
     public function findVisiteurAction(Request $request)
     {   
@@ -234,12 +230,12 @@ class ComptableController extends Controller{
     }
 
     /**
-    * create formulaire to find a Fiche according to a visitor 
-    */
-
+     * Creates a form to search Fiches according to a Visiteur.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFindVisiteurFicheForm()
     {    
-
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find_visit', array()))
             ->setMethod('POST')
@@ -275,13 +271,13 @@ class ComptableController extends Controller{
         ;
     }
 
+    /**
+     * Creates a form to search Fiches.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createFindFicheForm()
     {   
-
-        /**
-        * Create formulaire to find Fiche according to date and Etat
-        */
-        
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_find', array()))
             ->setMethod('POST')
@@ -306,13 +302,13 @@ class ComptableController extends Controller{
         ;
     }
 
-
+    /**
+     * Creates a form to update Etat and Statut of Fiche.
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createMajForm()
     {   
-        /**
-        * create form with data changed by Comptable compared to Fiche Vissiteur. 
-        */
-
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comptable_maj_fiche', array()))
             ->setMethod('POST')
@@ -327,8 +323,9 @@ class ComptableController extends Controller{
     }
 
     /**
-    * redirect to the page : comptable show fiche.  
-    */
+     * Keep the fiche's id to display.
+     *
+     */
     public function loadshowAction($idFiche)
     {   
         $session = $this->getRequest()->getSession();

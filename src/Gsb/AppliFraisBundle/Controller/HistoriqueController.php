@@ -13,13 +13,13 @@ use Gsb\AppliFraisBundle\Entity\Fiche;
 use \DateTime;
 
 /**
- * Historiaue controller.
+ * Historique controller.
  *
  */
 class HistoriqueController extends Controller{
 
     /**
-     * Lists all fiche of vurrent visiteur.
+     * Lists all fiche of current visiteur.
      *
      */
 	public function indexAction(Request $request)
@@ -59,7 +59,6 @@ class HistoriqueController extends Controller{
     *
     * Allows visiteur to find fiche by Etat, Debut and Fin
     *
-    * @param Request $requuest
     */
 
     public function findFicheAction(Request $request)
@@ -125,9 +124,8 @@ class HistoriqueController extends Controller{
     }
     /**
     *
-    * allows Visiteur to find Ligne Fiche according to the Debut, Fin, Statut and Type.
+    * Allows Visiteur to find Ligne Fiche according to the Debut, Fin, Statut and Type.
     *
-    * @param request $request
     */
 
     public function findLigneAction(Request $request)
@@ -239,6 +237,8 @@ class HistoriqueController extends Controller{
     /**
      * Creates a form to find fiche by date.
      *
+     * @param Visiteur $visiteur The current visiteur
+     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createFindFicheForm($visiteur)
@@ -269,6 +269,8 @@ class HistoriqueController extends Controller{
 
     /**
      * Creates a form to find ligne by statut.
+     *
+     * @param Visiteur $visiteur The current visiteur
      *
      * @return \Symfony\Component\Form\Form The form
      */
@@ -311,7 +313,9 @@ class HistoriqueController extends Controller{
     /**
     * redirect Visiteur to his historique Fiche List
     *
-    * @param idFiche $idFiche
+    * @param idFiche $idFiche The fiche to show
+    *
+    * @return redirection
     *
     */
     public function loadShowAction($idFiche)

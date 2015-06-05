@@ -5,14 +5,14 @@ namespace Gsb\AppliFraisBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Employe controller.
+ * Admin controller.
  *
  */
 class AdminController extends Controller
 {
 
     /**
-     * Lists all Employe entities.
+     * Show acces to all entities.
      *
      */
     public function indexAction()
