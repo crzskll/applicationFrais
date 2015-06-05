@@ -8,7 +8,9 @@
 
 	<div class="infoFiche">
 		<div class="infoLeft">
-			Visiteur {{fiche.employe.id}} :<br>{{fiche.employe.nom}} {{fiche.employe.prenom}}
+			Visiteur {{fiche.employe.id}} :<br>{{fiche.employe.nom}} {{fiche.employe.prenom}} <br>{{ form_label(formMaj.etat, 'Etat de la fiche : ') }}
+			    	{{ form_errors(formMaj.etat) }}
+			        {{ form_widget(formMaj.etat) }}
 		</div>
 		<div class="infoRight">
 			Derniere modification effectuée le :<br>{{fiche.dateModification.format('d/m/Y')}}
@@ -16,13 +18,6 @@
 	</div>
 	<div>
 		<form action="{{ path('comptable_maj_fiche') }}" method="POST" {{ form_enctype(formMaj) }}>
-			<div class='infoFiche' >
-				<div class= 'infoLeft' id='divEtat' >
-					{{ form_label(formMaj.etat, 'Etat de la fiche : ') }}
-			    	{{ form_errors(formMaj.etat) }}
-			        {{ form_widget(formMaj.etat) }}
-    			</div>
-			</div>
 			<div>
 				{% block ligneforfait %} 	
 					<div class="tableFiche">
