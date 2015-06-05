@@ -41,7 +41,7 @@ INSERT INTO `fiche` (`id`, `employe_id`, `etat_id`, `date`, `nbJustificatifs`, `
 (5, 2, 1, '2015-05-01', 0, '2015-05-25', '0.00', 0),
 (6, 3, 1, '2015-05-01', 0, '2015-05-25', '0.00', 0);
 
-INSERT INTO `forfaitligne` (`id`, `statut_id`, `fiche_id`, `motif`) VALUES
+INSERT INTO `forfaitLigne` (`id`, `statut_id`, `fiche_id`, `motif`) VALUES
 (1, 2, 1, NULL),
 (2, 2, 2, NULL),
 (3, 2, 3, NULL),
@@ -49,7 +49,7 @@ INSERT INTO `forfaitligne` (`id`, `statut_id`, `fiche_id`, `motif`) VALUES
 (5, 1, 5, NULL),
 (6, 1, 6, NULL);
 
-INSERT INTO `fraisforfait` (`id`, `forfait_id`, `quantite`, `forfaitLigne_id`) VALUES
+INSERT INTO `fraisForfait` (`id`, `forfait_id`, `quantite`, `forfaitLigne_id`) VALUES
 (1, 1, 5, 1),
 (2, 2, 8, 1),
 (3, 3, 85, 1),
@@ -75,7 +75,7 @@ INSERT INTO `fraisforfait` (`id`, `forfait_id`, `quantite`, `forfaitLigne_id`) V
 (23, 3, 194, 6),
 (24, 4, 0, 6);
 
-INSERT INTO `horsforfaitligne` (`id`, `statut_id`, `fiche_id`, `date`, `libelle`, `montant`, `motif`) VALUES
+INSERT INTO `horsForfaitLigne` (`id`, `statut_id`, `fiche_id`, `date`, `libelle`, `montant`, `motif`) VALUES
 (1, 2, 1, '2015-04-08', 'Dîner avec un client', '124.39', NULL),
 (2, 2, 1, '2015-04-20', 'Location salle de réunion', '265.00', NULL),
 (3, 2, 2, '2015-04-05', 'Billets de train', '268.00', NULL),
