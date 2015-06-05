@@ -4,15 +4,26 @@
         <meta charset="UTF-8" />
         <link href = "{{ asset('bundles/gsbapplifrais/css/portal.css') }}" 
           rel = "stylesheet" type = "text/css"/>
+        <link href = "{{ asset('bundles/gsbapplifrais/css/sync.css') }}" 
+          rel = "stylesheet" type = "text/css"/>
         <title>Portal</title>
     </head>
     <body>
         <h1>Laboratoire Galaxy Swiss Bourdin</h1>
         <div class="connexion">
             {% if recapSync %}
-            Synchronisation réussie. N'oubliez pas de supprimer les fiches crées sur le téléphone grâce au bouton supprimer.
+                <h2>Synchronisation réussie</h2>
+                <div class="messageSync">
+                    <p>La synchronisation de vos frais à bien été efféctuée. Afin que vos frais ne soient pas enregistrés en double, pensez à les supprimer sur votre application mobile.</p>
+                    <p>Pour supprimer les frais saisies sur l'application mobile, cliquez sue la corbeille au bas de la page de saisie de frais.</p> 
+                </div>
             {% else %}
-            erreur lors de la synchronisation.
+                <h2>Erreur lors de la synchronisation</h2>
+                <div class="messageSync">
+                    <p>Une erreur est survenue lors de la synchronisation de vos frais.</p>
+                    <p>Le fichier importé n'est peut être pas le bon ou le fichier comporte une anomalie.</p>
+                    <p>Pour résoudre le problème essayez de redémarrer votre application mobile et de resynchroniser vos frais. Si le problème persiste contactez le responsable informatique de votre service.</p>
+                </div>
             {% endif %}
             <a href = "{{path ('visiteur') }}"> 
             	<button> OK </button>
